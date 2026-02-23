@@ -16,7 +16,7 @@ export default function Hero() {
           backgroundPosition: "center",
         }}
       />
-      <h1 className="font-bold text-4xl  text-white z-999 leading-12">
+      <h1 className="font-bold text-4xl  text-white z-99 leading-12">
         your gateway <br />
         to the world
       </h1>

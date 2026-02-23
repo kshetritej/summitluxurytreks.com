@@ -3,7 +3,7 @@ import { Button } from "../ui/button";
 
 export default function WelcomeSection() {
   return (
-    <section className="text-center flex flex-col items-center justify-center md:h-[70vh] p-2">
+    <section className="text-center flex flex-col items-center justify-center md:min-h-[70vh] py-12 px-2">
       <h2 className="font-bold  text-xl uppercase mb-6 leading-tight text-balance">
         Luxury Adventures in Nepal, Tibet & Bhutan
       </h2>

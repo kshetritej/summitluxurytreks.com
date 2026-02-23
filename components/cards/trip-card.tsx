@@ -2,10 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
-import {
-  decodeHtmlEntities,
-  decodeHtmlEntitiesComprehensive,
-} from "@/lib/htmlDecoder";
 
 export type TripCardProps = {
   id: string;
