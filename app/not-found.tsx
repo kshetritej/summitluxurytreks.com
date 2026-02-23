@@ -1,5 +1,3 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
 import svg from "../public/not-found-illustration.svg";
 import Link from "next/link";
