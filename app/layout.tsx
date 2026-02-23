@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/common/navbar";
 import Footer from "@/components/common/footer";
 import { outfit } from "@/lib/font";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "Summit Luxury Treks",
@@ -19,6 +20,7 @@ export default function RootLayout({
       <body className={`${outfit.className} sans-serif antialiased`}>
         <Navbar />
         {children}
+        <Analytics />
         <Footer />
       </body>
     </html>
