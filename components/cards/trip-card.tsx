@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
+import { getFullImageUrl } from "@/lib/getFullUrl";
 
 export type TripCardProps = {
   id: string;
@@ -29,7 +30,7 @@ export default function TripCard({ tour }: Readonly<{ tour: TripCardProps }>) {
           <Image
             width={1280}
             height={720}
-            src={tour.images[0]}
+            src={getFullImageUrl(tour.images[0])}
             alt={tour.title}
             className="object-cover h-full w-full -z-10 hover:scale-105 transition-all duration-150"
           />
