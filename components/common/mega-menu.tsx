@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import useSWR from "swr";
 import {
   NavigationMenu,
@@ -65,19 +64,19 @@ export function MegaMenu() {
   return (
     <NavigationMenu>
       <NavigationMenuList>
-        {menuData?.map((item:any) => {
+        {menuData?.map((item: any) => {
           // Simple links without children
           if (item.children.length === 0) {
             return (
               <NavigationMenuItem key={item.id}>
-                  <NavigationMenuLink
+                <NavigationMenuLink
                   href={item.url}
-                    className={cn(
-                      "group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-                    )}
-                  >
-                    {item.label}
-                  </NavigationMenuLink>
+                  className={cn(
+                    "group inline-flex h-9 w-max items-center justify-center text-secondary px-4 py-2 text-sm font-medium hover:text-accent-foreground",
+                  )}
+                >
+                  {item.label}
+                </NavigationMenuLink>
               </NavigationMenuItem>
             );
           }
@@ -86,7 +85,7 @@ export function MegaMenu() {
           return (
             <NavigationMenuItem key={item.id}>
               <NavigationMenuTrigger>{item.label}</NavigationMenuTrigger>
-              <NavigationMenuContent>
+              <NavigationMenuContent className="bg-none">
                 <div className="w-full md:w-150 p-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {item.children.map((child: any) => {
@@ -100,9 +99,12 @@ export function MegaMenu() {
                             <ul className="space-y-2">
                               {child.children.map((subChild: any) => (
                                 <li key={subChild.id}>
-                                    <NavigationMenuLink href={subChild.url} className="text-sm leading-none text-muted-foreground hover:text-foreground transition-colors">
-                                      {subChild.label}
-                                    </NavigationMenuLink>
+                                  <NavigationMenuLink
+                                    href={subChild.url}
+                                    className="text-sm leading-none text-muted-foreground hover:text-foreground transition-colors"
+                                  >
+                                    {subChild.label}
+                                  </NavigationMenuLink>
                                 </li>
                               ))}
                             </ul>
@@ -115,7 +117,7 @@ export function MegaMenu() {
                         <div key={child.id}>
                           <NavigationMenuLink
                             href={child.url}
-                            className="font-medium leading-none mb-2 p-2"
+                            className="font-medium leading-none mb-2 p-2 hover:bg-none hover:text-accent"
                           >
                             {child.label}
                           </NavigationMenuLink>

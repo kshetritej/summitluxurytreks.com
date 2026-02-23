@@ -1,48 +1,34 @@
-import Link from "next/link";
+import { Button } from "./ui/button";
 
 export default function Hero() {
   return (
-    <section className="relative h-screen bg-gradient-to-b from-primary to-primary/5 text-primary-foreground overflow-hidden">
-      {/* Background Image Overlay */}
+    <section
+      className={`relative h-screen bg-linear-to-b from-primary/70 to-primary/20
+        flex flex-col justify-center  items-center p-12 text-center uppercase
+        gap-8 -mt-16`}
+    >
       <div
-        className="absolute inset-0 opacity-30"
+        className="absolute inset-0 op"
         style={{
-          backgroundImage:
-            "url(https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80)",
+          zIndex: -1,
+          backgroundImage: "url(/hero-image.png)",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       />
-
-      {/* Content */}
-      <div className="relative h-full flex flex-col items-center justify-center px-4">
-        <div className="text-center ">
-          <p className="text-lg md:text-xl mb-4 opacity-90 uppercase tracking-widest font-semibold">
-            Nepal&apos;s Premier Trekking Destination
-          </p>
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-balance leading-tight">
-            Trek Through the Himalayas
-          </h1>
-          <p className="text-lg md:text-xl mb-10 opacity-95 text-balance leading-relaxed">
-            Discover authentic Nepal with experienced local guides. From
-            beginner-friendly trails to challenging summits, find your perfect
-            Himalayan adventure with breathtaking views and warm hospitality.
-          </p>
-          <div className="flex gap-4 justify-center flex-wrap">
-            <Link
-              href="#"
-              className="bg-accent text-accent-foreground px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition"
-            >
-              Explore Nepal Treks
-            </Link>
-            <Link
-              href="/contact"
-              className="border-2 border-primary-foreground px-8 py-3 rounded-lg font-semibold hover:bg-primary-foreground hover:text-primary transition"
-            >
-              Plan Your Journey
-            </Link>
-          </div>
-        </div>
+      <h1 className="font-bold text-4xl  text-white z-999 leading-12">
+        your gateway <br />
+        to the world
+      </h1>
+      <p className="mb-10 opacity-95 text-balance leading-relaxed text-white">
+        Award-winning luxury travel experts crafting bespoke journeys for
+        discerning travellers since 2005
+      </p>
+      <div id="btn-group" className="flex gap-4">
+        <Button variant={"secondary"} className="uppercase">
+          Explore Our Trips
+        </Button>
+        <Button className="uppercase">Plan my trip</Button>
       </div>
     </section>
   );

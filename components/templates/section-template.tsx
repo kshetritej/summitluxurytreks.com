@@ -7,7 +7,7 @@ type SectionTemplateProps = {
   badgeText: ReactNode;
   title: ReactNode;
   text: ReactNode;
-  buttonLink: string;
+  buttonLink?: string;
   buttonText?: string;
   children: ReactNode;
   className?: string;
@@ -29,24 +29,26 @@ export default function SectionTemplate({
             <div className="text-sm font-bold uppercase tracking-widest text-primary mb-2">
               {badgeText}
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 leading-tight text-balance">
+            <h2 className="text-lg  uppercase font-bold text-foreground mb-6 leading-tight text-balance">
               {title}
             </h2>
-            <div className="text-lg text-muted-foreground mb-4 leading-relaxed max-w-3xl">
+            <div className="text-md tracking-wider text-muted-foreground mb-4 leading-relaxed max-w-3xl">
               {text}
             </div>
           </div>
         </div>
 
-        <div className="text-center">
-          <Link
-            href={buttonLink}
-            className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition"
-          >
-            {buttonText}
-            <ChevronRight className="w-5 h-5" />
-          </Link>
-        </div>
+        {buttonText && buttonLink && (
+          <div className="text-center">
+            <Link
+              href={buttonLink!}
+              className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition"
+            >
+              {buttonText}
+              <ChevronRight className="w-5 h-5" />
+            </Link>
+          </div>
+        )}
       </div>
       <div className="mx-auto container">{children}</div>
     </section>

@@ -101,7 +101,7 @@ export default function AboutPage() {
               <div>
                 <p className="font-semibold">Government Registered</p>
                 <p className="text-sm text-muted-foreground">
-                  Officially registered with Nepal's Ministry of Culture,
+                  Officially registered with Nepal&apos;s Ministry of Culture,
                   Tourism & Civil Aviation
                 </p>
               </div>
@@ -133,7 +133,8 @@ export default function AboutPage() {
               <div>
                 <p className="font-semibold">Nepal Tourism Board Approved</p>
                 <p className="text-sm text-muted-foreground">
-                  Recognized and approved by Nepal's official tourism authority
+                  Recognized and approved by Nepal&apos;s official tourism
+                  authority
                 </p>
               </div>
             </div>

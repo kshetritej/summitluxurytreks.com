@@ -1,17 +1,18 @@
 import Link from "next/link";
-import { ImageIcon } from "lucide-react";
+import Image from "next/image";
 import {
   associated1,
   associated2,
   associated3,
   associated4,
   associated6,
-  payments,
 } from "@/lib/imageutil";
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
 
 export default function Footer() {
   return (
-    <footer className="bg-background text-foreground border-t border-border">
+    <footer className="relative bg-background text-foreground border-t border-border mt-42">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Footer Content */}
         <div className="py-16">
@@ -38,7 +39,7 @@ export default function Footer() {
               <p className="text-sm font-semibold text-muted-foreground mt-4 mb-2">
                 Email Address
               </p>
-              <p className="font-semibold">info@govindatravels.com</p>
+              <p className="font-semibold">info@summitluxurytreks.com</p>
             </div>
 
             {/* Company */}
@@ -172,6 +173,8 @@ export default function Footer() {
                 >
                   <img
                     src={image}
+                    height={50}
+                    width={50}
                     alt={`Associated ${i + 1}`}
                     className="w-full h-full object-contain"
                   />
@@ -179,19 +182,14 @@ export default function Footer() {
               ))}
             </div>
           </div>
-
-          {/* We Accept */}
-          <div>
-            <p className="text-sm font-semibold text-muted-foreground mb-4">
-              We Accept
-            </p>
-              <img
-                src={payments}
-                alt="Payments accepted"
-                className="object-contain rounded-md"
-              />
+          <div className="p-8 min-h-32 border border-white flex flex-col gap-4 text-white bg-primary">
+            <p className="text-lg font-bold">Subscribe to our newsletter</p>
+            <p>Cancel anytime, no spam.</p>
+            <Input className="max-w-xl" />
+            <Button className="w-fit" variant={"secondary"}>
+              Subscribe
+            </Button>
           </div>
-
           {/* Copyright */}
           <div className="pt-6 text-sm text-muted-foreground border-t border-border">
             <p>© 2026 Summit Luxury Treks.</p>

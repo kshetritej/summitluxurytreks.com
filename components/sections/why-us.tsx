@@ -1,66 +1,52 @@
-import { Mountain, Users, Heart, Zap } from 'lucide-react';
+import { Heart, Diamond, Banknote, RectangleGoggles } from "lucide-react";
 
 export default function WhyUsSection() {
   const features = [
     {
-      icon: Mountain,
-      title: 'Expert Himalayan Guides',
+      icon: Diamond,
+      title: "Only the Finest",
       description:
-        'All treks are led by certified Sherpa guides with 15+ years of mountain experience, unlocking authentic cultural experiences and hidden trails most travelers never discover.',
+        "At Summit Luxury, you only find the best. We do the hard work so you don’t have to.",
     },
+
     {
-      icon: Users,
-      title: 'Outdoor Specialists',
+      icon: Banknote,
+      title: "Greed is Good",
       description:
-        'Choose from 50+ meticulously curated Nepal trekking routes designed by mountain experts. From beginner-friendly to challenging expeditions, whatever your mood and fitness level.',
+        "With quality, you also get lowest prices, last-minute availability and 24x7 support.",
     },
     {
       icon: Heart,
-      title: 'Small Groups, Big Connections',
+      title: "Experience every flavour",
       description:
-        '75% of our trekkers join as solo travelers, and 95% rate their experience 5 stars. Our intimate groups of 8-12 create lasting friendships and authentic memories.',
+        "Offbeat or mainstream, a tour or a show, a game or a museum - we have ‘em all.",
     },
     {
-      icon: Zap,
-      title: 'Hassle-Free from Start',
+      icon: RectangleGoggles,
+      title: "No pain, only gain",
       description:
-        'We handle permits, logistics, accommodations, and meals so you can focus on the adventure. From booking to summit, your journey is seamlessly managed.',
+        "Didn’t love it? We’ll give you your money back. Not cocky, just confident.",
     },
   ];
 
   return (
-    <section className="py-20 px-4 bg-secondary">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Why Trek with Us</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Experience Nepal&apos;s Himalayas with trusted expertise and authentic hospitality
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {features.map((feature, index) => {
-            const IconComponent = feature.icon;
-            return (
-              <div key={index} className="flex flex-col items-center text-center">
-                {/* Icon */}
-                <div className="mb-6 p-4 bg-primary/10 rounded-full">
-                  <IconComponent className="w-10 h-10 text-primary" />
-                </div>
-
-                {/* Title */}
-                <h3 className="text-lg font-bold text-foreground mb-3 uppercase tracking-wider">
-                  {feature.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  {feature.description}
-                </p>
+    <section className="bg-primary/20">
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 py-8 container mx-auto ">
+        {features.map((feature, index) => {
+          const IconComponent = feature.icon;
+          return (
+            <div key={index} className="flex flex-col p-8">
+              <IconComponent className="w-10 h-10 text-primary" />
+              <div className="font-bold text-foreground mb-3 uppercase leading-relaxed h-8 mt-4 tracking-wider">
+                {feature.title}
               </div>
-            );
-          })}
-        </div>
+
+              <div className="text-muted-foreground text-sm leading-relaxed tracking-wider">
+                {feature.description}
+              </div>
+            </div>
+          );
+        })}
       </div>
     </section>
   );

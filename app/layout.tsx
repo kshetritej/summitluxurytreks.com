@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/common/navbar";
 import Footer from "@/components/common/footer";
-import { google_sans } from "@/lib/font";
+import { outfit } from "@/lib/font";
 
 export const metadata: Metadata = {
   title: "Summit Luxury Treks",
@@ -16,12 +16,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${google_sans.className} sans-serif antialiased`}
-      >
-        <Navbar/>
+      <body className={`${outfit.className} sans-serif antialiased`}>
+        <Navbar />
         {children}
-        <Footer/>
+        <Footer />
       </body>
     </html>
   );
