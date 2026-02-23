@@ -9,8 +9,6 @@ const LatestTrips = async () => {
   const resJSON = await res.json();
   const trips = resJSON.data;
 
-  console.log("Trips: ", trips);
-
   return (
     <SectionTemplate
       badgeText={<p>Latest Trips</p>}

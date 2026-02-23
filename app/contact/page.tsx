@@ -1,38 +1,39 @@
-'use client'
+"use client";
 
-import React from "react"
+import React from "react";
 
-import { useState } from 'react'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
-import { Label } from '@/components/ui/label'
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: '',
-  })
-  const [submitted, setSubmitted] = useState(false)
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+  const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
       [name]: value,
-    }))
-  }
+    }));
+  };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+    e.preventDefault();
     // Here you would typically send the form data to a server
-    console.log('Form submitted:', formData)
-    setSubmitted(true)
-    setFormData({ name: '', email: '', phone: '', message: '' })
-    setTimeout(() => setSubmitted(false), 5000)
-  }
+    setSubmitted(true);
+    setFormData({ name: "", email: "", phone: "", message: "" });
+    setTimeout(() => setSubmitted(false), 5000);
+  };
 
   return (
     <main className="bg-background text-foreground">
@@ -41,7 +42,8 @@ export default function ContactPage() {
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl font-bold mb-4">Contact Us</h1>
           <p className="text-lg text-muted-foreground">
-            Have questions about our treks? Get in touch with us and we'll be happy to help.
+            Have questions about our treks? Get in touch with us and we'll be
+            happy to help.
           </p>
         </div>
       </section>
@@ -53,7 +55,9 @@ export default function ContactPage() {
 
           {submitted && (
             <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
-              <p className="text-green-800">Thank you for your message. We'll get back to you soon.</p>
+              <p className="text-green-800">
+                Thank you for your message. We'll get back to you soon.
+              </p>
             </div>
           )}
 
@@ -109,7 +113,11 @@ export default function ContactPage() {
               />
             </div>
 
-            <Button type="submit" variant={'default'} className="cursor-pointer">
+            <Button
+              type="submit"
+              variant={"default"}
+              className="cursor-pointer"
+            >
               Send Message
             </Button>
           </form>
@@ -124,7 +132,10 @@ export default function ContactPage() {
           <div className="flex flex-col gap-8">
             <div className="space-y-2">
               <h3 className="font-semibold text-lg">Email</h3>
-              <a href="mailto:mail@govindatravels.com" className="hover:underline">
+              <a
+                href="mailto:mail@govindatravels.com"
+                className="hover:underline"
+              >
                 mail@govindatravels.com
               </a>
             </div>
@@ -149,12 +160,20 @@ export default function ContactPage() {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl font-bold mb-4">Response Times</h2>
           <div className="space-y-3 text-muted-foreground">
-            <p>We typically respond to inquiries within 24 hours during business days.</p>
-            <p>For urgent matters, please call us directly at +977 9841328947.</p>
-            <p>Our team is available Monday to Saturday, 9 AM to 6 PM Nepal Standard Time.</p>
+            <p>
+              We typically respond to inquiries within 24 hours during business
+              days.
+            </p>
+            <p>
+              For urgent matters, please call us directly at +977 9841328947.
+            </p>
+            <p>
+              Our team is available Monday to Saturday, 9 AM to 6 PM Nepal
+              Standard Time.
+            </p>
           </div>
         </div>
       </section>
     </main>
-  )
+  );
 }
