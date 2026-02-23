@@ -39,10 +39,7 @@ export function NavbarClient({ items }: NavbarClientProps) {
       </div>
 
       <header className="sticky top-0 z-40 flex items-center justify-between px-8 md:px-14 py-5 bg-black/90 text-white backdrop-blur-sm ">
-        <Link href="/" className="flex flex-col leading-none select-none">
-          <LogoComponent />
-        </Link>
-
+        <LogoComponent />
         <nav
           className="hidden lg:flex items-center gap-1"
           aria-label="Quick links"

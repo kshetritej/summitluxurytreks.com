@@ -65,13 +65,9 @@ export function FullscreenOverlay({
     >
       {/* ── Top bar ── */}
       <div className="flex items-center justify-between px-8 md:px-14 py-6 border-b border-white/10 flex-shrink-0">
-        <Link
-          href="/"
-          onClick={onClose}
-          className="flex flex-col leading-none select-none"
-        >
+        <div role="button" onClick={onClose}>
           <LogoComponent />
-        </Link>
+        </div>
 
         <div className="flex items-center gap-6">
           <button

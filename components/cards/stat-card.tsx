@@ -9,11 +9,11 @@ export function StatCard({
 }) {
   return (
     <div className="rounded-xl border border-slate-200 bg-white px-4 py-5 text-center shadow-sm">
-      <div className="mx-auto flex h-11 w-11 items-center justify-center rounded-full bg-sky-50">
+      <div className="mx-auto flex h-11 w-11 items-center justify-center rounded-full bg-primary/20">
         {icon}
       </div>
 
-      <div className="mt-3 text-[10px] font-semibold uppercase tracking-wider text-slate-500">
+      <div className="mt-3 text-[10px] font-semibold uppercase tracking-wider">
         {label}
       </div>
 

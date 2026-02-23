@@ -16,9 +16,9 @@ export default function TrekDetailPage({ trip }: { trip: any }) {
       className="
       prose prose-lg max-w-none leading leading-relaxed
       prose-headings:text-gray-900 prose-headings:font-bold
-      prose-h1:text-4xl 
+      prose-h1:text-4xl
       prose-h2:text-3xl   prose-h2:font-bold
-      prose-h3:text-xl  
+      prose-h3:text-xl
       prose-p:leading-relaxed prose-p:mb-4 prose-p:mt-0
       prose-a:text-primary prose-a:no-underline hover:prose-a:text-primary hover:prose-a:underline
       prose-strong:text-black prose-strong:font-bold
@@ -44,32 +44,35 @@ export default function TrekDetailPage({ trip }: { trip: any }) {
       **:wrap-break-word
     "
     >
-      <div className="grid grid-cols-7 container mx-auto p-4 max-w-7xl gap-4">
-        <div className="px-4 pb-16 pt-6 col-span-5">
+      <div className="grid md:grid-cols-7 container mx-auto p-2 max-w-7xl gap-4">
+        <div className="pb-16 pt-6 col-span-5">
           {/* <Breadcrumbs items={d.breadcrumbs} /> */}
           <TrekHeader title={d.title} days={d.duration} />
           <TrekHero images={d.images} />
-          <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
+          <div className="my-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
             <StatCard
-              icon={<Mountain className="h-5 w-5 text-sky-600" />}
+              icon={<Mountain className="h-5 w-5 text-primary" />}
               label="Max Altitude"
               value={"12,300"}
             />
             <StatCard
-              icon={<Gauge className="h-5 w-5 text-sky-600" />}
+              icon={<Gauge className="h-5 w-5 text-primary" />}
               label="Difficulty"
               value={d.difficultyLevel}
             />
             <StatCard
-              icon={<Users className="h-5 w-5 text-sky-600" />}
+              icon={<Users className="h-5 w-5 text-primary" />}
               label="Group Size"
               value={d.guestCapacity}
             />
             <StatCard
-              icon={<MapPin className="h-5 w-5 text-sky-600" />}
+              icon={<MapPin className="h-5 w-5 text-primary" />}
               label="Start/End"
               value={d.meetingPoint + " / " + d.dropOffPoint}
             />
+          </div>
+          <div className="md:hidden">
+            <BookingCard />
           </div>
           <div className="mt-8">
             <div
@@ -85,7 +88,7 @@ export default function TrekDetailPage({ trip }: { trip: any }) {
             <FullItinerary days={d.itinerary} />
             {d.inclusions && (
               <div
-                className="rounded-xl border my-4  bg-white border-green-500 data-[state=open]:bg-blue-50/40 px-4 p-4"
+                className="rounded-xl border my-4   border-green-500  bg-green-500/40 px-4 p-4"
                 dangerouslySetInnerHTML={{
                   __html: decodeHtmlEntities(d.inclusions[0]),
                 }}
@@ -93,7 +96,7 @@ export default function TrekDetailPage({ trip }: { trip: any }) {
             )}
             {d.exclusions && (
               <div
-                className="rounded-xl border my-4 bg-white border-rose-500 data-[state=open]:bg-blue-50/40 px-4 p-4"
+                className="rounded-xl border my-4 e border-rose-500 bg-rose-500/40  px-4 p-4"
                 dangerouslySetInnerHTML={{
                   __html: decodeHtmlEntities(d.exclusions[0]),
                 }}
@@ -129,7 +132,7 @@ export default function TrekDetailPage({ trip }: { trip: any }) {
             </Accordion>
           </div>
         </div>
-        <div className="col-span-2">
+        <div className="col-span-2 hidden md:flex">
           <div className="col-span-2 sticky lg:top-32">
             <BookingCard />
           </div>

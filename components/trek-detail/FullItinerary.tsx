@@ -28,21 +28,21 @@ export default function FullItinerary({ days }: { days: ItineraryDay[] }) {
           <AccordionItem
             key={d.day}
             value={`day-${d.day}`}
-            className="rounded-xl border border-slate-200 bg-white data-[state=open]:border-sky-600 data-[state=open]:bg-blue-50/40"
+            className="rounded-xl border border-slate-200 bg-white data-[state=open]:border-primary/60 data-[state=open]:bg-primary/40"
           >
             <AccordionTrigger className="flex w-full items-center justify-between gap-4 px-4 py-3 text-left hover:no-underline [&[data-state=open]>svg]:rotate-180">
               <div className="flex items-center gap-3">
-                <span className="rounded bg-blue-100 px-2 py-1 font-semibold text-sky-700">
+                <span className="rounded bg-primary/90 px-2 py-1 font-semibold text-white">
                   Day {d.day}
                 </span>
-                <span className="font-semibold text-slate-900">
-                  {d.title}
-                </span>
+                <span className="font-semibold">{d.title}</span>
               </div>
             </AccordionTrigger>
             <AccordionContent className="px-4 pb-4">
               <div
-                dangerouslySetInnerHTML={{ __html: decodeHtmlEntities(d.description) }}
+                dangerouslySetInnerHTML={{
+                  __html: decodeHtmlEntities(d.description),
+                }}
               />
             </AccordionContent>
           </AccordionItem>
