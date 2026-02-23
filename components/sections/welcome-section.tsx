@@ -1,40 +1,9 @@
-"use client";
-
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { Button } from "../ui/button";
 
 export default function WelcomeSection() {
-  const features = [
-    {
-      title: "Unmatched Expertise",
-      description: "With over 15 years of experience in Himalayan trekking",
-      image:
-        "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop",
-    },
-    {
-      title: "Seamless & Luxury Comfort",
-      description:
-        "Premium lodges and personalized service throughout your journey",
-      image:
-        "https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=600&h=400&fit=crop",
-    },
-    {
-      title: "99% Trek Success Rate",
-      description: "Proven track record of safe and successful expeditions",
-      image:
-        "https://images.unsplash.com/photo-1487730116645-74489c95b41b?w=600&h=400&fit=crop",
-    },
-    {
-      title: "Local Expertise, Global Trust",
-      description: "TAAN, NMA, and Nepal Tourism Board certified partners",
-      image:
-        "https://images.unsplash.com/photo-1487730116645-74489c95b41b?w=600&h=400&fit=crop",
-    },
-  ];
-
   return (
-    <section className="text-center flex flex-col items-center justify-center h-[70vh]">
+    <section className="text-center flex flex-col items-center justify-center md:h-[70vh] p-2">
       <h2 className="font-bold  text-xl uppercase mb-6 leading-tight text-balance">
         Luxury Adventures in Nepal, Tibet & Bhutan
       </h2>
