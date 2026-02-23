@@ -133,10 +133,10 @@ export default function ContactPage() {
             <div className="space-y-2">
               <h3 className="font-semibold text-lg">Email</h3>
               <a
-                href="mailto:mail@govindatravels.com"
+                href="mailto:info@summitluxurytreks.com"
                 className="hover:underline"
               >
-                mail@govindatravels.com
+                info@summitluxurytreks.com
               </a>
             </div>
 

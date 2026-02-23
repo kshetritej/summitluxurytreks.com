@@ -2,6 +2,18 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
+  async rewrites() {
+    if (process.env.NODE_ENV === "production") {
+      return [
+        {
+          source: "/api/:path*",
+          destination: "https://api.summitluxurytreks.com/api/:path*",
+        },
+      ];
+    }
+
+    return [];
+  },
   images: {
     remotePatterns: [
       {
@@ -12,7 +24,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "api.growfore.com",
+        hostname: "api.summitluxurytreks.com",
         pathname: "/**",
       },
     ],
