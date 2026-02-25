@@ -1,48 +1,58 @@
+export const dynamic = "force-static";
 import TrekHeader from "./TrekHeader";
 import TrekHero from "./TrekHero";
 import BookingCard from "./BookingCard";
-import FullItinerary from "./FullItinerary";
-import { Mountain, Gauge, Users, MapPin } from "lucide-react";
+import { Gauge, Users, MapPin } from "lucide-react";
 import { StatCard } from "../cards/stat-card";
 import { AdditionalInfoRenderer } from "../molecules/additional-info-renderer";
 import { FAQRenderer } from "../molecules/faq-renderer";
 import { Accordion } from "../ui/accordion";
 import { decodeHtmlEntities } from "@/lib/htmlDecoder";
+import FullItinerary from "./FullItinerary";
 
 export default function TrekDetailPage({ trip }: { trip: any }) {
   const d = trip;
   return (
     <main
       className="
-      prose prose-lg max-w-none leading leading-relaxed
-      prose-headings:text-gray-900 prose-headings:font-bold
-      prose-h1:text-4xl
-      prose-h2:text-3xl   prose-h2:font-bold
-      prose-h3:text-xl
-      prose-p:leading-relaxed prose-p:mb-4 prose-p:mt-0
-      prose-a:text-primary prose-a:no-underline hover:prose-a:text-primary hover:prose-a:underline
-      prose-strong:text-black prose-strong:font-bold
-      prose-ul:my-2 prose-ol:my-2
-      prose-li:text-gray-700 prose-li:mb-1
-      prose-blockquote:border-l-4 prose-blockquote:border-green-500 prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:text-gray-600
-      prose-img:rounded-lg prose-img:my-6
-      prose-code:bg-gray-100 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-sm
-      prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-pre:rounded-lg prose-pre:p-4
-      prose-ul:list-none
-      prose-li:relative prose-li:pl-8
-      prose-li:before:absolute
-      prose-li:before:left-0
-      prose-li:before:top-[0.45em]
-      prose-li:before:w-4 prose-li:before:h-4
-      prose-li:before:bg-primary
-      prose-li:before:mask-[url('/point-finger.svg')]
-      prose-li:before:rotate-90
-      prose-li:before:mask-contain
-      prose-li:before:mask-no-repeat
-      prose  w-full
-      wrap-break-words
-      **:wrap-break-word
-    "
+           col-span-2 min-w-0
+           prose prose-base max-w-none w-full
+           leading-relaxed
+
+           prose-headings:font-bold prose-headings:text-gray-900 prose-headings:leading-tight prose-headings:mt-8 prose-headings:mb-3
+           prose-h1:text-3xl prose-h1:tracking-wider
+           prose-h2:text-2xl prose-h2:tracking-wider
+           prose-h3:text-xl prose-h3:tracking-wider
+           prose-h4:text-lg prose-h4:tracking-wider
+           prose-p:text-lg
+
+           prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mt-0 prose-p:mb-4 prose-p:tracking-wider
+
+           prose-a:text-primary prose-a:no-underline prose-a:font-medium
+           hover:prose-a:underline
+
+           prose-strong:text-gray-900 prose-strong:font-semibold
+
+           prose-ul:list-none prose-ul:pl-0 prose-ul:my-3
+           prose-ol:my-3
+           prose-li:relative prose-li:pl-7 prose-li:mb-2 prose-li:text-gray-700
+           prose-li:before:absolute prose-li:before:left-0 prose-li:before:top-[0.35em]
+           prose-li:before:block prose-li:before:w-4 prose-li:before:h-4
+           prose-li:before:bg-primary
+           prose-li:text-lg prose-li:tracking-wider
+           prose-li:before:[mask-image:url('/icons/bullet.svg')]
+           prose-li:before:[mask-size:contain]
+           prose-li:before:[mask-repeat:no-repeat]
+
+           prose-blockquote:border-l-4 prose-blockquote:border-primary/60
+           prose-blockquote:pl-5 prose-blockquote:italic prose-blockquote:text-gray-500
+           prose-blockquote:my-6
+
+           prose-img:rounded-xl prose-img:my-6 prose-img:shadow-sm
+
+           prose-code:bg-gray-100 prose-code:text-sm prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
+           prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-pre:rounded-xl prose-pre:p-4
+         "
     >
       <div className="grid md:grid-cols-7 container mx-auto p-2 max-w-7xl gap-4">
         <div className="pb-16 pt-6 col-span-5">
@@ -50,11 +60,6 @@ export default function TrekDetailPage({ trip }: { trip: any }) {
           <TrekHeader title={d.title} days={d.duration} />
           <TrekHero images={d.images} />
           <div className="my-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
-            <StatCard
-              icon={<Mountain className="h-5 w-5 text-primary" />}
-              label="Max Altitude"
-              value={"12,300"}
-            />
             <StatCard
               icon={<Gauge className="h-5 w-5 text-primary" />}
               label="Difficulty"
@@ -88,7 +93,10 @@ export default function TrekDetailPage({ trip }: { trip: any }) {
             <FullItinerary days={d.itinerary} />
             {d.inclusions && (
               <div
-                className="rounded-xl border my-4   border-green-500  bg-green-500/40 px-4 p-4"
+                className="rounded-xl border  border-green-200  bg-green-200/20 p-2
+                prose-li:before:mask-[url('/icons/include.svg')]
+                prose-li:before:bg-green-600
+                "
                 dangerouslySetInnerHTML={{
                   __html: decodeHtmlEntities(d.inclusions[0]),
                 }}
@@ -96,16 +104,14 @@ export default function TrekDetailPage({ trip }: { trip: any }) {
             )}
             {d.exclusions && (
               <div
-                className="rounded-xl border my-4 e border-rose-500 bg-rose-500/40  px-4 p-4"
+                className="rounded-xl border my-4 e border-rose-200 bg-rose-200/20  px-4 p-4 prose-li:before:mask-[url('/icons/exclude.svg')]"
                 dangerouslySetInnerHTML={{
                   __html: decodeHtmlEntities(d.exclusions[0]),
                 }}
               />
             )}
 
-            {d.additionalInfo && (
-              <h2 className="font-bold text-md mt-4">Trip Info</h2>
-            )}
+            {d.additionalInfo && <h2 className="font-bold mt-4">Trip Info</h2>}
             {d.additionalInfo &&
               d.additionalInfo.map((item: any, index: number) => {
                 return (
@@ -116,17 +122,14 @@ export default function TrekDetailPage({ trip }: { trip: any }) {
               })}
 
             <Accordion type="single" collapsible className="w-full">
-              <p className="font-bold text-md mt-4">FAQs</p>
               {d.faqs &&
                 d.faqs.map((item: any, index: number) => {
                   return (
-                    <div key={index + item}>
-                      <FAQRenderer
-                        index={String(index)}
-                        key={index + item}
-                        item={item}
-                      />
-                    </div>
+                    <FAQRenderer
+                      index={String(index)}
+                      key={index + item}
+                      item={item}
+                    />
                   );
                 })}
             </Accordion>

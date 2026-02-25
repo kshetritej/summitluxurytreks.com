@@ -14,17 +14,19 @@ export default function BookingCard() {
   }, [travellers]);
 
   return (
-    <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
-      <div className="text-sm text-slate-500">Starting from</div>
+    <div className="rounded-xl border  p-5 shadow-sm">
+      <div className="text-sm ">Starting from</div>
 
       <div className="mt-1 flex items-end gap-2">
-        <div className="text-2xl font-semibold text-slate-900">${price.toLocaleString()}</div>
-        <div className="pb-[2px] text-sm text-slate-500">/person</div>
+        <div className="text-2xl font-semibold text-slate-900">
+          ${price.toLocaleString()}
+        </div>
+        <div>/person</div>
       </div>
 
       <div className="mt-4 space-y-3">
         <div>
-          <label className="text-sm font-semibold text-slate-700">Travel Date</label>
+          <label className="font-semibold">Travel Date</label>
           <div className="mt-2 rounded-lg border border-slate-200 bg-white px-3 py-2">
             <input
               type="date"
@@ -61,7 +63,7 @@ export default function BookingCard() {
         </div>
 
         <button
-          className="mt-2 w-full rounded-lg bg-sky-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-sky-700"
+          className="mt-2 w-full rounded-lg bg-primary/90 px-4 py-2.5 text-sm font-semibold text-white hover:bg-primary"
           type="button"
         >
           Book This Trek
@@ -77,11 +79,12 @@ export default function BookingCard() {
           Need help with booking?
         </div>
         <div className="mt-1 text-sm text-slate-600">
-          Our travel experts are available 24/7 to help you customize your journey.
+          Our travel experts are available 24/7 to help you customize your
+          journey.
         </div>
         <button
           type="button"
-          className="mt-3 w-full rounded-lg border border-sky-200 bg-white px-4 py-2 text-sm font-semibold text-sky-700 hover:bg-sky-50"
+          className="mt-3 w-full rounded-lg border border-primary/20 bg-white px-4 py-2 text-sm font-semibold text-primary hover:bg-primary/5"
         >
           Contact Expert →
         </button>

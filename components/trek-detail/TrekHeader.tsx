@@ -14,8 +14,8 @@ export default function TrekHeader({
       <h1 className="text-2xl font-semibold">{title}</h1>
 
       <div className="mt-2 flex flex-wrap items-center gap-2">
-        <span className="inline-flex items-center gap-2 rounded-full bg-sky-50 px-3 py-1 text-xs font-semibold text-sky-700">
-          <span className="inline-block h-2 w-2 rounded-full bg-sky-600" />
+        <span className="inline-flex items-center gap-2 rounded-full bg-primary/5 px-3 py-1 text-xs font-semibold text-primary/70">
+          <span className="inline-block h-2 w-2 rounded-full bg-primary" />
           {days}
         </span>
 
