@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { LucideMountain } from "lucide-react";
+import { siteConfig } from "@/constants";
 
 export default function LogoComponent({ dark }: Readonly<{ dark?: boolean }>) {
   return (
@@ -7,7 +8,7 @@ export default function LogoComponent({ dark }: Readonly<{ dark?: boolean }>) {
       <span>
         <LucideMountain />
       </span>
-      Summit Luxury Treks
+      {siteConfig.name}
     </Link>
   );
 }

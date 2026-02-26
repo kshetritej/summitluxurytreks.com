@@ -2,11 +2,12 @@
 
 import { useMemo, useState } from "react";
 
-export default function BookingCard() {
-  const [date, setDate] = useState("2024-09-24");
+export default function BookingCard({ trip }: { trip: any }) {
+  console.log("trip: ", trip);
+  const [date, setDate] = useState("2026-09-24");
   const [travellers, setTravellers] = useState(2);
 
-  const price = 1450;
+  const price = trip?.price;
 
   const travellersLabel = useMemo(() => {
     if (travellers === 1) return "1 Traveler";
@@ -15,11 +16,12 @@ export default function BookingCard() {
 
   return (
     <div className="rounded-xl border  p-5 shadow-sm">
+      <div className="font-bold">{trip?.title}</div>
       <div className="text-sm ">Starting from</div>
 
       <div className="mt-1 flex items-end gap-2">
         <div className="text-2xl font-semibold text-slate-900">
-          ${price.toLocaleString()}
+          ${price?.toLocaleString()}
         </div>
         <div>/person</div>
       </div>

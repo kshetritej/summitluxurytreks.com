@@ -18,7 +18,7 @@ export default function CTACard() {
   });
 
   return (
-    <section className="w-full rounded-lg bg-primary text-white p-6 md:p-8 mb-4 mt-12">
+    <section className="w-full rounded-lg bg-background  text-white p-6 md:p-8 mb-4 mt-12">
       <div className="space-y-4 flex flex-col md:flex-row w-full gap-8 justify-between">
         <div className="space-y-1">
           <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">
@@ -38,7 +38,12 @@ export default function CTACard() {
             placeholder="youremail@domain.com"
             className="h-11 placeholder:text-white"
           />
-          <Button type="submit" size="lg" variant={'outline'} className="bg-transparent">
+          <Button
+            type="submit"
+            size="lg"
+            variant={"outline"}
+            className="bg-transparent"
+          >
             Subscribe
           </Button>
         </form>
@@ -58,7 +63,7 @@ const onSubmit = async (data: { email: string }) => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email: data.email }),
-    }
+    },
   );
 
   if (res.ok) {

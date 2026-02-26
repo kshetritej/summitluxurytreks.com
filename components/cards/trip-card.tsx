@@ -39,7 +39,7 @@ export default function TripCard({ tour }: Readonly<{ tour: TripCardProps }>) {
         <Badge className="absolute top-1 right-1 z-0 rounded-none text-shadow-2xs">
           {tour.duration}
         </Badge>
-        <div className="p-2 flex flex-col  z-999 bottom-0 absolute text-white">
+        <div className="p-2 flex flex-col  z-9 bottom-0 absolute text-white">
           <h4 className="font-bold text-lg">{tour.title}</h4>
           <p className="italic normal-case mb-4">
             from <span className="font-bold">USD {tour.price}</span> per person

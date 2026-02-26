@@ -2,7 +2,7 @@ export const dynamic = "force-static";
 import TrekHeader from "./TrekHeader";
 import TrekHero from "./TrekHero";
 import BookingCard from "./BookingCard";
-import { Gauge, Users, MapPin } from "lucide-react";
+import { Gauge, Users, MapPin, LucideClock } from "lucide-react";
 import { StatCard } from "../cards/stat-card";
 import { AdditionalInfoRenderer } from "../molecules/additional-info-renderer";
 import { FAQRenderer } from "../molecules/faq-renderer";
@@ -54,12 +54,19 @@ export default function TrekDetailPage({ trip }: { trip: any }) {
            prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-pre:rounded-xl prose-pre:p-4
          "
     >
-      <div className="grid md:grid-cols-7 container mx-auto p-2 max-w-7xl gap-4">
-        <div className="pb-16 pt-6 col-span-5">
+      <div className="container mx-auto">
+        <TrekHero images={d.images} />
+        <TrekHeader title={d.title} days={d.duration} />
+      </div>
+      <div className="grid md:grid-cols-7 container mx-auto p-2 max-w-7xl gap-8">
+        <div className="col-span-5">
           {/* <Breadcrumbs items={d.breadcrumbs} /> */}
-          <TrekHeader title={d.title} days={d.duration} />
-          <TrekHero images={d.images} />
-          <div className="my-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+            <StatCard
+              icon={<LucideClock className="h-5 w-5 text-primary" />}
+              label="Duration"
+              value={d.duration}
+            />
             <StatCard
               icon={<Gauge className="h-5 w-5 text-primary" />}
               label="Difficulty"
@@ -77,7 +84,7 @@ export default function TrekDetailPage({ trip }: { trip: any }) {
             />
           </div>
           <div className="md:hidden">
-            <BookingCard />
+            <BookingCard trip={trip} />
           </div>
           <div className="mt-8">
             <div
@@ -121,6 +128,7 @@ export default function TrekDetailPage({ trip }: { trip: any }) {
                 );
               })}
 
+            {d.faqs && <h2 className="font-bold mt-4"></h2>}
             <Accordion type="single" collapsible className="w-full">
               {d.faqs &&
                 d.faqs.map((item: any, index: number) => {
@@ -135,9 +143,9 @@ export default function TrekDetailPage({ trip }: { trip: any }) {
             </Accordion>
           </div>
         </div>
-        <div className="col-span-2 hidden md:flex">
-          <div className="col-span-2 sticky lg:top-32">
-            <BookingCard />
+        <div className="col-span-2 hidden md:block">
+          <div className="col-span-2 sticky top-42">
+            <BookingCard trip={trip} />
           </div>
         </div>
       </div>

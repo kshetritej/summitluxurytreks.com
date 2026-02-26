@@ -6,6 +6,7 @@ import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { NavItem } from "./types";
 import LogoComponent from "../atoms/logo";
+import { siteConfig } from "@/constants";
 
 interface FullscreenOverlayProps {
   items: NavItem[];
@@ -56,7 +57,7 @@ export function FullscreenOverlay({
       aria-label="Site navigation"
       className={cn(
         "fixed inset-0 z-50 flex flex-col",
-        "bg-primary text-white",
+        "bg-accent text-white",
         "transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]",
         isOpen
           ? "opacity-100 translate-y-0 pointer-events-auto"
@@ -120,7 +121,7 @@ export function FullscreenOverlay({
                       <span>{item.label}</span>
                       <span
                         className={cn(
-                          "text-white/40 transition-transform duration-300 text-base leading-none",
+                          "text-white/90 transition-transform duration-300 text-base leading-none",
                           isActive && "rotate-90",
                         )}
                       >
@@ -131,7 +132,7 @@ export function FullscreenOverlay({
                     <Link
                       href={item.url}
                       onClick={onClose}
-                      className="block px-4 py-3 rounded-sm text-[11px] tracking-[0.22em] uppercase font-medium text-white/45 hover:text-white hover:bg-white/5 transition-all duration-200"
+                      className="block px-4 py-3 rounded-sm text-base tracking-[0.22em] uppercase font-medium text-white/90 hover:text-white hover:bg-white/5 transition-all duration-200"
                     >
                       {item.label}
                     </Link>
@@ -143,8 +144,8 @@ export function FullscreenOverlay({
 
           {/* Minimal contact hint */}
           <div className="mt-10 pt-8 border-t border-white  tracking-wider text-white/90 space-y-1 leading-relaxed">
-            <p>+977 9841328947</p>
-            <p>info@luxurysummitreks.com</p>
+            <p>{siteConfig.phoneNumber}</p>
+            <p>{siteConfig.email}</p>
           </div>
         </nav>
 
@@ -164,8 +165,8 @@ export function FullscreenOverlay({
               <>
                 {/* Category label */}
                 <div className="flex items-center gap-3 mb-8">
-                  <span className="block w-6 h-px bg-white/25" />
-                  <span className="text-[10px] tracking-[0.35em] uppercase text-white/35">
+                  <span className="block w-6 h-px bg-white" />
+                  <span className="text-[10px] tracking-[0.35em] uppercase text-white">
                     {activeItem.label}
                   </span>
                 </div>
@@ -181,9 +182,9 @@ export function FullscreenOverlay({
                       <Link
                         href={child.url}
                         onClick={onClose}
-                        className="group flex items-center gap-0 text-sm text-white/55 hover:text-white transition-colors duration-150"
+                        className="group flex items-center gap-0 text-sm text-white/90 hover:text-white transition-colors duration-150"
                       >
-                        <span className="block w-0 group-hover:w-4 h-px bg-white/50 transition-all duration-200 mr-0 group-hover:mr-3 flex-shrink-0" />
+                        <span className="block w-0 group-hover:w-4 h-px bg-white/90 transition-all duration-200 mr-0 group-hover:mr-3 shrink-0" />
                         {child.label}
                       </Link>
                     </li>
@@ -195,7 +196,7 @@ export function FullscreenOverlay({
                   <Link
                     href={activeItem.url}
                     onClick={onClose}
-                    className="inline-flex items-center gap-2 mt-10 text-[10px] tracking-[0.3em] uppercase text-white/25 hover:text-white/60 transition-colors"
+                    className="inline-flex items-center gap-2 mt-10 text-[10px] tracking-[0.3em] uppercase text-white hover:text-white/90 transition-colors"
                   >
                     View all {activeItem.label} <span>→</span>
                   </Link>
@@ -216,41 +217,44 @@ export function FullscreenOverlay({
               {/* Nepal office */}
               <div className="space-y-2">
                 <p className="text-[10px] tracking-[0.3em] uppercase text-white/70 mb-4">
-                  Nepal
+                  {siteConfig.address.country}
                 </p>
-                <p className="text-sm text-white/70 leading-relaxed">
-                  Kaski, Lakeside,
+                <p className="text-sm text-white/90 leading-relaxed">
+                  {siteConfig.address.district}, {siteConfig.address.street},
                   <br />
-                  Pokhara, NEPAL
+                  {siteConfig.address.city}, {siteConfig.address.country}
                 </p>
                 <Link
                   href="tel:+9779841328947"
-                  className="block text-sm text-white/70 hover:text-white transition-colors"
+                  className="block text-sm text-white transition-colors"
                 >
-                  +977 9841328947{" "}
+                  {siteConfig.phoneNumber}
                 </Link>
                 <Link
                   href="mailto:info@summitluxurytreks.com"
-                  className="block text-sm text-white/70 hover:text-white transition-colors"
+                  className="block text-sm text-white/90 hover:text-white transition-colors"
                 >
-                  info@summitluxurytreks.com
+                  {siteConfig.email}
                 </Link>
               </div>
             </div>
 
             {/* Socials */}
             <div className="flex gap-6">
-              {["YouTube", "Facebook", "Instagram"].map((s) => (
-                <a
-                  key={s}
-                  href="#"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="tracking-[0.3em] uppercase text-white/50 hover:text-white transition-colors"
-                >
-                  {s}
-                </a>
-              ))}
+              {Object.keys(siteConfig.socials).map(function (key) {
+                return (
+                  <Link
+                    key={key}
+                    // @ts-expect-error some  object errors
+                    href={siteConfig.socials[key]}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="tracking-[0.3em] uppercase text-white/50 hover:text-white transition-colors"
+                  >
+                    {key}
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </div>

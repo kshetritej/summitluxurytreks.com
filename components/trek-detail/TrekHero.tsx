@@ -1,17 +1,19 @@
-"use client";
 import { getFullImageUrl } from "@/lib/getFullUrl";
 import { ImageIcon } from "lucide-react";
+import Image from "next/image";
 
 export default function TrekHero({ images }: { images: string[] }) {
   return (
-    <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+    <div className="overflow-hidden">
       <div className="relative aspect-video w-full">
-        <img
+        <Image
           src={getFullImageUrl(images[0])}
+          width={1920}
+          height={1280}
           alt="Everest Base Camp Trek"
           className="object-cover saturate-110 contrast-105 w-full h-full"
         />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/25 via-black/5 to-transparent" />
+        <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/25 via-black/5 to-transparent" />
 
         <div className="absolute left-4 top-4 flex items-center gap-2">
           <button

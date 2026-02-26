@@ -4,9 +4,10 @@ import Navbar from "@/components/common/navbar";
 import Footer from "@/components/common/footer";
 import { outfit } from "@/lib/font";
 import { Analytics } from "@vercel/analytics/next";
+import { siteConfig } from "@/constants";
 
 export const metadata: Metadata = {
-  title: "Summit Luxury Treks",
+  title: `${siteConfig.name}`,
   description: "Created by Growfore Solution",
 };
 

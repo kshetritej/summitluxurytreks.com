@@ -1,8 +1,31 @@
 export const siteConfig = {
-  title: "Summit Luxury Treks",
+  name: "Summit Luxury Treks",
   description: "Explore the world with us",
   url: "https://summitluxurytreks.com",
   image: "/og.png",
   whatsAppNumber: "+9779826145893",
   phoneNumber: "+9779847709793",
+  email: "info@summitluxurytreks.com",
+  openHours: "Sunday to Friday 9:00 AM to 5:00 PM Nepal Standard Time",
+  experience: "15 years",
+  address: {
+    city: "Pokhara",
+    street: "Lakeside",
+    district: "Kaski",
+    country: "Nepal",
+    postalCode: "33700",
+  },
+  socials: {
+    facebook: "https://www.facebook.com/summitluxurytreks",
+    instagram: "https://www.instagram.com/summitluxurytreks",
+    twitter: "https://twitter.com/summitluxurytreks",
+    youtube: "https://www.youtube.com/summitluxurytreks",
+    tiktok: "https://www.tiktok.com/@summitluxurytreks",
+  },
+  documents: {
+    NATHM_Certificate: "/documents/nathm_certificate.webp",
+    Tax_Certificate: "/documents/tax_certificate.webp",
+    Identity_Card: "/documents/identity_card_for_trekking_guide.webp",
+    Grading_Classification: "/documents/grading_classification.webp",
+  },
 };

@@ -1,48 +1,50 @@
 export async function getCities() {
-    try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/city?page=1&limit=100`);
-      if (!res.ok) throw new Error("Failed to fetch cities");
-      return await res.json();
-    } catch (error) {
-      console.error("Error fetching cities:", error);
-      return { data: { cities: [] } };
-    }
-  }
-  
-  export async function getRegions() {
-    try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}/region?page=1&limit=100`
-      );
-      if (!res.ok) throw new Error("Failed to fetch regions");
-      return await res.json();
-    } catch (error) {
-      console.error("Error fetching regions:", error);
-      return { data: { regions: [] } };
-    }
-  }
-  export async function getTripCategories() {
+  try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/trip-category?page=1&limit=100`
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/city?page=1&limit=100`,
     );
-    const data = await res.json();
-    return data;
+    if (!res.ok) throw new Error("Failed to fetch cities");
+    return await res.json();
+  } catch (error) {
+    console.error("Error fetching cities:", error);
+    return { data: { cities: [] } };
   }
-  
-  export async function getTripTypes() {
+}
+
+export async function getRegions() {
+  try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/trip-type?page=1&limit=100`
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/region?page=1&limit=100`,
     );
-    const data = await res.json();
-    return data;
+    if (!res.ok) throw new Error("Failed to fetch regions");
+    return await res.json();
+  } catch (error) {
+    console.error("Error fetching regions:", error);
+    return { data: { regions: [] } };
   }
-  
-  export async function fetchActivityData(editId: number) {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/activity/${editId}`
-    );
-    if (!res.ok) throw new Error("Failed to fetch activity");
-  
-    const data = await res.json();
-    return data;
-  }
+}
+export async function getTripCategories() {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/trip-category?page=1&limit=100`,
+  );
+  const data = await res.json();
+  return data;
+}
+
+export async function getTripTypes() {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/trip-type?page=1&limit=100`,
+  );
+  const data = await res.json();
+  return data;
+}
+
+export async function fetchActivityData(editId: number) {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/activity/${editId}`,
+  );
+  if (!res.ok) throw new Error("Failed to fetch activity");
+
+  const data = await res.json();
+  return data;
+}

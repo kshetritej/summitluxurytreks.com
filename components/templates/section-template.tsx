@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ReactNode } from "react";
 
 type SectionTemplateProps = {
-  badgeText: ReactNode;
+  badgeText?: ReactNode;
   title: ReactNode;
   text: ReactNode;
   buttonLink?: string;
@@ -22,7 +22,7 @@ export default function SectionTemplate({
   className,
 }: SectionTemplateProps) {
   return (
-    <section className={cn("py-16 px-4 bg-background", className)}>
+    <section className={cn("py-16 px-4", className)}>
       <div className="max-w-7xl flex flex-col md:flex-row items-baseline-last justify-between container mx-auto">
         <div>
           <div className="mb-12">

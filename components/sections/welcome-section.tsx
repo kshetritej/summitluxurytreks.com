@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "../ui/button";
+import { siteConfig } from "@/constants";
 
 export default function WelcomeSection() {
   return (
@@ -8,17 +9,16 @@ export default function WelcomeSection() {
         Luxury Adventures in Nepal, Tibet & Bhutan
       </h2>
       <p className="text-muted-foreground mb-4 leading-loose max-w-3xl tracking-wider">
-        Welcome to Summit Luxury Treks, where elevated adventure meets
-        thoughtful craftsmanship in the Himalayas. With over 15 years of
-        experience, we design luxury treks, private tours, and fully tailor-made
-        journeys across Nepal, Tibet, and Bhutan. From the iconic trails of
-        Everest, to the quiet monastic valleys of Bhutan, and the spiritual
-        landscapes of Tibet, every journey is curated with precision, comfort,
-        and care. As a government-registered company and a proud member of TAAN,
-        NMA, and the Nepal Tourism Board, we operate with uncompromising
-        standards of safety, service, and authenticity. Summit Luxury Treks
-        isn’t about doing more trips — it’s about doing the right ones,
-        exceptionally well.
+        Welcome to ${siteConfig.name}, where elevated adventure meets thoughtful
+        craftsmanship in the Himalayas. With over 15 years of experience, we
+        design luxury treks, private tours, and fully tailor-made journeys
+        across Nepal, Tibet, and Bhutan. From the iconic trails of Everest, to
+        the quiet monastic valleys of Bhutan, and the spiritual landscapes of
+        Tibet, every journey is curated with precision, comfort, and care. As a
+        government-registered company and a proud member of TAAN, NMA, and the
+        Nepal Tourism Board, we operate with uncompromising standards of safety,
+        service, and authenticity. Summit Luxury Treks isn’t about doing more
+        trips — it’s about doing the right ones, exceptionally well.
       </p>
       <p className="text-muted-foreground mb-4 leading-loose max-w-3xl tracking-wider">
         Whether you seek the legendary trails of Everest, the serene monasteries

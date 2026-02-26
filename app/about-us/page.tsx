@@ -1,10 +1,13 @@
+import { siteConfig } from "@/constants";
+import Link from "next/link";
+
 export default function AboutPage() {
   return (
     <main className="bg-background text-foreground">
       {/* Header */}
       <section className="py-16 px-4">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold mb-4">About Summit Luxury Treks</h1>
+          <h1 className="text-4xl font-bold mb-4">About {siteConfig.name}</h1>
           <p className="text-lg text-muted-foreground">
             Learn more about our mission and commitment to exceptional trekking
             experiences.
@@ -17,7 +20,7 @@ export default function AboutPage() {
         <div className="max-w-4xl mx-auto space-y-6">
           <h2 className="text-3xl font-bold">Our Story</h2>
           <p className="text-base text-muted-foreground leading-relaxed">
-            Summit Luxury Treks was founded with a simple mission: to provide
+            {siteConfig.name} was founded with a simple mission: to provide
             authentic, well-organized trekking experiences in the Himalayas.
             With over 15 years of experience, we have guided thousands of
             trekkers through some of the most beautiful mountain ranges in the
@@ -91,8 +94,8 @@ export default function AboutPage() {
         <div className="max-w-4xl mx-auto space-y-8">
           <h2 className="text-3xl font-bold">Certified & Trusted</h2>
           <p className="text-base text-muted-foreground mb-8">
-            Summit Luxury Treks is a government-registered company operating
-            with the highest standards in the trekking industry.
+            {siteConfig.name} is a government-registered company operating with
+            the highest standards in the trekking industry.
           </p>
 
           <div className="space-y-3">
@@ -151,21 +154,27 @@ export default function AboutPage() {
           </p>
           <div className="space-y-2">
             <p className="text-sm">
-              Email:{" "}
-              <a
-                href="mailto:mail@govindatravels.com"
+              Email:
+              <Link
+                href={`mailto:${siteConfig.email}`}
                 className="hover:underline"
               >
-                mail@govindatravels.com
-              </a>
+                {siteConfig.email}
+              </Link>
             </p>
             <p className="text-sm">
-              Phone:{" "}
-              <a href="tel:+977984132894" className="hover:underline">
-                +977 9841328947
-              </a>
+              Phone:
+              <Link
+                href={`tel:${siteConfig.phoneNumber}`}
+                className="hover:underline"
+              >
+                {siteConfig.phoneNumber}
+              </Link>
             </p>
-            <p className="text-sm">Location: Kathmandu, Nepal</p>
+            <p className="text-sm">
+              Location: {siteConfig.address.street}, {siteConfig.address.city},{" "}
+              {siteConfig.address.country}
+            </p>
           </div>
         </div>
       </section>

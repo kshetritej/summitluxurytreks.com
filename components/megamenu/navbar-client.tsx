@@ -6,6 +6,7 @@ import { Menu, MailIcon, PhoneIcon } from "lucide-react";
 import { FullscreenOverlay } from "./fullscreen-overlay";
 import type { NavItem } from "./types";
 import LogoComponent from "../atoms/logo";
+import { siteConfig } from "@/constants";
 
 interface NavbarClientProps {
   items: NavItem[];
@@ -21,24 +22,24 @@ export function NavbarClient({ items }: NavbarClientProps) {
   return (
     <>
       {/* ── Slim utility bar ── */}
-      <div className="hidden md:flex items-center justify-end gap-6 px-8 md:px-14 py-2 bg-primary  tracking-widest text-secondary">
+      <div className="hidden md:flex items-center justify-end gap-6 px-8 md:px-14 py-2 bg-black  tracking-widest text-secondary">
         <Link
-          href={"mailto:info@luxurysummitreks.com"}
+          href={`mailto:${siteConfig.email}`}
           className="flex items-center gap-1 justify-center"
         >
           <MailIcon size={12} />
-          info@luxurysummitreks.com
+          {siteConfig.email}
         </Link>
         <Link
-          href={"mailto:info@luxurysummitreks.com"}
+          href={`tel:${siteConfig.phoneNumber}`}
           className="flex items-center gap-1 justify-center"
         >
           <PhoneIcon size={12} />
-          +977 98 413 28 947
+          {siteConfig.phoneNumber}
         </Link>
       </div>
 
-      <header className="sticky top-0 z-40 flex items-center justify-between px-8 md:px-14 py-5 bg-black/90 text-white backdrop-blur-sm ">
+      <header className="sticky top-0 z-40 flex items-center justify-between px-8 md:px-14 py-5 bg-primary text-white backdrop-blur-sm ">
         <LogoComponent />
         <nav
           className="hidden lg:flex items-center gap-1"

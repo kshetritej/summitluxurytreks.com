@@ -3,7 +3,7 @@ import { Button } from "./ui/button";
 export default function Hero() {
   return (
     <section
-      className={`relative h-screen bg-linear-to-b from-primary/70 to-primary/20
+      className={`relative h-screen bg-linear-to-b from-primary/30 to-primary/20
         flex flex-col justify-center  items-center p-12 text-center uppercase
         gap-8 -mt-16`}
     >
@@ -16,7 +16,7 @@ export default function Hero() {
           backgroundPosition: "center",
         }}
       />
-      <h1 className="font-bold text-4xl  text-white z-99 leading-12">
+      <h1 className="font-bold text-4xl  text-white z-9 leading-12">
         your gateway <br />
         to the world
       </h1>

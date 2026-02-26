@@ -8,6 +8,8 @@ import {
 } from "@/lib/imageutil";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
+import { siteConfig } from "@/constants";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -21,24 +23,28 @@ export default function Footer() {
               <p className="text-sm font-semibold text-muted-foreground mb-2">
                 Our Address
               </p>
-              <h3 className="text-lg font-bold mb-4">Summit Luxury Treks</h3>
+              <h3 className="text-lg font-bold mb-4">{siteConfig.name}</h3>
 
               <div className="space-y-2 text-sm text-muted-foreground">
-                <p>Lakeside, Pokhara</p>
-                <p>Kaski District</p>
-                <p>Pokhara 33700</p>
-                <p>Nepal</p>
+                <p>
+                  {siteConfig.address.street}, {siteConfig.address.city}
+                </p>
+                <p>{siteConfig.address.district} District</p>
+                <p>
+                  {siteConfig.address.city}, {siteConfig.address.postalCode}
+                </p>
+                <p>{siteConfig.address.country}</p>
               </div>
 
               <p className="text-sm font-semibold text-muted-foreground mt-6 mb-2">
                 Contact Number
               </p>
-              <p className="font-semibold">+977-9841328947</p>
+              <p className="font-semibold">{siteConfig.phoneNumber}</p>
 
               <p className="text-sm font-semibold text-muted-foreground mt-4 mb-2">
                 Email Address
               </p>
-              <p className="font-semibold">info@summitluxurytreks.com</p>
+              <p className="font-semibold">{siteConfig.email}</p>
             </div>
 
             {/* Company */}
@@ -48,13 +54,16 @@ export default function Footer() {
               </p>
               <ul className="space-y-3 text-sm text-muted-foreground">
                 <li>
-                  <Link href="#" className="hover:text-foreground transition">
+                  <Link
+                    href="/about-us"
+                    className="hover:text-foreground transition"
+                  >
                     About Us
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/team"
+                    href="/our-team"
                     className="hover:text-foreground transition"
                   >
                     Our Team
@@ -170,7 +179,7 @@ export default function Footer() {
                   key={i}
                   className="rounded-lg p-3 border border-border bg-muted/30 hover:bg-muted transition aspect-square"
                 >
-                  <img
+                  <Image
                     src={image}
                     height={50}
                     width={50}
@@ -181,7 +190,7 @@ export default function Footer() {
               ))}
             </div>
           </div>
-          <div className="p-8 min-h-32 border border-white flex flex-col gap-4 text-white bg-primary">
+          <div className="p-8 min-h-32 border flex flex-col gap-4 bg-background">
             <p className="text-lg font-bold">Subscribe to our newsletter</p>
             <p>Cancel anytime, no spam.</p>
             <Input className="max-w-xl" />
@@ -191,7 +200,7 @@ export default function Footer() {
           </div>
           {/* Copyright */}
           <div className="pt-6 text-sm text-muted-foreground border-t border-border">
-            <p>© 2026 Summit Luxury Treks.</p>
+            <p>© 2026 {siteConfig.name}.</p>
             <p>
               All rights reserved ·{" "}
               <Link href="#" className="hover:text-foreground underline">
