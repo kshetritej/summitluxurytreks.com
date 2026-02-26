@@ -15,6 +15,7 @@ export default function TrekDetailPage({ trip }: { trip: any }) {
   return (
     <main
       className="
+      p-2
            col-span-2 min-w-0
            prose prose-base max-w-none w-full
            leading-relaxed
