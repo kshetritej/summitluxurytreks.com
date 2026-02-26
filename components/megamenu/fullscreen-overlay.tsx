@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { X } from "lucide-react";
+import { X, ChevronLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { NavItem } from "./types";
 import LogoComponent from "../atoms/logo";
@@ -66,113 +66,126 @@ export function FullscreenOverlay({
     >
       {/* ── Top bar ── */}
       <div className="flex items-center justify-between px-8 md:px-14 py-6 border-b border-white/10 flex-shrink-0">
-        <div role="button" onClick={onClose}>
-          <LogoComponent />
-        </div>
-
-        <div className="flex items-center gap-6">
+        {/* Mobile: back button when a sub-panel is open, logo otherwise */}
+        <div className="flex items-center gap-4">
+          {/* Back button — mobile only, visible when a child panel is active */}
           <button
-            onClick={onClose}
-            aria-label="Close menu"
-            className="w-10 h-10 flex items-center justify-center rounded-full border border-white/20 hover:border-white/60 hover:bg-white/5 transition-all"
-          >
-            <X size={18} strokeWidth={1.5} />
-          </button>
-        </div>
-      </div>
-
-      {/* ── Split body ── */}
-      <div className="flex flex-1 overflow-hidden">
-        {/* Left column — top-level items */}
-        <nav
-          aria-label="Main categories"
-          className="w-full md:w-[300px] lg:w-[340px] flex-shrink-0 border-r border-white/10 overflow-y-auto py-10 px-8 md:px-14 flex flex-col justify-between"
-        >
-          <ul className="space-y-1">
-            {items.map((item, i) => {
-              const hasChildren = item.children.length > 0;
-              const isActive = activeId === item.id;
-
-              return (
-                <li
-                  key={item.id}
-                  className={cn(
-                    "transition-all duration-500",
-                    isOpen
-                      ? "opacity-100 translate-x-0"
-                      : "opacity-0 -translate-x-4",
-                  )}
-                  style={{ transitionDelay: isOpen ? `${i * 55}ms` : "0ms" }}
-                >
-                  {hasChildren ? (
-                    <button
-                      onClick={() => onSetActive(isActive ? null : item.id)}
-                      aria-expanded={isActive}
-                      className={cn(
-                        "w-full text-left flex items-center justify-between",
-                        "px-4 py-3 rounded-sm",
-                        "text-[11px] tracking-[0.22em] uppercase font-medium",
-                        "transition-all duration-200",
-                        isActive
-                          ? "text-white bg-white/20"
-                          : "text-black hover:text-white hover:bg-white/20",
-                      )}
-                    >
-                      <span>{item.label}</span>
-                      <span
-                        className={cn(
-                          "text-white/90 transition-transform duration-300 text-base leading-none",
-                          isActive && "rotate-90",
-                        )}
-                      >
-                        →
-                      </span>
-                    </button>
-                  ) : (
-                    <Link
-                      href={item.url}
-                      onClick={onClose}
-                      className="block px-4 py-3 rounded-sm text-base tracking-[0.22em] uppercase font-medium text-white/90 hover:text-white hover:bg-white/5 transition-all duration-200"
-                    >
-                      {item.label}
-                    </Link>
-                  )}
-                </li>
-              );
-            })}
-          </ul>
-
-          {/* Minimal contact hint */}
-          <div className="mt-10 pt-8 border-t border-white  tracking-wider text-white/90 space-y-1 leading-relaxed">
-            <p>{siteConfig.phoneNumber}</p>
-            <p>{siteConfig.email}</p>
-          </div>
-        </nav>
-
-        {/* Right panel — children or default contact */}
-        <div className="flex-1 overflow-y-auto relative">
-          {/* Children panel — slides in when a category is selected */}
-          <div
+            onClick={() => onSetActive(null)}
+            aria-label="Back to menu"
             className={cn(
-              "absolute inset-0 p-10 md:px-16",
-              "transition-all duration-450 ease-[cubic-bezier(0.76,0,0.24,1)]",
+              "md:hidden flex items-center gap-1.5 text-white/70 hover:text-white transition-all duration-300",
               activeItem
-                ? "opacity-100 translate-x-0 pointer-events-auto"
-                : "opacity-0 translate-x-6 pointer-events-none",
+                ? "opacity-100 pointer-events-auto"
+                : "opacity-0 pointer-events-none w-0 overflow-hidden",
             )}
           >
+            <ChevronLeft size={16} strokeWidth={1.5} />
+            <span className="text-[11px] tracking-[0.15em] uppercase">
+              Back
+            </span>
+          </button>
+
+          <div
+            role="button"
+            onClick={onClose}
+            className={cn(
+              "transition-all duration-300",
+              // Hide logo on mobile when sub-panel is open to make room
+              activeItem
+                ? "opacity-0 pointer-events-none md:opacity-100 md:pointer-events-auto"
+                : "opacity-100",
+            )}
+          >
+            <LogoComponent />
+          </div>
+        </div>
+
+        <button
+          onClick={onClose}
+          aria-label="Close menu"
+          className="w-10 h-10 flex items-center justify-center rounded-full border border-white/20 hover:border-white/60 hover:bg-white/5 transition-all"
+        >
+          <X size={18} strokeWidth={1.5} />
+        </button>
+      </div>
+
+      {/* ── Body: viewport-width slider on mobile, side-by-side on md+ ── */}
+      {/*
+          Mobile:  a horizontal track that is 200vw wide.
+                   Left half = category list, right half = sub-links.
+                   We translate -50% when a child panel is active.
+          Desktop: normal flex row, left col fixed width, right col fills rest.
+        */}
+      <div className="flex-1 overflow-hidden">
+        {/* ── MOBILE sliding track ── */}
+        <div
+          className={cn(
+            "flex md:hidden h-full w-[200vw]",
+            "transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]",
+            activeItem ? "-translate-x-1/2" : "translate-x-0",
+          )}
+        >
+          {/* Slide 1 — category list */}
+          <div className="w-screen h-full overflow-y-auto py-8 px-8 flex flex-col justify-between">
+            <ul className="space-y-1">
+              {items.map((item, i) => {
+                const hasChildren = item.children.length > 0;
+                const isActive = activeId === item.id;
+
+                return (
+                  <li
+                    key={item.id}
+                    className={cn(
+                      "transition-all duration-500",
+                      isOpen
+                        ? "opacity-100 translate-x-0"
+                        : "opacity-0 -translate-x-4",
+                    )}
+                    style={{ transitionDelay: isOpen ? `${i * 55}ms` : "0ms" }}
+                  >
+                    {hasChildren ? (
+                      <button
+                        onClick={() => onSetActive(item.id)}
+                        aria-expanded={isActive}
+                        className="w-full text-left flex items-center justify-between px-4 py-3.5 rounded-sm text-[11px] tracking-[0.22em] uppercase font-medium text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200"
+                      >
+                        <span>{item.label}</span>
+                        <span className="text-white/50 text-base leading-none">
+                          →
+                        </span>
+                      </button>
+                    ) : (
+                      <Link
+                        href={item.url}
+                        onClick={onClose}
+                        className="block px-4 py-3.5 rounded-sm text-[11px] tracking-[0.22em] uppercase font-medium text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200"
+                      >
+                        {item.label}
+                      </Link>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+
+            <div className="mt-10 pt-8 border-t border-white/20 text-[11px] tracking-wider text-white/50 space-y-1 leading-relaxed">
+              <p>{siteConfig.phoneNumber}</p>
+              <p>{siteConfig.email}</p>
+            </div>
+          </div>
+
+          {/* Slide 2 — sub-links */}
+          <div className="w-screen h-full overflow-y-auto py-8 px-8">
             {activeItem && (
               <>
-                {/* Category label */}
                 <div className="flex items-center gap-3 mb-8">
-                  <span className="block w-6 h-px bg-white" />
-                  <span className="text-[10px] tracking-[0.35em] uppercase text-white">
+                  <span className="block w-6 h-px bg-white/40" />
+                  <span className="text-[10px] tracking-[0.35em] uppercase text-white/70">
                     {activeItem.label}
                   </span>
                 </div>
 
-                {/* Child links — simple flat list from API */}
-                <ul className="space-y-3 max-w-sm">
+                <ul className="space-y-3">
                   {activeItem.children.map((child, ci) => (
                     <li
                       key={child.id}
@@ -182,21 +195,20 @@ export function FullscreenOverlay({
                       <Link
                         href={child.url}
                         onClick={onClose}
-                        className="group flex items-center gap-0 text-sm text-white/90 hover:text-white transition-colors duration-150"
+                        className="group flex items-center gap-0 text-base text-white/80 hover:text-white transition-colors duration-150 py-1"
                       >
-                        <span className="block w-0 group-hover:w-4 h-px bg-white/90 transition-all duration-200 mr-0 group-hover:mr-3 shrink-0" />
+                        <span className="block w-0 group-hover:w-4 h-px bg-white/60 transition-all duration-200 mr-0 group-hover:mr-3 flex-shrink-0" />
                         {child.label}
                       </Link>
                     </li>
                   ))}
                 </ul>
 
-                {/* Link to category index page (if it has a real URL) */}
                 {activeItem.url !== "#" && (
                   <Link
                     href={activeItem.url}
                     onClick={onClose}
-                    className="inline-flex items-center gap-2 mt-10 text-[10px] tracking-[0.3em] uppercase text-white hover:text-white/90 transition-colors"
+                    className="inline-flex items-center gap-2 mt-10 text-[10px] tracking-[0.3em] uppercase text-white/40 hover:text-white/80 transition-colors"
                   >
                     View all {activeItem.label} <span>→</span>
                   </Link>
@@ -204,57 +216,174 @@ export function FullscreenOverlay({
               </>
             )}
           </div>
+        </div>
 
-          {/* Default panel — visible when nothing is selected */}
-          <div
-            className={cn(
-              "absolute inset-0 p-10 md:px-16 flex flex-col justify-between",
-              "transition-opacity duration-300",
-              activeItem ? "opacity-0 pointer-events-none" : "opacity-100",
-            )}
+        {/* ── DESKTOP side-by-side layout ── */}
+        <div className="hidden md:flex h-full">
+          {/* Left column */}
+          <nav
+            aria-label="Main categories"
+            className="w-[300px] lg:w-[340px] flex-shrink-0 border-r border-white/10 overflow-y-auto py-10 px-8 md:px-14 flex flex-col justify-between"
           >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-lg">
-              {/* Nepal office */}
-              <div className="space-y-2">
-                <p className="text-[10px] tracking-[0.3em] uppercase text-white/70 mb-4">
-                  {siteConfig.address.country}
-                </p>
-                <p className="text-sm text-white/90 leading-relaxed">
-                  {siteConfig.address.district}, {siteConfig.address.street},
-                  <br />
-                  {siteConfig.address.city}, {siteConfig.address.country}
-                </p>
-                <Link
-                  href="tel:+9779841328947"
-                  className="block text-sm text-white transition-colors"
-                >
-                  {siteConfig.phoneNumber}
-                </Link>
-                <Link
-                  href="mailto:info@summitluxurytreks.com"
-                  className="block text-sm text-white/90 hover:text-white transition-colors"
-                >
-                  {siteConfig.email}
-                </Link>
-              </div>
+            <ul className="space-y-1">
+              {items.map((item, i) => {
+                const hasChildren = item.children.length > 0;
+                const isActive = activeId === item.id;
+
+                return (
+                  <li
+                    key={item.id}
+                    className={cn(
+                      "transition-all duration-500",
+                      isOpen
+                        ? "opacity-100 translate-x-0"
+                        : "opacity-0 -translate-x-4",
+                    )}
+                    style={{ transitionDelay: isOpen ? `${i * 55}ms` : "0ms" }}
+                  >
+                    {hasChildren ? (
+                      <button
+                        onClick={() => onSetActive(isActive ? null : item.id)}
+                        aria-expanded={isActive}
+                        className={cn(
+                          "w-full text-left flex items-center justify-between",
+                          "px-4 py-3 rounded-sm",
+                          "text-[11px] tracking-[0.22em] uppercase font-medium",
+                          "transition-all duration-200",
+                          isActive
+                            ? "text-white bg-white/20"
+                            : "text-white/60 hover:text-white hover:bg-white/10",
+                        )}
+                      >
+                        <span>{item.label}</span>
+                        <span
+                          className={cn(
+                            "text-white/50 transition-transform duration-300 text-base leading-none",
+                            isActive && "rotate-90",
+                          )}
+                        >
+                          →
+                        </span>
+                      </button>
+                    ) : (
+                      <Link
+                        href={item.url}
+                        onClick={onClose}
+                        className="block px-4 py-3 rounded-sm text-[11px] tracking-[0.22em] uppercase font-medium text-white/60 hover:text-white hover:bg-white/10 transition-all duration-200"
+                      >
+                        {item.label}
+                      </Link>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+
+            <div className="mt-10 pt-8 border-t border-white/20 text-[11px] tracking-wider text-white/40 space-y-1 leading-relaxed">
+              <p>{siteConfig.phoneNumber}</p>
+              <p>{siteConfig.email}</p>
+            </div>
+          </nav>
+
+          {/* Right panel */}
+          <div className="flex-1 overflow-y-auto relative">
+            {/* Children panel */}
+            <div
+              className={cn(
+                "absolute inset-0 p-10 px-16",
+                "transition-all duration-450 ease-[cubic-bezier(0.76,0,0.24,1)]",
+                activeItem
+                  ? "opacity-100 translate-x-0 pointer-events-auto"
+                  : "opacity-0 translate-x-6 pointer-events-none",
+              )}
+            >
+              {activeItem && (
+                <>
+                  <div className="flex items-center gap-3 mb-8">
+                    <span className="block w-6 h-px bg-white/40" />
+                    <span className="text-[10px] tracking-[0.35em] uppercase text-white/60">
+                      {activeItem.label}
+                    </span>
+                  </div>
+
+                  <ul className="space-y-3 max-w-sm">
+                    {activeItem.children.map((child, ci) => (
+                      <li
+                        key={child.id}
+                        style={{ transitionDelay: `${ci * 45}ms` }}
+                      >
+                        <Link
+                          href={child.url}
+                          onClick={onClose}
+                          className="group flex items-center gap-0 text-sm text-white/70 hover:text-white transition-colors duration-150"
+                        >
+                          <span className="block w-0 group-hover:w-4 h-px bg-white/60 transition-all duration-200 mr-0 group-hover:mr-3 flex-shrink-0" />
+                          {child.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {activeItem.url !== "#" && (
+                    <Link
+                      href={activeItem.url}
+                      onClick={onClose}
+                      className="inline-flex items-center gap-2 mt-10 text-[10px] tracking-[0.3em] uppercase text-white/30 hover:text-white/70 transition-colors"
+                    >
+                      View all {activeItem.label} <span>→</span>
+                    </Link>
+                  )}
+                </>
+              )}
             </div>
 
-            {/* Socials */}
-            <div className="flex gap-6">
-              {Object.keys(siteConfig.socials).map(function (key) {
-                return (
+            {/* Default panel */}
+            <div
+              className={cn(
+                "absolute inset-0 p-10 px-16 flex flex-col justify-between",
+                "transition-opacity duration-300",
+                activeItem ? "opacity-0 pointer-events-none" : "opacity-100",
+              )}
+            >
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-lg">
+                <div className="space-y-2">
+                  <p className="text-[10px] tracking-[0.3em] uppercase text-white/40 mb-4">
+                    {siteConfig.address.country}
+                  </p>
+                  <p className="text-sm text-white/60 leading-relaxed">
+                    {siteConfig.address.district}, {siteConfig.address.street},
+                    <br />
+                    {siteConfig.address.city}, {siteConfig.address.country}
+                  </p>
+                  <Link
+                    href={`tel:${siteConfig.phoneNumber}`}
+                    className="block text-sm text-white/50 hover:text-white transition-colors"
+                  >
+                    {siteConfig.phoneNumber}
+                  </Link>
+                  <Link
+                    href={`mailto:${siteConfig.email}`}
+                    className="block text-sm text-white/50 hover:text-white transition-colors"
+                  >
+                    {siteConfig.email}
+                  </Link>
+                </div>
+              </div>
+
+              <div className="flex gap-6">
+                {Object.keys(siteConfig.socials).map((key) => (
                   <Link
                     key={key}
-                    // @ts-expect-error some  object errors
+                    // @ts-expect-error some object errors
                     href={siteConfig.socials[key]}
                     target="_blank"
                     rel="noreferrer"
-                    className="tracking-[0.3em] uppercase text-white/50 hover:text-white transition-colors"
+                    className="text-[10px] tracking-[0.3em] uppercase text-white/30 hover:text-white transition-colors"
                   >
                     {key}
                   </Link>
-                );
-              })}
+                ))}
+              </div>
             </div>
           </div>
         </div>

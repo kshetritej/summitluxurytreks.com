@@ -21,7 +21,7 @@ export default function TripCard({ tour }: Readonly<{ tour: TripCardProps }>) {
   return (
     <Link
       href={tour.canonicalPath ?? `/activities/${tour.id}`}
-      className={`relative md:h-132 bg-black/70 min-w-77.5
+      className={`relative min-h-132 bg-black/70 min-w-82
         flex flex-col  justify-end uppercase max-w-xs
         gap-8`}
     >
@@ -35,7 +35,7 @@ export default function TripCard({ tour }: Readonly<{ tour: TripCardProps }>) {
             className="object-cover h-full w-full -z-10 hover:scale-105 transition-all duration-150"
           />
         )}
-        <div className="absolute inset-0 z-0 top-0 h-[70vh] bg-linear-to-t from-black/50 to-black/0 " />
+        <div className="absolute inset-0 z-0 top-0 min-h-132 bg-linear-to-t from-black/50 to-black/0 " />
         <Badge className="absolute top-1 right-1 z-0 rounded-none text-shadow-2xs">
           {tour.duration}
         </Badge>

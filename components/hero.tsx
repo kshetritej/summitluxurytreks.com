@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Button } from "./ui/button";
 
 export default function Hero() {
@@ -25,10 +26,14 @@ export default function Hero() {
         discerning travellers since 2005
       </p>
       <div id="btn-group" className="flex gap-4">
-        <Button variant={"secondary"} className="uppercase">
-          Explore Our Trips
-        </Button>
-        <Button className="uppercase">Plan my trip</Button>
+        <Link href="/explore">
+          <Button variant={"secondary"} className="uppercase">
+            Explore Our Trips
+          </Button>
+        </Link>
+        <Link href="/contact">
+          <Button className="uppercase">Plan my trip</Button>
+        </Link>
       </div>
     </section>
   );
