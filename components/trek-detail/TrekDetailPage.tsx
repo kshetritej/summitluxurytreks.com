@@ -2,20 +2,44 @@ export const dynamic = "force-static";
 import TrekHeader from "./TrekHeader";
 import TrekHero from "./TrekHero";
 import BookingCard from "./BookingCard";
-import { Gauge, Users, MapPin, LucideClock } from "lucide-react";
+import {
+  Gauge,
+  Users,
+  MapPin,
+  LucideClock,
+  LucideNewspaper,
+  LucideEye,
+  LucideStar,
+  LucideX,
+  LucideCheck,
+  LucideInfo,
+  LucideBringToFront,
+} from "lucide-react";
 import { StatCard } from "../cards/stat-card";
 import { AdditionalInfoRenderer } from "../molecules/additional-info-renderer";
 import { FAQRenderer } from "../molecules/faq-renderer";
 import { Accordion } from "../ui/accordion";
 import { decodeHtmlEntities } from "@/lib/htmlDecoder";
 import FullItinerary from "./FullItinerary";
+import { SectionNavigation } from "../common/section-nav";
 
 export default function TrekDetailPage({ trip }: { trip: any }) {
   const d = trip;
+
+  const sections = [
+    { id: "intro", icon: <LucideBringToFront />, label: "Introduction" },
+    { id: "highlights", icon: <LucideStar />, label: "Highlights" },
+    { id: "overview", icon: <LucideEye />, label: "Overview" },
+    { id: "itinerary", icon: <MapPin />, label: "Itinerary" },
+    { id: "inclusions", icon: <LucideCheck />, label: "Inclusions" },
+    { id: "exclusions", icon: <LucideX />, label: "Exclusions" },
+    { id: "trip-info", icon: <LucideInfo />, label: "Trip Info" },
+    { id: "faqs", icon: <LucideNewspaper />, label: "FAQs" },
+  ];
   return (
     <main
       className="
-      p-2
+           p-2
            col-span-2 min-w-0
            prose prose-base max-w-none w-full
            leading-relaxed
@@ -55,14 +79,15 @@ export default function TrekDetailPage({ trip }: { trip: any }) {
            prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-pre:rounded-xl prose-pre:p-4
          "
     >
+      <SectionNavigation sections={sections} />
       <div className="container mx-auto">
         <TrekHero images={d.images} />
         <TrekHeader title={d.title} days={d.duration} />
       </div>
-      <div className="grid md:grid-cols-7 container mx-auto p-2 max-w-7xl gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-7 container mx-auto  max-w-7xl gap-4">
         <div className="col-span-5">
           {/* <Breadcrumbs items={d.breadcrumbs} /> */}
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 border-b">
             <StatCard
               icon={<LucideClock className="h-5 w-5 text-primary" />}
               label="Duration"
@@ -84,7 +109,7 @@ export default function TrekDetailPage({ trip }: { trip: any }) {
               value={d.meetingPoint + " / " + d.dropOffPoint}
             />
           </div>
-          <div className="md:hidden">
+          <div className="md:hidden mt-2">
             <BookingCard trip={trip} />
           </div>
           <div className="mt-8">
@@ -94,13 +119,21 @@ export default function TrekDetailPage({ trip }: { trip: any }) {
               }}
             />
             <div
+              id="highlights"
               dangerouslySetInnerHTML={{
                 __html: decodeHtmlEntities(d.highlights[0]),
+              }}
+            />
+            <div
+              id="overview"
+              dangerouslySetInnerHTML={{
+                __html: decodeHtmlEntities(d.fullDescription),
               }}
             />
             <FullItinerary days={d.itinerary} />
             {d.inclusions && (
               <div
+                id="inclusions"
                 className="rounded-xl border  border-green-200  bg-green-200/20 p-2
                 prose-li:before:mask-[url('/icons/include.svg')]
                 prose-li:before:bg-green-600
@@ -112,6 +145,7 @@ export default function TrekDetailPage({ trip }: { trip: any }) {
             )}
             {d.exclusions && (
               <div
+                id="exclusions"
                 className="rounded-xl border my-4 e border-rose-200 bg-rose-200/20  px-4 p-4 prose-li:before:mask-[url('/icons/exclude.svg')]"
                 dangerouslySetInnerHTML={{
                   __html: decodeHtmlEntities(d.exclusions[0]),
@@ -119,7 +153,11 @@ export default function TrekDetailPage({ trip }: { trip: any }) {
               />
             )}
 
-            {d.additionalInfo && <h2 className="font-bold mt-4">Trip Info</h2>}
+            {d.additionalInfo && (
+              <h2 id="trip-info" className="font-bold mt-4">
+                Trip Info
+              </h2>
+            )}
             {d.additionalInfo &&
               d.additionalInfo.map((item: any, index: number) => {
                 return (
@@ -129,7 +167,11 @@ export default function TrekDetailPage({ trip }: { trip: any }) {
                 );
               })}
 
-            {d.faqs && <h2 className="font-bold mt-4"></h2>}
+            {d.faqs && (
+              <h2 id="faqs" className="font-bold mt-4">
+                Frequently Asked Questions
+              </h2>
+            )}
             <Accordion type="single" collapsible className="w-full">
               {d.faqs &&
                 d.faqs.map((item: any, index: number) => {

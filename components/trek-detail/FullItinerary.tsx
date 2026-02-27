@@ -15,7 +15,7 @@ interface ItineraryDay {
 
 export default function FullItinerary({ days }: { days: ItineraryDay[] }) {
   return (
-    <section className="py-2">
+    <section className="py-2" id="itinerary">
       <SectionTitle title="Detailed Itinerary" />
       <Accordion type="single" collapsible defaultValue="day-1">
         {days.map((d) => (

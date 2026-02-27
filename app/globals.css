@@ -126,22 +126,35 @@
 }
 /* globals.css */
 .scrollbar-hide {
-    -ms-overflow-style: none; /* IE & Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 .scrollbar-hide::-webkit-scrollbar {
-    display: none; /* Chrome, Safari */
+    display: none;
 }
 
-/* Table Styles */
 table {
+    display: block;
     width: 100%;
+    font-size: 1.1rem;
+    letter-spacing: 0.05rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     border-collapse: collapse;
     margin: 1.5rem 0;
-    border: 1px solid #e5e7eb;
-    border-radius: 0.5rem;
-    overflow: hidden;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #f9fafb !important;
+}
+
+table th,
+table td {
+    padding: 0.75rem 1rem;
+    min-width: 120px;
+    white-space: normal;
+    vertical-align: top;
+}
+
+table td:first-child {
+    color: #1f2937;
 }
 
 table thead {
@@ -150,14 +163,12 @@ table thead {
 }
 
 table th {
-    padding: 1rem 1.5rem;
     text-align: left;
     font-weight: 600;
     color: #111827;
 }
 
 table tbody tr {
-    border-bottom: 1px solid #e5e7eb;
     transition: background-color 0.2s ease;
 }
 
@@ -170,13 +181,10 @@ table tbody tr:hover {
 }
 
 table td {
-    padding: 1rem 1.5rem;
     color: #374151;
 }
 
 table td:first-child {
-    font-weight: 500;
-    color: #1f2937;
 }
 
 /* Mobile responsive */

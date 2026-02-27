@@ -4,7 +4,7 @@ import { siteConfig } from "@/constants";
 
 export default function LogoComponent({ dark }: Readonly<{ dark?: boolean }>) {
   return (
-    <Link href="/" className="flex items-center gap-1 font-bold text-secondary">
+    <Link href="/" className="flex items-center gap-1 font-bold">
       <span>
         <LucideMountain />
       </span>

@@ -3,7 +3,6 @@
 import { useMemo, useState } from "react";
 
 export default function BookingCard({ trip }: { trip: any }) {
-  console.log("trip: ", trip);
   const [date, setDate] = useState("2026-09-24");
   const [travellers, setTravellers] = useState(2);
 

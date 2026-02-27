@@ -22,8 +22,6 @@ export const generateMetadata = async ({
 
   const trip = data?.data;
 
-  console.log("Trip: ", trip);
-
   return {
     title: trip?.seo?.metaTitle,
     description: trip?.seo?.metaDescription,
@@ -55,6 +53,7 @@ export const generateMetadata = async ({
     },
   };
 };
+
 export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = await params;
 
