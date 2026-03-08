@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 
 export default function BookingCard({ trip }: { trip: any }) {
   const [date, setDate] = useState("2026-09-24");
@@ -14,7 +15,7 @@ export default function BookingCard({ trip }: { trip: any }) {
   }, [travellers]);
 
   return (
-    <div className="rounded-xl border  p-5 shadow-sm">
+    <div className="rounded-xl border p-5 shadow-sm min-h-80">
       <div className="font-bold">{trip?.title}</div>
       <div className="text-sm ">Starting from</div>
 
@@ -26,7 +27,7 @@ export default function BookingCard({ trip }: { trip: any }) {
       </div>
 
       <div className="mt-4 space-y-3">
-        <div>
+        {/*<div>
           <label className="font-semibold">Travel Date</label>
           <div className="mt-2 rounded-lg border border-slate-200 bg-white px-3 py-2">
             <input
@@ -36,8 +37,8 @@ export default function BookingCard({ trip }: { trip: any }) {
               className="w-full bg-transparent text-sm text-slate-700 outline-none"
             />
           </div>
-        </div>
-
+        </div>*/}
+        {/*
         <div>
           <label className="text-sm font-semibold text-slate-700">Guests</label>
 
@@ -61,16 +62,18 @@ export default function BookingCard({ trip }: { trip: any }) {
               </button>
             </div>
           </div>
-        </div>
+        </div>*/}
 
-        <button
-          className="mt-2 w-full rounded-lg bg-primary/90 px-4 py-2.5 text-sm font-semibold text-white hover:bg-primary"
-          type="button"
-        >
-          Book This Trek
-        </button>
+        <Link href={"/contact"}>
+          <button
+            className="mt-2 w-full rounded-lg bg-primary/90 px-4 py-2.5 text-sm font-semibold text-white hover:bg-primary"
+            type="button"
+          >
+            Send Booking Request for This Trek
+          </button>
+        </Link>
 
-        <div className="text-center text-xs text-slate-500">
+        <div className="text-center text-xs text-slate-500 mt-2">
           Full refund up to 30 days before start date
         </div>
       </div>
@@ -83,12 +86,14 @@ export default function BookingCard({ trip }: { trip: any }) {
           Our travel experts are available 24/7 to help you customize your
           journey.
         </div>
-        <button
-          type="button"
-          className="mt-3 w-full rounded-lg border border-primary/20 bg-white px-4 py-2 text-sm font-semibold text-primary hover:bg-primary/5"
-        >
-          Contact Expert →
-        </button>
+        <Link href={"/contact"}>
+          <button
+            type="button"
+            className="mt-3 w-full rounded-lg border border-primary/20 bg-white px-4 py-2 text-sm font-semibold text-primary hover:bg-primary/5"
+          >
+            Contact Expert →
+          </button>
+        </Link>
       </div>
     </div>
   );
