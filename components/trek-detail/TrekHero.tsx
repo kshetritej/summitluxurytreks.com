@@ -1,32 +1,50 @@
-import { getFullImageUrl } from "@/lib/getFullUrl";
-import { ImageIcon } from "lucide-react";
 import Image from "next/image";
+import { Lightbox } from "../lightbox";
+import { Button } from "../ui/button";
+import { LucideImages } from "lucide-react";
 
 export default function TrekHero({ images }: { images: string[] }) {
+  const mainImage = images[0];
+  const otherImages = images.slice(1);
+
   return (
     <div className="overflow-hidden">
-      <div className="relative aspect-video w-full">
-        <Image
-          src={getFullImageUrl(images[0])}
-          width={1920}
-          height={1280}
-          alt="Everest Base Camp Trek"
-          className="object-cover saturate-110 contrast-105 w-full h-full"
-        />
-        <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/25 via-black/5 to-transparent" />
+      <div className="relative aspect-video">
+        {images && images.length > 0 && (
+          <Lightbox images={images}>
+            <div className="grid md:grid-cols-3 gap-2 container mx-auto">
+              <div className="rounded-sm overflow-hidden col-span-2">
+                <Image
+                  src={mainImage}
+                  alt={"lalg"}
+                  height={1280}
+                  width={1920}
+                  className="w-full object-cover rounded-3xl"
+                />
+              </div>
+              <div className="col-span-1 hidden md:grid gap-2">
+                {otherImages.map((imageUrl: string) => (
+                  <div key={imageUrl} className="rounded-sm overflow-hidden">
+                    <Image
+                      alt={`Header Imag ${imageUrl}`}
+                      src={imageUrl}
+                      height={1280}
+                      width={1920}
+                      className="w-full object-cover"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Lightbox>
+        )}
 
-        <div className="absolute left-4 top-4 flex items-center gap-2">
-          <button
-            type="button"
-            className="flex items-center justify-center rounded-lg bg-white/90 shadow-sm backdrop-blur hover:bg-white px-2 gap-2 cursor-pointer"
-            aria-label="Open gallery"
-          >
-            <ImageIcon className="h-4 w-4 text-slate-700" />
-            Photos ({images.length})
-          </button>
+        <div className="absolute left-4 top-8 flex gap-2">
+          <Button>
+            <LucideImages />
+            {images.length} Photos
+          </Button>
         </div>
-
-        <div className="absolute left-4 top-14 flex gap-2"></div>
       </div>
     </div>
   );
