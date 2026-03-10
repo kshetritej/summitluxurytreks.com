@@ -14,13 +14,14 @@ export type TripCardProps = {
   images: string[];
   link?: string;
   canonicalPath?: string;
+  slug: string;
   urlHistory: [];
 };
 
 export default function TripCard({ tour }: Readonly<{ tour: TripCardProps }>) {
   return (
     <Link
-      href={tour?.canonicalPath ?? `/activities/${tour.id}`}
+      href={tour?.canonicalPath ?? `/${tour.slug}`}
       className={`relative min-h-132 bg-black/70 min-w-82
         flex flex-col  justify-end uppercase max-w-xs
         gap-8`}
