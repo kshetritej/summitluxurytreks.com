@@ -5,7 +5,7 @@ export default function LegalDocumentsPage() {
   return (
     <SectionTemplate
       title={"Legal Documents"}
-      text={<p>Here are the legal documents for Summit Luxury Treks:</p>}
+      text={<p>Here are the legal documents for {siteConfig.name}:</p>}
     >
       {Object.keys(siteConfig.documents).map((doc) => {
         return (

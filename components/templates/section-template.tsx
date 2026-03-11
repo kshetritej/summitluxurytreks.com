@@ -29,7 +29,7 @@ export default function SectionTemplate({
             <div className="text-sm font-bold uppercase tracking-widest text-primary mb-2">
               {badgeText}
             </div>
-            <h2 className="text-lg  uppercase font-bold text-foreground mb-6 leading-tight text-balance">
+            <h2 className="text-3xl uppercase font-bold text-foreground mb-6 leading-tight text-balance">
               {title}
             </h2>
             <div className="text-md tracking-wider text-muted-foreground mb-4 leading-relaxed max-w-3xl">

@@ -15,6 +15,7 @@ const nextConfig: NextConfig = {
     return [];
   },
   images: {
+    contentDispositionType: "inline",
     remotePatterns: [
       {
         protocol: "http",

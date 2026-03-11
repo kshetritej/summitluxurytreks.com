@@ -66,6 +66,14 @@ export default function Footer() {
                     Contact
                   </Link>
                 </li>
+                <li>
+                  <Link
+                    href="/legal-documents"
+                    className="hover:text-foreground transition"
+                  >
+                    Legal Documents
+                  </Link>
+                </li>
               </ul>
             </div>
             <div>

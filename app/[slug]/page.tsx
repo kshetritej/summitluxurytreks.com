@@ -1,5 +1,6 @@
 export const dynamic = "force-static";
 import TrekDetailPage from "@/components/trek-detail/TrekDetailPage";
+import { siteConfig } from "@/constants";
 import { notFound } from "next/navigation";
 
 export const generateMetadata = async ({
@@ -29,6 +30,7 @@ export const generateMetadata = async ({
     openGraph: {
       title: trip?.seo?.metaTitle,
       description: trip?.seo?.metaDescription,
+      siteName: siteConfig.name,
       url: `https://summitluxurytreks.com/${slug}`,
       images: [
         {
@@ -42,6 +44,7 @@ export const generateMetadata = async ({
     twitter: {
       title: trip?.seo?.metaTitle,
       description: trip?.seto?.metaDescription,
+      siteName: siteConfig.name,
       images: [
         {
           url: trip?.seo?.featuredMedia,
