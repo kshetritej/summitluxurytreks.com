@@ -1,12 +1,18 @@
 "use client";
 import React, { useState, useEffect, useCallback } from "react";
+import Image from "next/image";
 
 interface LightboxProps {
   images: string[];
+  imageAlts: string[];
   children: React.ReactNode;
 }
 
-export const Lightbox: React.FC<LightboxProps> = ({ images, children }) => {
+export const Lightbox: React.FC<LightboxProps> = ({
+  images,
+  imageAlts,
+  children,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -129,11 +135,15 @@ export const Lightbox: React.FC<LightboxProps> = ({ images, children }) => {
             </button>
           </>
         )}
-
-        <img
+        <pre className="absolute bottom-1 bg-transparent!">
+          {JSON.stringify(imageAlts[currentIndex])}
+        </pre>
+        <Image
+          width={1920}
+          height={1280}
           src={images[currentIndex]}
-          alt={`Image ${currentIndex + 1}`}
-          onClick={(e) => e.stopPropagation()}
+          alt={imageAlts[currentIndex] || `Image ${currentIndex + 1}`}
+          // onClick={(e) => e.stopPropagation()}
           style={{
             maxWidth: "100vw",
             maxHeight: "100vh",

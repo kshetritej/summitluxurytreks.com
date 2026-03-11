@@ -83,7 +83,7 @@ export default function TrekDetailPage({ trip }: { trip: any }) {
     >
       <SectionNavigation sections={sections} />
       <div className="container mx-auto">
-        <TrekHero images={d.images} />
+        <TrekHero images={d.images} imageAlts={d.keywords || []} />
         <TrekHeader title={d.title} days={d.duration} />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-7 container mx-auto  max-w-7xl gap-4">
