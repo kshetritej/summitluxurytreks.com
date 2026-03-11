@@ -10,6 +10,9 @@ import CTACard from "@/components/cards/cta-card";
 export const metadata: Metadata = {
   title: `${siteConfig.name}`,
   description: "Created by Growfore Solution",
+  openGraph: {
+    siteName: siteConfig.name,
+  },
 };
 
 export default function RootLayout({

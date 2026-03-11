@@ -30,7 +30,6 @@ export const generateMetadata = async ({
     openGraph: {
       title: trip?.seo?.metaTitle,
       description: trip?.seo?.metaDescription,
-      siteName: siteConfig.name,
       url: `https://summitluxurytreks.com/${slug}`,
       images: [
         {
@@ -44,7 +43,6 @@ export const generateMetadata = async ({
     twitter: {
       title: trip?.seo?.metaTitle,
       description: trip?.seto?.metaDescription,
-      siteName: siteConfig.name,
       images: [
         {
           url: trip?.seo?.featuredMedia,
