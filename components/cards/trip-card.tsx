@@ -16,6 +16,7 @@ export type TripCardProps = {
   canonicalPath?: string;
   slug: string;
   urlHistory: [];
+  keywords: string[];
 };
 
 export default function TripCard({ tour }: Readonly<{ tour: TripCardProps }>) {
@@ -30,7 +31,7 @@ export default function TripCard({ tour }: Readonly<{ tour: TripCardProps }>) {
             width={1280}
             height={720}
             src={getFullImageUrl(tour.images[0])}
-            alt={tour.title}
+            alt={tour.keywords[0] || tour.title || ""}
             className="object-cover h-full -z-10 hover:scale-105 transition-all duration-150"
           />
         )}

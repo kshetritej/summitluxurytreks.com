@@ -1,6 +1,5 @@
 export const dynamic = "force-static";
 import TrekDetailPage from "@/components/trek-detail/TrekDetailPage";
-import { siteConfig } from "@/constants";
 import { notFound } from "next/navigation";
 
 export const generateMetadata = async ({

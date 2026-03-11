@@ -19,7 +19,7 @@ export default function TrekHero({
         {images && images.length > 0 && (
           <Lightbox images={images} imageAlts={imageAlts}>
             <div className="grid md:grid-cols-3 gap-2 container mx-auto max-h-200 rounded-3xl overflow-hidden">
-              <div className="rounded-sm overflow-hidden col-span-2">
+              <div className="rounded-3xl overflow-hidden col-span-2">
                 <Image
                   src={mainImage}
                   alt={imageAlts[0] || ""}
@@ -28,9 +28,9 @@ export default function TrekHero({
                   className="w-full object-cover rounded-3xl h-full object-center"
                 />
               </div>
-              <div className="col-span-1 hidden md:grid gap-2 overflow-hidden max-h-200">
+              <div className="col-span-1 hidden md:grid overflow-hidden max-h-200">
                 {otherImages.map((imageUrl: string, index: number) => (
-                  <div key={imageUrl} className="rounded-sm overflow-hidden">
+                  <div key={imageUrl} className="rounded-3xl overflow-hidden">
                     <Image
                       alt={imageAlts[index + 1] || ""}
                       src={imageUrl}
