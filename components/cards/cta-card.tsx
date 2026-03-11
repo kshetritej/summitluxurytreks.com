@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function CTACard() {
   return (
-    <section className="w-full  text-white  overflow-hidden container mx-auto mt-4 md:mt-12">
+    <section className="w-full  text-white  overflow-hidden container mx-auto mt-4 md:mt-12 px-2">
       <div className="rounded-xl bg-primary  p-4  sm:p-8 md:p-12 flex flex-col md:flex-row w-full gap-8 md:gap-12 items-start md:items-center justify-between">
         {/* Left Content */}
         <div className="space-y-6 flex-1">
