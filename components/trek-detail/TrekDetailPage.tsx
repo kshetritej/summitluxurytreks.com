@@ -14,6 +14,8 @@ import {
   LucideCheck,
   LucideInfo,
   LucideBringToFront,
+  LucideMap,
+  LucideTent,
 } from "lucide-react";
 import { StatCard } from "../cards/stat-card";
 import { AdditionalInfoRenderer } from "../molecules/additional-info-renderer";
@@ -104,9 +106,29 @@ export default function TrekDetailPage({ trip }: { trip: any }) {
               value={d.guestCapacity}
             />
             <StatCard
+              icon={<Users className="h-5 w-5 text-primary" />}
+              label="Max Altitude"
+              value={d.maximumAltitude || "-"}
+            />
+            <StatCard
               icon={<MapPin className="h-5 w-5 text-primary" />}
-              label="Start/End"
-              value={d.meetingPoint + " / " + d.dropOffPoint}
+              label="Start"
+              value={d.meetingPoint}
+            />
+            <StatCard
+              icon={<MapPin className="h-5 w-5 text-primary" />}
+              label="End"
+              value={d.dropOffPoint}
+            />
+            <StatCard
+              icon={<LucideMap className="h-5 w-5 text-primary" />}
+              label="Locations"
+              value={d.locations.join(", ")}
+            />
+            <StatCard
+              icon={<LucideTent className="h-5 w-5 text-primary" />}
+              label="Accommodations"
+              value={d.accommodations.join(", ")}
             />
           </div>
           <div className="md:hidden mt-2">

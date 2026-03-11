@@ -6,6 +6,7 @@ import {
 } from "@/components/ui/accordion";
 import SectionTitle from "./SectionTitle";
 import { decodeHtmlEntities } from "@/lib/htmlDecoder";
+import { LucideMapPin } from "lucide-react";
 
 interface ItineraryDay {
   day: number;
@@ -21,9 +22,9 @@ export default function FullItinerary({ days }: { days: ItineraryDay[] }) {
         {days.map((d) => (
           <AccordionItem key={d.day} value={`day-${d.day}`}>
             <AccordionTrigger className="hover:no-underline [&[data-state=open]>svg]:rotate-180 py-0">
-              <div className="flex items-center gap-1">
-                <span className="rounded bg-primary/90 px-2 py-1 font-semibold text-white">
-                  Day {d.day}
+              <div className="flex items-center gap-2">
+                <span className="rounded-full bg-primary/90 p-2  font-semibold text-white">
+                  <LucideMapPin className="h-4 w-4" />
                 </span>
                 <span className="font-semibold text-lg">{d.title}</span>
               </div>

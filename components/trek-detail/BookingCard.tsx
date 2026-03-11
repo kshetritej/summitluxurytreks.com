@@ -1,18 +1,8 @@
-"use client";
-
-import { useMemo, useState } from "react";
 import Link from "next/link";
+import { siteConfig } from "@/constants";
 
 export default function BookingCard({ trip }: { trip: any }) {
-  const [date, setDate] = useState("2026-09-24");
-  const [travellers, setTravellers] = useState(2);
-
   const price = trip?.price;
-
-  const travellersLabel = useMemo(() => {
-    if (travellers === 1) return "1 Traveler";
-    return `${travellers} Travelers`;
-  }, [travellers]);
 
   return (
     <div className="rounded-xl border p-5 shadow-sm min-h-80">
@@ -73,9 +63,9 @@ export default function BookingCard({ trip }: { trip: any }) {
           </button>
         </Link>
 
-        <div className="text-center text-xs text-slate-500 mt-2">
+        {/*<div className="text-center text-xs text-slate-500 mt-2">
           Full refund up to 30 days before start date
-        </div>
+        </div>*/}
       </div>
 
       <div className="mt-5 rounded-xl border border-slate-200 bg-slate-50 p-4">
@@ -86,12 +76,12 @@ export default function BookingCard({ trip }: { trip: any }) {
           Our travel experts are available 24/7 to help you customize your
           journey.
         </div>
-        <Link href={"/contact"}>
+        <Link href={siteConfig.whatsAppLink} target="_blank">
           <button
             type="button"
-            className="mt-3 w-full rounded-lg border border-primary/20 bg-white px-4 py-2 text-sm font-semibold text-primary hover:bg-primary/5"
+            className="mt-3 w-full rounded-lg border border-primary/20 bg-white px-4 py-2 text-sm font-semibold text-black  hover:bg-green-400 transition-colors delay-150 ease-linear"
           >
-            Contact Expert →
+            Contact Expert on Whatsapp →
           </button>
         </Link>
       </div>

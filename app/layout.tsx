@@ -5,6 +5,7 @@ import Footer from "@/components/common/footer";
 import { outfit } from "@/lib/font";
 import { Analytics } from "@vercel/analytics/next";
 import { siteConfig } from "@/constants";
+import CTACard from "@/components/cards/cta-card";
 
 export const metadata: Metadata = {
   title: `${siteConfig.name}`,
@@ -22,6 +23,7 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Analytics />
+        <CTACard />
         <Footer />
       </body>
     </html>

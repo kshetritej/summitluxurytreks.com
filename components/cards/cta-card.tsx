@@ -1,75 +1,36 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import { FormErrorMessage } from "../atoms/form-error-message";
+import Link from "next/link";
 
 export default function CTACard() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    defaultValues: {
-      email: "",
-    },
-  });
-
   return (
-    <section className="w-full rounded-lg bg-background  text-white p-6 md:p-8 mb-4 mt-12">
-      <div className="space-y-4 flex flex-col md:flex-row w-full gap-8 justify-between">
-        <div className="space-y-1">
-          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">
-            Unlock exclusive Nepal travel deals and guides
-          </h2>
-          <p className="text-sm ">
-            Spam-free. Unsubscribe anytime. We respect your privacy.
-          </p>
+    <section className="w-full px-2  text-white p-8 md:p-12 mb-4 mt-12 overflow-hidden">
+      <div className="rounded-xl bg-primary  p-4  sm:p-8 md:p-12 flex flex-col md:flex-row w-full gap-8 md:gap-12 items-start md:items-center justify-between">
+        {/* Left Content */}
+        <div className="space-y-6 flex-1">
+          <div className="space-y-4">
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
+              Summit
+            </h2>
+            <p className="text-base md:text-lg  max-w-md leading-relaxed">
+              Connect with the mountains, culture, and adventure. Our trekking
+              and travel experiences are designed to get you on the trail
+              quickly and effortlessly—from planning and permits to guides and
+              logistics. Whether you&apos;re chasing Himalayan summits or
+              exploring hidden valleys, we make your journey seamless, safe, and
+              unforgettable.
+            </p>
+          </div>
+          <Link href={"/contact"}>
+            <Button
+              type="button"
+              variant={"secondary"}
+              className="h-12 text-black font-semibold   px-8 flex-shrink-0"
+            >
+              Contact Now
+            </Button>
+          </Link>
         </div>
-
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="flex w-full max-w-md gap-2"
-        >
-          <Input
-            {...register("email", { required: true })}
-            placeholder="youremail@domain.com"
-            className="h-11 placeholder:text-white"
-          />
-          <Button
-            type="submit"
-            size="lg"
-            variant={"outline"}
-            className="bg-transparent"
-          >
-            Subscribe
-          </Button>
-        </form>
-
-        {errors.email && (
-          <FormErrorMessage message="Please enter a valid email address." />
-        )}
       </div>
     </section>
   );
 }
-
-const onSubmit = async (data: { email: string }) => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/newsletter/subscribe`,
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: data.email }),
-    },
-  );
-
-  if (res.ok) {
-    toast.success("Successfully subscribed to newsletter!");
-  } else {
-    const resData = await res.json();
-    toast.error(resData.message || "Failed to subscribe to newsletter.");
-  }
-};

@@ -27,7 +27,7 @@ export default function WelcomeSection() {
         Nepal Tourism Board member, we uphold the highest safety, service, and
         exclusivity standards.
       </p>
-      <Link href="/tours">
+      <Link href="/contact">
         <Button>Get in touch</Button>
       </Link>
     </section>

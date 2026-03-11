@@ -9,7 +9,7 @@ export default async function ExplorePage() {
   const trips = resJSON.data;
 
   return (
-    <div className="flex flex-col gap-4 items-center justify-center">
+    <div className="flex flex-col gap-4 items-center justify-center p-4">
       <h1 className="font-bold text-2xl my-4">Explore Trips</h1>
       {
         <div className="flex gap-4">

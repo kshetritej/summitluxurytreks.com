@@ -6,8 +6,6 @@ import {
   associated4,
   associated6,
 } from "@/lib/imageutil";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
 import { siteConfig } from "@/constants";
 import Image from "next/image";
 
@@ -17,7 +15,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Footer Content */}
         <div className="py-16">
-          <div className="grid md:grid-cols-4 gap-12 mb-8">
+          <div className="grid md:grid-cols-3 gap-12 mb-8">
             {/* Our Address */}
             <div>
               <p className="text-sm font-semibold text-muted-foreground mb-2">
@@ -46,7 +44,6 @@ export default function Footer() {
               </p>
               <p className="font-semibold">{siteConfig.email}</p>
             </div>
-
             {/* Company */}
             <div>
               <p className="text-sm font-semibold text-muted-foreground mb-4">
@@ -55,18 +52,10 @@ export default function Footer() {
               <ul className="space-y-3 text-sm text-muted-foreground">
                 <li>
                   <Link
-                    href="/about-us"
+                    href="/about"
                     className="hover:text-foreground transition"
                   >
                     About Us
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/our-team"
-                    className="hover:text-foreground transition"
-                  >
-                    Our Team
                   </Link>
                 </li>
                 <li>
@@ -79,125 +68,38 @@ export default function Footer() {
                 </li>
               </ul>
             </div>
-
-            {/* Information */}
             <div>
               <p className="text-sm font-semibold text-muted-foreground mb-4">
-                Information
+                Associated With
               </p>
-              <ul className="space-y-3 text-sm text-muted-foreground">
-                <li>
-                  <Link href="#" className="hover:text-foreground transition">
-                    FAQs
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/blog"
-                    className="hover:text-foreground transition"
+              <div className="flex flex-wrap gap-4">
+                {[
+                  associated1,
+                  associated2,
+                  associated3,
+                  associated4,
+                  associated6,
+                ].map((image, i) => (
+                  <div
+                    key={i}
+                    className="rounded-lg p-3 border border-border bg-muted/30 hover:bg-muted transition aspect-square"
                   >
-                    Blog
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-foreground transition">
-                    Travel Information
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-foreground transition">
-                    Payment Terms
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-foreground transition">
-                    Privacy Policy
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            {/* Activities */}
-            <div>
-              <p className="text-sm font-semibold text-muted-foreground mb-4">
-                Activities
-              </p>
-              <ul className="space-y-3 text-sm text-muted-foreground">
-                <li>
-                  <Link
-                    href="/tours"
-                    className="hover:text-foreground transition"
-                  >
-                    Trekking in Nepal
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/tours"
-                    className="hover:text-foreground transition"
-                  >
-                    Peak Climbing
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/tours"
-                    className="hover:text-foreground transition"
-                  >
-                    Cultural Tours
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/tours"
-                    className="hover:text-foreground transition"
-                  >
-                    Hiking Adventures
-                  </Link>
-                </li>
-              </ul>
+                    <Image
+                      src={image}
+                      height={50}
+                      width={50}
+                      alt={`Associated ${i + 1}`}
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
 
         {/* Bottom Section */}
-        <div className="border-t border-border py-12 space-y-8">
-          {/* Associated With */}
-          <div>
-            <p className="text-sm font-semibold text-muted-foreground mb-4">
-              Associated With
-            </p>
-            <div className="flex flex-wrap gap-4">
-              {[
-                associated1,
-                associated2,
-                associated3,
-                associated4,
-                associated6,
-              ].map((image, i) => (
-                <div
-                  key={i}
-                  className="rounded-lg p-3 border border-border bg-muted/30 hover:bg-muted transition aspect-square"
-                >
-                  <Image
-                    src={image}
-                    height={50}
-                    width={50}
-                    alt={`Associated ${i + 1}`}
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="p-8 min-h-32 border flex flex-col gap-4 bg-background">
-            <p className="text-lg font-bold">Subscribe to our newsletter</p>
-            <p>Cancel anytime, no spam.</p>
-            <Input className="max-w-xl" />
-            <Button className="w-fit" variant={"secondary"}>
-              Subscribe
-            </Button>
-          </div>
+        <div className="border-t border-border space-y-8">
           {/* Copyright */}
           <div className="pt-6 text-sm text-muted-foreground border-t border-border">
             <p>© 2026 {siteConfig.name}.</p>

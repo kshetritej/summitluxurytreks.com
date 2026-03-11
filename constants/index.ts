@@ -4,6 +4,8 @@ export const siteConfig = {
   url: "https://summitluxurytreks.com",
   image: "/og.png",
   whatsAppNumber: "+9779826145893",
+  whatsAppLink:
+    "https://api.whatsapp.com/send/?phone=9779826145893&text&type=phone_number&app_absent=0",
   phoneNumber: "+9779847709793",
   email: "info@summitluxurytreks.com",
   openHours: "Sunday to Friday 9:00 AM to 5:00 PM Nepal Standard Time",

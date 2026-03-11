@@ -12,7 +12,7 @@ export default function TrekHero({ images }: { images: string[] }) {
       <div className="relative aspect-video">
         {images && images.length > 0 && (
           <Lightbox images={images}>
-            <div className="grid md:grid-cols-3 gap-2 container mx-auto">
+            <div className="grid md:grid-cols-3 gap-2 container mx-auto max-h-200 rounded-3xl overflow-hidden">
               <div className="rounded-sm overflow-hidden col-span-2">
                 <Image
                   src={mainImage}

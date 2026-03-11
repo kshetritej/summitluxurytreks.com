@@ -60,10 +60,10 @@ export function MegaMenu({ items }: { items: any }) {
           </li>
         ))}
       </ul>
-      <Link href={`tel:${siteConfig.phoneNumber}`}>
+      <Link href={siteConfig.whatsAppLink} target="_blank">
         <Button variant={"secondary"}>
           <LucideSmartphone />
-          <div>{siteConfig.phoneNumber}</div>
+          <div>{siteConfig.whatsAppNumber}</div>
         </Button>
       </Link>
     </nav>

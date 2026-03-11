@@ -11,7 +11,6 @@ const LatestTrips = async () => {
 
   return (
     <SectionTemplate
-      badgeText={<p>Latest Trips</p>}
       title={<p>Recently Curated Himalayan Journeys</p>}
       text={
         <p>

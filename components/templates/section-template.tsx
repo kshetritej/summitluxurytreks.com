@@ -23,7 +23,7 @@ export default function SectionTemplate({
 }: SectionTemplateProps) {
   return (
     <section className={cn("py-16 px-4", className)}>
-      <div className="max-w-7xl flex flex-col md:flex-row items-baseline-last justify-between container mx-auto">
+      <div className="max-w-7xl flex flex-col md:flex-row  justify-between container mx-auto">
         <div>
           <div className="mb-12">
             <div className="text-sm font-bold uppercase tracking-widest text-primary mb-2">
@@ -50,7 +50,9 @@ export default function SectionTemplate({
           </div>
         )}
       </div>
-      <div className="mx-auto container">{children}</div>
+      <div className="mx-auto container space-y-4 flex flex-col gap-4">
+        {children}
+      </div>
     </section>
   );
 }
