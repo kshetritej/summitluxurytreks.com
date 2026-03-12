@@ -19,7 +19,7 @@ export default function TrekHero({
         {images && images.length > 0 && (
           <Lightbox images={images} imageAlts={imageAlts}>
             <div className="grid md:grid-cols-3 gap-5 container mx-auto max-h-150 0verflow-hidden rounded-xl">
-              <div className="overflow-hidden col-span-2 rounded-xl">
+              <div className="overflow-hidden col-span-2 rounded-xl object-center object-cover">
                 <Image
                   src={mainImage}
                   alt={imageAlts[0] || ""}
