@@ -15,7 +15,7 @@ export default function TrekHero({
 
   return (
     <div className="overflow-hidden">
-      <div className="relative">
+      <div className="relative min-h-150">
         {images && images.length > 0 && (
           <Lightbox images={images} imageAlts={imageAlts}>
             <div className="grid md:grid-cols-3 gap-5 container mx-auto max-h-150 0verflow-hidden rounded-xl">
