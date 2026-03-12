@@ -86,7 +86,7 @@ export default function TrekDetailPage({ trip }: { trip: any }) {
         <TrekHero images={d.images} imageAlts={d.keywords || []} />
         <TrekHeader title={d.title} days={d.duration} />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-7 container mx-auto  max-w-7xl gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-7 container mx-auto gap-4">
         <div className="col-span-5">
           {/* <Breadcrumbs items={d.breadcrumbs} /> */}
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 border-b">
