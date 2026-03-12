@@ -15,31 +15,31 @@ export default function TrekHero({
 
   return (
     <div className="overflow-hidden">
-      <div className="relative aspect-video">
+      <div className="relative">
         {images && images.length > 0 && (
           <Lightbox images={images} imageAlts={imageAlts}>
-            <div className="grid md:grid-cols-3 gap-2 container mx-auto max-h-200 rounded-3xl overflow-hidden">
-              <div className="rounded-3xl overflow-hidden col-span-2">
+            <div className="grid md:grid-cols-3 gap-5 container mx-auto max-h-150 0verflow-hidden rounded-xl">
+              <div className="overflow-hidden col-span-2 rounded-xl">
                 <Image
                   src={mainImage}
                   alt={imageAlts[0] || ""}
                   height={1280}
                   width={1920}
-                  className="w-full object-cover rounded-3xl h-full object-center"
+                  className="w-full  h-full object-center rounded-xl object-cover overflow-hidden"
                 />
               </div>
-              <div className="col-span-1 hidden md:grid overflow-hidden max-h-200">
+              <div className="col-span-1 hidden md:flex flex-col overflow-hidden max-h-150 rounded-xl">
                 {otherImages.map((imageUrl: string, index: number) => (
                   <div
                     key={imageUrl}
-                    className="rounded-3xl overflow-hidden object-center object-cover min-h-100 max-h-100"
+                    className="overflow-hidden object-center object-cover min-h-75 max-h-75 rounded-xl"
                   >
                     <Image
                       alt={imageAlts[index + 1] || ""}
                       src={imageUrl}
                       height={1280}
                       width={1920}
-                      className="w-full h-full object-cover object-center"
+                      className="w-full h-full object-cover object-center rounded-xl"
                     />
                   </div>
                 ))}
