@@ -32,7 +32,7 @@ export default function TrekHero({
                 {otherImages.map((imageUrl: string, index: number) => (
                   <div
                     key={imageUrl}
-                    className="rounded-3xl overflow-hidden object-center object-cover max-h-100"
+                    className="rounded-3xl overflow-hidden object-center object-cover min-h-100 max-h-100"
                   >
                     <Image
                       alt={imageAlts[index + 1] || ""}
