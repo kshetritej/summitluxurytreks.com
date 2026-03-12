@@ -30,7 +30,11 @@ export default function TrekHero({
               </div>
               <div className="col-span-1 hidden md:grid overflow-hidden max-h-200">
                 {otherImages.map((imageUrl: string, index: number) => (
-                  <div key={imageUrl} className="rounded-3xl overflow-hidden">
+                  <div
+                    key={imageUrl}
+                    className="rounded-3xl overflow-hidden object-center object-cover max-h-100"
+                  >
+                    object-center object-cover"
                     <Image
                       alt={imageAlts[index + 1] || ""}
                       src={imageUrl}
