@@ -26,7 +26,7 @@ export default function TrekHero({
                   alt={imageAlts[0] || ""}
                   height={1280}
                   width={1920}
-                  className="w-full  h-full object-center rounded-xl object-cover overflow-hidden"
+                  className="w-full  h-full object-center rounded-xl object-cover overflow-hidden cursor-pointer"
                 />
               </div>
               <div className="col-span-1 hidden md:flex flex-col overflow-hidden max-h-150 rounded-xl">
@@ -41,7 +41,7 @@ export default function TrekHero({
                       src={imageUrl}
                       height={1280}
                       width={1920}
-                      className="w-full h-full object-cover object-center rounded-xl"
+                      className="w-full h-full object-cover object-center rounded-xl cursor-pointer"
                     />
                   </div>
                 ))}
