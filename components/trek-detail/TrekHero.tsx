@@ -21,6 +21,7 @@ export default function TrekHero({
             <div className="grid md:grid-cols-3 gap-5 container mx-auto max-h-150 0verflow-hidden rounded-xl">
               <div className="overflow-hidden col-span-2 rounded-xl object-center object-cover">
                 <Image
+                  data-lightbox-index={0}
                   src={mainImage}
                   alt={imageAlts[0] || ""}
                   height={1280}
@@ -35,6 +36,7 @@ export default function TrekHero({
                     className="overflow-hidden object-center object-cover min-h-75 max-h-75 rounded-xl"
                   >
                     <Image
+                      data-lightbox-index={index + 1}
                       alt={imageAlts[index + 1] || ""}
                       src={imageUrl}
                       height={1280}

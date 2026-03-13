@@ -48,7 +48,14 @@ export const Lightbox: React.FC<LightboxProps> = ({
 
   const triggerElement = React.cloneElement(children as React.ReactElement, {
     // @ts-ignore
-    onClick: () => openLightbox(0),
+    onClick: (e: React.MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const index = target
+        .closest("[data-lightbox-index]")
+        ?.getAttribute("data-lightbox-index");
+
+      openLightbox(index ? parseInt(index) : 0);
+    },
   });
 
   if (!isOpen) return <>{triggerElement}</>;
