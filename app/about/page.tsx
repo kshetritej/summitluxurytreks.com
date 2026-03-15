@@ -79,7 +79,7 @@ export default async function AboutPage() {
   prose-li:before:top-[0.45em]
   prose-li:before:w-4 prose-li:before:h-4
   prose-li:before:bg-primary
-  prose-li:before:mask-[url('/icons/point-finger.svg')]
+  prose-li:before:mask-[url('/icons/bullet.svg')]
   prose-li:before:rotate-90
   prose-li:before:mask-contain
   prose-li:before:mask-no-repeat
