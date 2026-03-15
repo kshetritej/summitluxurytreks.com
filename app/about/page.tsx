@@ -1,183 +1,97 @@
 import { siteConfig } from "@/constants";
-import Link from "next/link";
+import { decodeHtmlEntities } from "@/lib/htmlDecoder";
+import type { Metadata } from "next";
+import Image from "next/image";
 
-export default function AboutPage() {
+export const generateMetadata = async (): Promise<Metadata> => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/blogs/about`,
+  );
+
+  const json = await res.json();
+  return {
+    title: json.metaTitle || "Hello",
+    description: json.metaDescription,
+    openGraph: {
+      title: json.metaTitle,
+      description: json.metaDescription,
+      images: [
+        {
+          url: json.coverImage,
+          width: 800,
+          height: 600,
+          alt: json.tags[0] || `About - ${siteConfig.name}`,
+        },
+      ],
+    },
+  };
+};
+
+export default async function AboutPage() {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/blogs/about`,
+  );
+
+  const json = await res.json();
+
   return (
-    <main className="bg-background text-foreground">
-      {/* Header */}
-      <section className="py-16 px-4">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold mb-4">About {siteConfig.name}</h1>
-          <p className="text-lg text-muted-foreground">
-            Learn more about our mission and commitment to exceptional trekking
-            experiences.
-          </p>
-        </div>
-      </section>
-
-      {/* Our Story Section */}
-      <section className="py-16 px-4 border-t border-border">
-        <div className="max-w-4xl mx-auto space-y-6">
-          <h2 className="text-3xl font-bold">Our Story</h2>
-          <p className="text-base text-muted-foreground leading-relaxed">
-            {siteConfig.name} was founded with a simple mission: to provide
-            authentic, well-organized trekking experiences in the Himalayas.
-            With over 15 years of experience, we have guided thousands of
-            trekkers through some of the most beautiful mountain ranges in the
-            world.
-          </p>
-          <p className="text-base text-muted-foreground leading-relaxed">
-            Our team of experienced guides and coordinators are passionate about
-            sharing the beauty of the mountains while maintaining the highest
-            standards of safety, quality, and respect for the local communities
-            we partner with.
-          </p>
-          <p className="text-base text-muted-foreground leading-relaxed">
-            From the iconic Everest Base Camp trek to lesser-known trails, we
-            craft journeys that combine expert logistics, local knowledge, and
-            genuine connection to the mountain environment.
-          </p>
-        </div>
-      </section>
-
-      {/* Why Us Section */}
-      <section className="py-16 px-4 border-t border-border bg-secondary/50">
-        <div className="max-w-4xl mx-auto space-y-8">
-          <h2 className="text-3xl font-bold">Why Choose Us</h2>
-
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-xl font-semibold mb-2">
-                Experience & Expertise
-              </h3>
-              <p className="text-base">
-                With 15+ years in the trekking industry, our guides are
-                certified experts who know the mountains, the trails, and how to
-                ensure your safety and satisfaction.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-semibold mb-2">Local Partnerships</h3>
-              <p className="text-base">
-                We work closely with local Sherpa guides and communities. Your
-                trek directly supports livelihoods and helps preserve the
-                mountain culture and environment.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-semibold mb-2">Safety First</h3>
-              <p className="text-base">
-                We maintain rigorous safety standards, from acclimatization
-                protocols to equipment quality. Your well-being is our top
-                priority on every trek.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-semibold mb-2">
-                Thoughtfully Curated Routes
-              </h3>
-              <p className="text-base">
-                Every trek is carefully planned with attention to pacing,
-                altitude, logistics, and authentic experiences. We handle all
-                the details so you can focus on the journey.
-              </p>
-            </div>
+    <div>
+      <div className="relative h-[50vh] overflow-hidden">
+        <div className="absolute inset-0 bg-linear-to-t from-primary/60 to-transparent" />
+        <Image
+          src={json.coverImage}
+          alt={json.tags[0] || json.coverImage}
+          height={420}
+          width={720}
+          className="object-cover w-full h-full object-center"
+        />
+        <div className="absolute inset-0 flex items-end">
+          <div className="max-w-4xl mx-auto px-6 pb-8 sm:pb-12">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white max-w-3xl leading-tight">
+              {json.title}
+            </h1>
           </div>
         </div>
-      </section>
-
-      {/* Certified & Trusted Section */}
-      <section className="py-16 px-4 border-t border-border">
-        <div className="max-w-4xl mx-auto space-y-8">
-          <h2 className="text-3xl font-bold">Certified & Trusted</h2>
-          <p className="text-base text-muted-foreground mb-8">
-            {siteConfig.name} is a government-registered company operating with
-            the highest standards in the trekking industry.
-          </p>
-
-          <div className="space-y-3">
-            <div className="flex items-start gap-3 p-3 border border-border rounded-lg bg-background">
-              <span className="text-accent font-bold text-lg">✓</span>
-              <div>
-                <p className="font-semibold">Government Registered</p>
-                <p className="text-sm text-muted-foreground">
-                  Officially registered with Nepal&apos;s Ministry of Culture,
-                  Tourism & Civil Aviation
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3 p-3 border border-border rounded-lg bg-background">
-              <span className="text-accent font-bold text-lg">✓</span>
-              <div>
-                <p className="font-semibold">TAAN Member</p>
-                <p className="text-sm text-muted-foreground">
-                  Proud member of the Trekking Agents Association of Nepal
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3 p-3 border border-border rounded-lg bg-background">
-              <span className="text-accent font-bold text-lg">✓</span>
-              <div>
-                <p className="font-semibold">NMA Certified</p>
-                <p className="text-sm text-muted-foreground">
-                  Certified by the Nepal Mountaineering Association for safety
-                  and quality standards
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3 p-3 border border-border rounded-lg bg-background">
-              <span className="text-accent font-bold text-lg">✓</span>
-              <div>
-                <p className="font-semibold">Nepal Tourism Board Approved</p>
-                <p className="text-sm text-muted-foreground">
-                  Recognized and approved by Nepal&apos;s official tourism
-                  authority
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact CTA */}
-      <section className="py-16 px-4 border-t border-border">
-        <div className="max-w-4xl mx-auto  space-y-4">
-          <h2 className="text-2xl font-bold">Questions?</h2>
-          <p className="text-muted-foreground mb-6">
-            Ready to book your trek? Contact us for more information.
-          </p>
-          <div className="space-y-2">
-            <p className="text-sm">
-              Email:
-              <Link
-                href={`mailto:${siteConfig.email}`}
-                className="hover:underline"
-              >
-                {siteConfig.email}
-              </Link>
-            </p>
-            <p className="text-sm">
-              Phone:
-              <Link
-                href={`tel:${siteConfig.phoneNumber}`}
-                className="hover:underline"
-              >
-                {siteConfig.phoneNumber}
-              </Link>
-            </p>
-            <p className="text-sm">
-              Location: {siteConfig.address.street}, {siteConfig.address.city},{" "}
-              {siteConfig.address.country}
-            </p>
-          </div>
-        </div>
-      </section>
-    </main>
+      </div>
+      <div className="container  mt-8 max-w-4xl mx-auto">
+        <div
+          className="col-span-2 min-w-0!
+          p-4
+  prose-base leading leading-relaxed
+  prose-headings:text-gray-900 prose-headings:font-bold
+  prose-h1:text-3xl
+  prose-h2:text-3xl   prose-h2:font-bold
+  prose-h3:text-xl
+  prose-h4:text-lg
+  prose-p:leading-loose prose-p:tracking-normal prose-p:text-lg prose-p:mb-4 prose-p:mt-0
+  prose-a:text-primary prose-a:no-underline hover:prose-a:text-primary hover:prose-a:underline
+  prose-strong:text-black prose-strong:font-bold
+  prose-ul:my-2 prose-ol:my-2
+  prose-li:text-gray-700 prose-li:mb-1
+  prose-blockquote:border-l-4 prose-blockquote:border-primary/70 prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:text-gray-600
+  prose-img:rounded-lg prose-img:my-6
+  prose-code:bg-gray-100 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-sm
+  prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-pre:rounded-lg prose-pre:p-4
+  prose-ul:list-none
+  prose-li:relative prose-li:pl-8
+  prose-li:before:absolute
+  prose-li:before:left-0
+  prose-li:before:top-[0.45em]
+  prose-li:before:w-4 prose-li:before:h-4
+  prose-li:before:bg-primary
+  prose-li:before:mask-[url('/icons/point-finger.svg')]
+  prose-li:before:rotate-90
+  prose-li:before:mask-contain
+  prose-li:before:mask-no-repeat
+  prose-li:text-lg prose-li:leading-loose prose-li:tracking-normal
+  prose-ul:text-lg prose-ul:leading-loose prose-ul:tracking-normal
+  prose max-w-none w-full
+  wrap-break-word
+  **:wrap-break-word
+        "
+          dangerouslySetInnerHTML={{ __html: decodeHtmlEntities(json.content) }}
+        />
+      </div>
+    </div>
   );
 }
