@@ -18,6 +18,17 @@ export const generateMetadata = async ({
     notFound();
   }
 
+  const contentType = res.headers.get("content-type");
+
+  if (!contentType || !contentType.includes("application/json")) {
+    console.error("Expected JSON, got:", contentType);
+
+    const text = await res.text();
+    console.error(text);
+
+    notFound();
+  }
+
   const data = await res.json();
 
   const trip = data?.data;
@@ -63,6 +74,17 @@ export default async function Page({ params }: { params: { slug: string } }) {
   );
 
   if (!res.ok) {
+    notFound();
+  }
+
+  const contentType = res.headers.get("content-type");
+
+  if (!contentType || !contentType.includes("application/json")) {
+    console.error("Expected JSON, got:", contentType);
+
+    const text = await res.text();
+    console.error(text);
+
     notFound();
   }
 
