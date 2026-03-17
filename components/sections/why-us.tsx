@@ -4,28 +4,28 @@ export default function WhyUsSection() {
   const features = [
     {
       icon: Diamond,
-      title: "Only the Finest",
+      title: "Unrivaled Excellence",
       description:
-        "At Summit Luxury, you only find the best. We do the hard work so you don’t have to.",
+        "At Summit Luxury, we curate only the most exceptional lodges and experiences, handling every detail so you can focus on the journey.",
     },
 
     {
       icon: Banknote,
-      title: "Greed is Good",
+      title: "Exceptional Value",
       description:
-        "With quality, you also get lowest prices, last-minute availability and 24x7 support.",
+        "Exceptional quality meets logistical efficiency. We provide competitive pricing, 24/7 support, and seamless last-minute availability.",
     },
     {
       icon: Heart,
-      title: "Experience every flavour",
+      title: "Curated Discovery",
       description:
-        "Offbeat or mainstream, a tour or a show, a game or a museum - we have ‘em all.",
+        "From hidden mountain trails to vibrant cultural immersions, our itineraries are designed to showcase the authentic soul of the Himalayas.",
     },
     {
       icon: RectangleGoggles,
-      title: "No pain, only gain",
+      title: "Confidence in Quality",
       description:
-        "Didn’t love it? We’ll give you your money back. Not cocky, just confident.",
+        "Your satisfaction is our benchmark. We operate with a commitment to excellence that ensures a safe, rewarding, and world-class adventure.",
     },
   ];
 
