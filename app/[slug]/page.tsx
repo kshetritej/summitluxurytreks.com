@@ -1,12 +1,13 @@
 export const dynamic = "force-static";
 import TrekDetailPage from "@/components/trek-detail/TrekDetailPage";
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 export const generateMetadata = async ({
   params,
 }: {
   params: { slug: string };
-}) => {
+}): Promise<Metadata> => {
   const { slug } = await params;
 
   const res = await fetch(
@@ -36,7 +37,6 @@ export const generateMetadata = async ({
   return {
     title: trip?.seo?.metaTitle,
     description: trip?.seo?.metaDescription,
-    url: `https://summitluxurytreks.com/${slug}`,
     openGraph: {
       title: trip?.seo?.metaTitle,
       description: trip?.seo?.metaDescription,

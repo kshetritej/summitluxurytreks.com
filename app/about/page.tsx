@@ -2,11 +2,27 @@ import { siteConfig } from "@/constants";
 import { decodeHtmlEntities } from "@/lib/htmlDecoder";
 import type { Metadata } from "next";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 
 export const generateMetadata = async (): Promise<Metadata> => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/blogs/about-us`,
   );
+
+  if (!res.ok) {
+    notFound();
+  }
+
+  const contentType = res.headers.get("content-type");
+
+  if (!contentType || !contentType.includes("application/json")) {
+    console.error("Expected JSON, got:", contentType);
+
+    const text = await res.text();
+    console.error(text);
+
+    notFound();
+  }
 
   const json = await res.json();
   return {
