@@ -1,8 +1,9 @@
 import ContactForm from "@/components/contact-form";
 import { siteConfig } from "@/constants";
+import { Metadata } from "next";
 import Link from "next/link";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: `Contact Us | ${siteConfig.name}`,
   description:
     "Have questions about our treks? Get in touch with us and we'll be happy to help.",
