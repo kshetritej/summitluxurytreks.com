@@ -1,11 +1,5 @@
-import {
-  LucideChevronDown,
-  LucideMessageCircle,
-  LucideSmartphone,
-} from "lucide-react";
+import { LucideChevronDown } from "lucide-react";
 import Link from "next/link";
-import { Button } from "../ui/button";
-import { siteConfig } from "@/constants";
 
 // This is a Server Component (no 'use client' at the top)
 export function MegaMenu({ items }: { items: any }) {
@@ -60,12 +54,6 @@ export function MegaMenu({ items }: { items: any }) {
           </li>
         ))}
       </ul>
-      <Link href={siteConfig.whatsAppLink} target="_blank">
-        <Button variant={"secondary"}>
-          <LucideSmartphone />
-          <div>{siteConfig.whatsAppNumber}</div>
-        </Button>
-      </Link>
     </nav>
   );
 }
