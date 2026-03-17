@@ -1,9 +1,14 @@
+import { notFound } from "next/navigation";
 import TripCard from "../cards/trip-card";
 
 export default async function FeaturedSections() {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/featured?includeActivity=true`,
   );
+
+  if (!res.ok) {
+    return notFound();
+  }
 
   const data = await res.json();
 

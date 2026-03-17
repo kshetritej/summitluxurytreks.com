@@ -7,8 +7,9 @@ export default function LogoComponent({ dark }: Readonly<{ dark?: boolean }>) {
       <Image
         src={"/summit-luxury-logo-white.png"}
         alt="Summit Luxury Logo"
-        width={200}
-        height={200}
+        width={150}
+        height={150}
+        className="w-auto h-auto"
       />
     </Link>
   );

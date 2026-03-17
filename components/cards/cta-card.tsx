@@ -38,7 +38,8 @@ export default function CTACard() {
           <Image
             src="/cta-image-1.jpeg"
             alt="Ghandruk Nepal"
-            fill
+            height={720}
+            width={1280}
             className="object-cover"
             priority
           />

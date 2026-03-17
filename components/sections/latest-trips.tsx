@@ -1,11 +1,28 @@
 import SectionTemplate from "../templates/section-template";
 import TripCard, { TripCardProps } from "../cards/trip-card";
+import { notFound } from "next/navigation";
 
 const LatestTrips = async () => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/activity?page=1&limit=8`,
     { method: "GET" },
   );
+
+  if (!res.ok) {
+    return notFound();
+  }
+
+  const contentType = res.headers.get("content-type");
+
+  if (!contentType || !contentType.includes("application/json")) {
+    console.error("Expected JSON, got:", contentType);
+
+    const text = await res.text();
+    console.error(text);
+
+    notFound();
+  }
+
   const resJSON = await res.json();
   const trips = resJSON.data;
 
@@ -19,9 +36,6 @@ const LatestTrips = async () => {
           season and travel conditions.
         </p>
       }
-      // buttonLink="/"
-      // buttonText="Explore All Latest Trips"
-      // className="bg-secondary"
     >
       {
         <div

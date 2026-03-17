@@ -13,7 +13,7 @@ export default function ContactPage() {
   return (
     <main className="bg-background text-foreground">
       {/* Header */}
-      <section className="py-16 px-4">
+      <section className="py-16 px-4 border-b">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl font-bold mb-4">Contact Us</h1>
           <p className="text-lg text-muted-foreground">
@@ -24,7 +24,7 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Form Section */}
-      <section className="py-16 px-4 border-t border-border">
+      <section className="py-16 px-4 border-x max-w-4xl mx-auto">
         <div className="max-w-2xl mx-auto">
           <h2 className="text-2xl font-bold mb-8">Send us a Message</h2>
           <ContactForm />
