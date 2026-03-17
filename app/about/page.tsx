@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export const generateMetadata = async (): Promise<Metadata> => {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/blogs/about`,
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/blogs/about-us`,
   );
 
   const json = await res.json();
@@ -29,7 +29,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
 
 export default async function AboutPage() {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/blogs/about`,
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/blogs/about-us`,
   );
 
   const json = await res.json();
