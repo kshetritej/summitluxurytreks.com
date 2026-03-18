@@ -13,6 +13,10 @@ export const metadata: Metadata = {
   openGraph: {
     siteName: siteConfig.name,
   },
+  robots: {
+    follow: false,
+    index: false,
+  },
 };
 
 export default function RootLayout({

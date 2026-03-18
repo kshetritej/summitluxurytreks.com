@@ -1,35 +1,33 @@
 import Link from "next/link";
 import { Button } from "../ui/button";
-import { siteConfig } from "@/constants";
+import Image from "next/image";
 
 export default function WelcomeSection() {
   return (
-    <section className="text-center flex flex-col items-center justify-center md:min-h-[70vh] py-12 px-2">
-      <h2 className="font-bold  text-xl uppercase mb-6 leading-tight text-balance">
-        Luxury Adventures in Nepal, Tibet & Bhutan
-      </h2>
-      <p className="text-muted-foreground mb-4 leading-loose max-w-3xl tracking-wider">
-        Welcome to ${siteConfig.name}, where elevated adventure meets thoughtful
-        craftsmanship in the Himalayas. With over 15 years of experience, we
-        design luxury treks, private tours, and fully tailor-made journeys
-        across Nepal, Tibet, and Bhutan. From the iconic trails of Everest, to
-        the quiet monastic valleys of Bhutan, and the spiritual landscapes of
-        Tibet, every journey is curated with precision, comfort, and care. As a
-        government-registered company and a proud member of TAAN, NMA, and the
-        Nepal Tourism Board, we operate with uncompromising standards of safety,
-        service, and authenticity. Summit Luxury Treks isn’t about doing more
-        trips — it’s about doing the right ones, exceptionally well.
-      </p>
-      <p className="text-muted-foreground mb-4 leading-loose max-w-3xl tracking-wider">
-        Whether you seek the legendary trails of Everest, the serene monasteries
-        of Bhutan, or the spiritual wonders of Tibet, we craft each journey to
-        perfection. As a government-registered company and proud TAAN, NMA, and
-        Nepal Tourism Board member, we uphold the highest safety, service, and
-        exclusivity standards.
-      </p>
-      <Link href="/contact">
-        <Button>Get in touch</Button>
-      </Link>
+    <section className="md:min-h-[70vh] py-12 px-2 md:px-8 bg-secondary flex justify-center items-center">
+      <div className=" flex flex-col md:flex-row gap-8 justify-center items-center">
+        <Image
+          src="/gobinda-subedi-trekking-guide.jpeg"
+          alt="Gobinda Subedi"
+          width={1280}
+          height={720}
+          className="size-100 rounded-3xl object-cover object-bottom"
+        />
+        <div className="max-w-xl p-4">
+          <h2 className="font-bold  text-xl uppercase mb-6 leading-tight text-balance">
+            Meet your Expert
+          </h2>
+          <p className="mb-4 leading-loose max-w-3xl tracking-wider">
+            Gobinda doesn’t just lead treks; he shares the mountains he’s called
+            home his entire life. With a deep respect for the terrain and a
+            commitment to safety that never cuts corners, Gobinda ensures every
+            traveler feels as secure as they are inspired.
+          </p>
+          <Link href="/about">
+            <Button>More about Gobinda</Button>
+          </Link>
+        </div>
+      </div>
     </section>
   );
 }

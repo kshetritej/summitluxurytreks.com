@@ -1,6 +1,10 @@
 import LogoComponent from "@/components/atoms/logo";
 import { MegaMenu } from "./mega-menu";
 import { MobileMenu } from "./mobile-menu";
+import Link from "next/link";
+import { LucideSmartphone } from "lucide-react";
+import { Button } from "../ui/button";
+import { siteConfig } from "@/constants";
 
 export default async function Navbar() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/menu`);
@@ -17,6 +21,16 @@ export default async function Navbar() {
       <div className="flex flex-row items-center w-screen justify-between p-2 container mx-auto">
         <LogoComponent />
         <MegaMenu items={menuData} />
+        <Link
+          href={siteConfig.whatsAppLink}
+          target="_blank"
+          className="hidden md:block"
+        >
+          <Button variant={"secondary"}>
+            <LucideSmartphone />
+            <div>{siteConfig.whatsAppNumber}</div>
+          </Button>
+        </Link>
         <MobileMenu items={menuData} />
       </div>
     </div>

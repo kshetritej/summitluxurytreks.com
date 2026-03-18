@@ -1,14 +1,15 @@
 import Link from "next/link";
-import { LucideMountain } from "lucide-react";
-import { siteConfig } from "@/constants";
+import Image from "next/image";
 
 export default function LogoComponent({ dark }: Readonly<{ dark?: boolean }>) {
   return (
     <Link href="/" className="flex items-center gap-1 font-bold">
-      <span>
-        <LucideMountain />
-      </span>
-      {siteConfig.name}
+      <Image
+        src={"/summit-luxury-logo-white.png"}
+        alt="Summit Luxury Logo"
+        width={200}
+        height={200}
+      />
     </Link>
   );
 }

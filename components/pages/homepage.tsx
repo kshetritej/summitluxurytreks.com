@@ -11,7 +11,6 @@ export default async function Homepage() {
       <Hero />
       <WhyUsSection />
       <WelcomeSection />
-      {/*<LatestTrips />*/}
       <FeaturedSections />
     </div>
   );
