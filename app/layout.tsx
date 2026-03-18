@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-// import Navbar from "@/components/common/navbar";
+import Navbar from "@/components/common/navbar";
 import Footer from "@/components/common/footer";
 import { outfit } from "@/lib/font";
 import { Analytics } from "@vercel/analytics/next";
@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${outfit.className} sans-serif antialiased`}>
-        {/*<Navbar />*/}
+        <Navbar />
         {children}
         <Analytics />
         <CTACard />
