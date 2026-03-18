@@ -25,6 +25,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
   }
 
   const json = await res.json();
+
   return {
     title: json.metaTitle || "Hello",
     description: json.metaDescription,
@@ -47,6 +48,21 @@ export default async function AboutPage() {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/blogs/about-us`,
   );
+
+  if (!res.ok) {
+    notFound();
+  }
+
+  const contentType = res.headers.get("content-type");
+
+  if (!contentType || !contentType.includes("application/json")) {
+    console.error("Expected JSON, got:", contentType);
+
+    const text = await res.text();
+    console.error(text);
+
+    notFound();
+  }
 
   const json = await res.json();
 
