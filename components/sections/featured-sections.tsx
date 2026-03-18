@@ -14,7 +14,7 @@ export default async function FeaturedSections() {
       {/*@ts-expect-error error */}
       {featured.featuredTags.map((tag, index) => {
         return (
-          <div key={index} className="container mx-auto space-y-4 my-8">
+          <div key={index} className="container mx-auto">
             {tag.activity && tag.activity.length > 0 && (
               <h2 className="text-lg uppercase font-bold text-foreground mb-6 leading-tight text-balance">
                 {tag.name}
