@@ -9,6 +9,7 @@ import { siteConfig } from "@/constants";
 export default async function Navbar() {
   const menuUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/menu`;
   let menuData: any[] = [];
+  let menuUnavailable = false;
 
   try {
     const res = await fetch(menuUrl);
@@ -21,10 +22,12 @@ export default async function Navbar() {
       // Non-OK response or non-JSON body (e.g. HTML error page) — fall back safely
       console.warn("Navbar: failed to load menu.json", { url: menuUrl, status: res.status });
       menuData = [];
+      menuUnavailable = true;
     }
   } catch (err) {
     console.warn("Navbar: error fetching menu", err);
     menuData = [];
+    menuUnavailable = true;
   }
 
   return (
@@ -34,7 +37,11 @@ export default async function Navbar() {
     >
       <div className="flex flex-row items-center w-screen justify-between p-2 container mx-auto">
         <LogoComponent />
-        <MegaMenu items={menuData} />
+        {!menuUnavailable ? (
+          <MegaMenu items={menuData} />
+        ) : (
+          <div className="hidden md:block text-sm text-white/90">Menu unavailable</div>
+        )}
         <Link
           href={siteConfig.whatsAppLink}
           target="_blank"
@@ -45,7 +52,11 @@ export default async function Navbar() {
             <div>{siteConfig.whatsAppNumber}</div>
           </Button>
         </Link>
-        <MobileMenu items={menuData} />
+        {!menuUnavailable ? (
+          <MobileMenu items={menuData} />
+        ) : (
+          <div className="md:hidden text-sm text-white/90">Menu unavailable</div>
+        )}
       </div>
     </div>
   );
