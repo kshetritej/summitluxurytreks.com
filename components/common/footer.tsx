@@ -50,14 +50,14 @@ export default function Footer() {
                 Company
               </p>
               <ul className="space-y-3 text-sm text-muted-foreground">
-                <li>
+                {/*<li>
                   <Link
                     href="/about"
                     className="hover:text-foreground transition"
                   >
                     About Us
                   </Link>
-                </li>
+                </li>*/}
                 <li>
                   <Link
                     href="/contact"
