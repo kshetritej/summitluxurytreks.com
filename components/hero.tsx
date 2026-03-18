@@ -19,7 +19,7 @@ export default function Hero() {
           backgroundPosition: "center",
         }}
       />
-      <div className="container mx-auto flex flex-col items-center justify-center space-y-4">
+      <div className="container mx-auto flex flex-col items-center justify-center space-y-4 mt-16">
         <h1
           className={cn(
             "font-bold text-4xl  text-white z-9 leading-16 max-w-xl ",
