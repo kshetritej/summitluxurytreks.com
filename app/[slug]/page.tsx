@@ -20,16 +20,16 @@ export const generateMetadata = async ({
     notFound();
   }
 
-  const contentType = res.headers.get("content-type");
+  // const contentType = res.headers.get("content-type");
 
-  if (!contentType || !contentType.includes("application/json")) {
-    console.error("Expected JSON, got:", contentType);
+  // if (!contentType || !contentType.includes("application/json")) {
+  //   console.error("Expected JSON, got:", contentType);
 
-    const text = await res.text();
-    console.error(text);
+  //   const text = await res.text();
+  //   console.error(text);
 
-    notFound();
-  }
+  //   notFound();
+  // }
 
   const data = await res.json();
 
@@ -74,20 +74,20 @@ export default async function Page({ params }: { params: { slug: string } }) {
     headers: { "User-Agent": "Mozilla/5.0" },
   });
 
-  if (!res.ok) {
-    notFound();
-  }
+  // if (!res.ok) {
+  //   notFound();
+  // }
 
-  const contentType = res.headers.get("content-type");
+  // const contentType = res.headers.get("content-type");
 
-  if (!contentType || !contentType.includes("application/json")) {
-    console.error("Expected JSON, got:", contentType);
+  // if (!contentType || !contentType.includes("application/json")) {
+  //   console.error("Expected JSON, got:", contentType);
 
-    const text = await res.text();
-    console.error(text);
+  //   const text = await res.text();
+  //   console.error(text);
 
-    notFound();
-  }
+  //   notFound();
+  // }
 
   const data = await res.json();
 
