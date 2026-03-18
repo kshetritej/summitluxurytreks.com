@@ -3,7 +3,6 @@ import {
   Google_Sans,
   Outfit,
   Darker_Grotesque,
-  Caveat,
 } from "next/font/google";
 
 export const varela = Varela_Round({
@@ -23,12 +22,6 @@ export const outfit = Outfit({
   fallback: ["sans-serif"],
 });
 export const darkerGrotesque = Darker_Grotesque({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  fallback: ["sans-serif"],
-});
-
-export const caveat = Caveat({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   fallback: ["sans-serif"],

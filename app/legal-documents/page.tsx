@@ -1,7 +1,6 @@
 import SectionTemplate from "@/components/templates/section-template";
 import { siteConfig } from "@/constants";
 import Image from "next/image";
-
 export default function LegalDocumentsPage() {
   return (
     <SectionTemplate

@@ -6,9 +6,9 @@ import type { ApiMenuResponse, NavItem } from "./types";
  */
 export async function getMenuItems(): Promise<NavItem[]> {
   try {
-    const res = await fetch(`${process.env.API_BASE_URL}/menu`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/menu`, {
       // ISR: re-fetch at most once per hour in the background
-      // next: { revalidate: 3600 },
+      next: { revalidate: 3600 },
     });
 
     if (!res.ok) {

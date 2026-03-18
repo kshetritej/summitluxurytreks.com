@@ -125,7 +125,7 @@ export function MobileMenu({ items }: MobileMenuProps) {
       </SheetTrigger>
       <SheetContent
         side="left"
-        className="w-full sm:max-w-sm flex flex-col pt-20 h-[80vh]"
+        className="w-full sm:max-w-sm flex flex-col pt-12 h-[80vh]"
       >
         <div className="flex items-center justify-between px-4 py-4 border-b border-border">
           <span className="font-semibold text-lg">Menu</span>

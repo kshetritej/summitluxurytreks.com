@@ -1,35 +1,22 @@
 export const dynamic = "force-static";
-import TrekDetailPage from "../../components/trek-detail/TrekDetailPage";
-import { Metadata } from "next";
+import TrekDetailPage from "@/components/trek-detail/TrekDetailPage";
 import { notFound } from "next/navigation";
 
 export const generateMetadata = async ({
   params,
 }: {
   params: { slug: string };
-}): Promise<Metadata> => {
+}) => {
   const { slug } = await params;
 
-  const res = await fetch(`${process.env.API_BASE_URL}/activity/slug/${slug}`, {
-    cache: "no-store",
-    method: "GET",
-    headers: { "User-Agent": "Mozilla/5.0" },
-  });
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/activity/slug/${slug}`,
+    { cache: "no-store" },
+  );
 
   if (!res.ok) {
     notFound();
   }
-
-  // const contentType = res.headers.get("content-type");
-
-  // if (!contentType || !contentType.includes("application/json")) {
-  //   console.error("Expected JSON, got:", contentType);
-
-  //   const text = await res.text();
-  //   console.error(text);
-
-  //   notFound();
-  // }
 
   const data = await res.json();
 
@@ -38,6 +25,7 @@ export const generateMetadata = async ({
   return {
     title: trip?.seo?.metaTitle,
     description: trip?.seo?.metaDescription,
+    url: `https://summitluxurytreks.com/${slug}`,
     openGraph: {
       title: trip?.seo?.metaTitle,
       description: trip?.seo?.metaDescription,
@@ -69,25 +57,14 @@ export const generateMetadata = async ({
 export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = await params;
 
-  const res = await fetch(`${process.env.API_BASE_URL}/activity/slug/${slug}`, {
-    cache: "no-store",
-    headers: { "User-Agent": "Mozilla/5.0" },
-  });
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/activity/slug/${slug}`,
+    { cache: "no-store" },
+  );
 
-  // if (!res.ok) {
-  //   notFound();
-  // }
-
-  // const contentType = res.headers.get("content-type");
-
-  // if (!contentType || !contentType.includes("application/json")) {
-  //   console.error("Expected JSON, got:", contentType);
-
-  //   const text = await res.text();
-  //   console.error(text);
-
-  //   notFound();
-  // }
+  if (!res.ok) {
+    notFound();
+  }
 
   const data = await res.json();
 

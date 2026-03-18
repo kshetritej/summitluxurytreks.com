@@ -1,9 +1,8 @@
 import ContactForm from "@/components/contact-form";
 import { siteConfig } from "@/constants";
-import { Metadata } from "next";
 import Link from "next/link";
 
-export const metadata: Metadata = {
+export const metadata = {
   title: `Contact Us | ${siteConfig.name}`,
   description:
     "Have questions about our treks? Get in touch with us and we'll be happy to help.",
@@ -13,7 +12,7 @@ export default function ContactPage() {
   return (
     <main className="bg-background text-foreground">
       {/* Header */}
-      <section className="py-16 px-4 border-b">
+      <section className="py-16 px-4">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl font-bold mb-4">Contact Us</h1>
           <p className="text-lg text-muted-foreground">
@@ -24,7 +23,7 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Form Section */}
-      <section className="py-16 px-4 border-x max-w-4xl mx-auto">
+      <section className="py-16 px-4 border-t border-border">
         <div className="max-w-2xl mx-auto">
           <h2 className="text-2xl font-bold mb-8">Send us a Message</h2>
           <ContactForm />

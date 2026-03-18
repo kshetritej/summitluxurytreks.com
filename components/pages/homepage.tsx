@@ -1,4 +1,4 @@
-// export const dynamic = "force-static";
+export const dynamic = "force-static";
 
 import Hero from "@/components/hero";
 import WelcomeSection from "../sections/welcome-section";
@@ -11,6 +11,7 @@ export default async function Homepage() {
       <Hero />
       <WhyUsSection />
       <WelcomeSection />
+      {/*<LatestTrips />*/}
       <FeaturedSections />
     </div>
   );

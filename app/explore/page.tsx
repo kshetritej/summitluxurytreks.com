@@ -10,7 +10,7 @@ export const generateMetadata = (): Metadata => {
   return {
     title: "Explore Trekking Trips in Nepal | Summit Luxury Treks.",
     description:
-      "Discover the best luxury trekking trips in the Annapurna region. From 8-day ABC treks to premium lodge stays in Ghandruk and Ghorepani. Book your Himalayan adventure with expert guides.",
+      "Discover the best luxury trekking trips in the Annapurna region. From 8-day ABC treks to premium lodge stays in Ghandruk and Ghorepani. Book your 2026 Himalayan adventure with expert guides.",
     openGraph: {
       title: "Explore Trekking Trips in Nepal | Summit Luxury Treks.",
       description:
@@ -29,15 +29,12 @@ export default async function ExplorePage({
 }) {
   const { search = "" } = await searchParams;
 
-  const url = new URL(`${process.env.API_BASE_URL}/activity`);
+  const url = new URL(`${process.env.NEXT_PUBLIC_API_BASE_URL}/activity`);
   url.searchParams.set("page", "1");
-  url.searchParams.set("limit", "50");
+  url.searchParams.set("limit", "10");
   if (search) url.searchParams.set("search", search);
 
-  const res = await fetch(url.toString(), {
-    cache: "no-store",
-    headers: { "User-Agent": "Mozilla/5.0" },
-  });
+  const res = await fetch(url.toString(), { cache: "no-store" });
   const resJSON = await res.json();
   const trips: TripCardProps[] = resJSON.data ?? [];
 

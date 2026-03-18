@@ -42,17 +42,20 @@ export default function ContactForm() {
     `;
 
     try {
-      const res = await fetch(`${process.env.API_BASE_URL}/email/send`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          from: formData.email,
-          to: "tejghartikshetri@gmail.com",
-          subject,
-          text,
-          html,
-        }),
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/email/send`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            from: formData.email,
+            to: "tejghartikshetri@gmail.com",
+            subject,
+            text,
+            html,
+          }),
+        },
+      );
 
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));

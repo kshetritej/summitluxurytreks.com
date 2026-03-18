@@ -2,18 +2,18 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
-  // async rewrites() {
-  //   if (process.env.NODE_ENV === "production") {
-  //     return [
-  //       {
-  //         source: "/api/:path*",
-  //         destination: "https://api.summitluxurytreks.com/api/:path*",
-  //       },
-  //     ];
-  //   }
+  async rewrites() {
+    if (process.env.NODE_ENV === "production") {
+      return [
+        {
+          source: "/api/:path*",
+          destination: "https://api.summitluxurytreks.com/api/:path*",
+        },
+      ];
+    }
 
-  //   return [];
-  // },
+    return [];
+  },
   images: {
     contentDispositionType: "inline",
     remotePatterns: [
@@ -26,11 +26,6 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "api.summitluxurytreks.com",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "summitluxurytreks.com",
         pathname: "/**",
       },
     ],
