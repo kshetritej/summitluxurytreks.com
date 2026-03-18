@@ -190,9 +190,11 @@ export default function TrekDetailPage({ trip }: { trip: any }) {
               })}
 
             {d.faqs && (
-              <h2 id="faqs" className="font-bold mt-4">
-                Frequently Asked Questions
-              </h2>
+              <div className="mt-16">
+                <h2 id="faqs" className="font-bold">
+                  Frequently Asked Questions
+                </h2>
+              </div>
             )}
             <Accordion type="single" collapsible className="w-full">
               {d.faqs &&
