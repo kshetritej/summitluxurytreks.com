@@ -34,7 +34,10 @@ export default async function ExplorePage({
   url.searchParams.set("limit", "50");
   if (search) url.searchParams.set("search", search);
 
-  const res = await fetch(url.toString(), { cache: "no-store" });
+  const res = await fetch(url.toString(), {
+    cache: "no-store",
+    headers: { "User-Agent": "Mozilla/5.0" },
+  });
   const resJSON = await res.json();
   const trips: TripCardProps[] = resJSON.data ?? [];
 

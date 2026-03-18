@@ -12,7 +12,9 @@ export default async function Navbar() {
   let menuUnavailable = false;
 
   try {
-    const res = await fetch(menuUrl);
+    const res = await fetch(menuUrl, {
+      headers: { "User-Agent": "Mozilla/5.0" },
+    });
     const contentType = res.headers.get("content-type") || "";
 
     if (res.ok && contentType.includes("application/json")) {
@@ -20,7 +22,10 @@ export default async function Navbar() {
       menuData = data?.data?.items || [];
     } else {
       // Non-OK response or non-JSON body (e.g. HTML error page) — fall back safely
-      console.warn("Navbar: failed to load menu.json", { url: menuUrl, status: res.status });
+      console.warn("Navbar: failed to load menu.json", {
+        url: menuUrl,
+        status: res.status,
+      });
       menuData = [];
       menuUnavailable = true;
     }
@@ -40,7 +45,9 @@ export default async function Navbar() {
         {!menuUnavailable ? (
           <MegaMenu items={menuData} />
         ) : (
-          <div className="hidden md:block text-sm text-white/90">Menu unavailable</div>
+          <div className="hidden md:block text-sm text-white/90">
+            Menu unavailable
+          </div>
         )}
         <Link
           href={siteConfig.whatsAppLink}
@@ -55,7 +62,9 @@ export default async function Navbar() {
         {!menuUnavailable ? (
           <MobileMenu items={menuData} />
         ) : (
-          <div className="md:hidden text-sm text-white/90">Menu unavailable</div>
+          <div className="md:hidden text-sm text-white/90">
+            Menu unavailable
+          </div>
         )}
       </div>
     </div>

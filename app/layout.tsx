@@ -31,7 +31,7 @@ export default function RootLayout({
         {children}
         <Analytics />
         <CTACard />
-        {/*<Footer />*/}
+        <Footer />
       </body>
     </html>
   );

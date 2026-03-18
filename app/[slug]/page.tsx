@@ -12,7 +12,11 @@ export const generateMetadata = async ({
 
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/activity/slug/${slug}`,
-    { cache: "no-store" },
+    {
+      cache: "no-store",
+      method: "GET",
+      headers: { "User-Agent": "Mozilla/5.0" },
+    },
   );
 
   if (!res.ok) {
@@ -70,7 +74,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/activity/slug/${slug}`,
-    { cache: "no-store" },
+    { cache: "no-store", headers: { "User-Agent": "Mozilla/5.0" } },
   );
 
   if (!res.ok) {

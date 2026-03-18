@@ -47,6 +47,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
 export default async function AboutPage() {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/blogs/about-us`,
+    { headers: { "User-Agent": "Mozilla/5.0" } },
   );
 
   if (!res.ok) {
