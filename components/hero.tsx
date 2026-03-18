@@ -38,7 +38,7 @@ export default function Hero() {
         </p>
         <div
           id="btn-group"
-          className="flex gap-4 flex-wrap max-w-6xl justify-start items-center"
+          className="flex gap-4 flex-wrap max-w-6xl justify-center md:justify-start items-center"
         >
           <Link href="/explore">
             <Button variant={"secondary"} className="uppercase">
