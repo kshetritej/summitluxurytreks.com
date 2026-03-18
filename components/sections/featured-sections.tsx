@@ -3,8 +3,8 @@ import TripCard from "../cards/trip-card";
 
 export default async function FeaturedSections() {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/featured?includeActivity=true`,
-    { headers: { "User-Agent": "Mozilla/5.0" } },
+    `${process.env.API_BASE_URL}/featured?includeActivity=true`,
+    { headers: { "User-Agent": "Mozilla/5.0", cache: "no-store" } },
   );
 
   if (!res.ok) {

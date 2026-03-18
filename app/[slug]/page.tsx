@@ -1,5 +1,5 @@
 export const dynamic = "force-static";
-import TrekDetailPage from "@/components/trek-detail/TrekDetailPage";
+import TrekDetailPage from "../../components/trek-detail/TrekDetailPage";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -10,14 +10,11 @@ export const generateMetadata = async ({
 }): Promise<Metadata> => {
   const { slug } = await params;
 
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/activity/slug/${slug}`,
-    {
-      cache: "no-store",
-      method: "GET",
-      headers: { "User-Agent": "Mozilla/5.0" },
-    },
-  );
+  const res = await fetch(`${process.env.API_BASE_URL}/activity/slug/${slug}`, {
+    cache: "no-store",
+    method: "GET",
+    headers: { "User-Agent": "Mozilla/5.0" },
+  });
 
   if (!res.ok) {
     notFound();
@@ -72,10 +69,10 @@ export const generateMetadata = async ({
 export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = await params;
 
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/activity/slug/${slug}`,
-    { cache: "no-store", headers: { "User-Agent": "Mozilla/5.0" } },
-  );
+  const res = await fetch(`${process.env.API_BASE_URL}/activity/slug/${slug}`, {
+    cache: "no-store",
+    headers: { "User-Agent": "Mozilla/5.0" },
+  });
 
   if (!res.ok) {
     notFound();

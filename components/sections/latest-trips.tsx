@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 
 const LatestTrips = async () => {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/activity?page=1&limit=8`,
+    `${process.env.API_BASE_URL}/activity?page=1&limit=8`,
     { method: "GET" },
   );
 

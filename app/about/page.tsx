@@ -1,13 +1,14 @@
-import { siteConfig } from "@/constants";
 import { decodeHtmlEntities } from "@/lib/htmlDecoder";
+import { siteConfig } from "../../constants";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
 export const generateMetadata = async (): Promise<Metadata> => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/blogs/about-us`,
-  );
+  const res = await fetch(`${process.env.API_BASE_URL}/blogs/about-us`, {
+    cache: "no-store",
+    headers: { "User-Agent": "Mozilla/5.0" },
+  });
 
   if (!res.ok) {
     notFound();
@@ -45,10 +46,9 @@ export const generateMetadata = async (): Promise<Metadata> => {
 };
 
 export default async function AboutPage() {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/blogs/about-us`,
-    { headers: { "User-Agent": "Mozilla/5.0" } },
-  );
+  const res = await fetch(`${process.env.API_BASE_URL}/blogs/about-us`, {
+    headers: { "User-Agent": "Mozilla/5.0" },
+  });
 
   if (!res.ok) {
     notFound();

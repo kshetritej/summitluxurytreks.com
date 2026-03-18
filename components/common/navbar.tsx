@@ -7,13 +7,14 @@ import { Button } from "../ui/button";
 import { siteConfig } from "@/constants";
 
 export default async function Navbar() {
-  const menuUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/menu`;
+  const menuUrl = `${process.env.API_BASE_URL}/menu`;
   let menuData: any[] = [];
   let menuUnavailable = false;
 
   try {
     const res = await fetch(menuUrl, {
       headers: { "User-Agent": "Mozilla/5.0" },
+      cache: "no-store",
     });
     const contentType = res.headers.get("content-type") || "";
 

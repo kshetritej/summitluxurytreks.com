@@ -3,7 +3,7 @@ import SectionTemplate from "../templates/section-template";
 
 export default async function RecentBlogs() {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/blogs/published?page=1&limit=3`,
+    `${process.env.API_BASE_URL}/blogs/published?page=1&limit=3`,
   );
   const blogs = await response.json();
   const recentBlogs = blogs?.blogs;

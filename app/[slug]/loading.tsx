@@ -1,4 +1,4 @@
-import { Skeleton } from "@/components/ui/skeleton";
+import { Skeleton } from "../../components/ui/skeleton";
 
 export default function Loading() {
   const elementsCount = [1, 2, 3, 4, 5, 6];
