@@ -1,4 +1,4 @@
-export const dynamic = "force-static";
+// export const dynamic = "force-static";
 
 import Hero from "@/components/hero";
 import WelcomeSection from "../sections/welcome-section";
