@@ -10,7 +10,7 @@ export const generateMetadata = (): Metadata => {
   return {
     title: "Explore Trekking Trips in Nepal | Summit Luxury Treks.",
     description:
-      "Discover the best luxury trekking trips in the Annapurna region. From 8-day ABC treks to premium lodge stays in Ghandruk and Ghorepani. Book your 2026 Himalayan adventure with expert guides.",
+      "Discover the best luxury trekking trips in the Annapurna region. From 8-day ABC treks to premium lodge stays in Ghandruk and Ghorepani. Book your Himalayan adventure with expert guides.",
     openGraph: {
       title: "Explore Trekking Trips in Nepal | Summit Luxury Treks.",
       description:

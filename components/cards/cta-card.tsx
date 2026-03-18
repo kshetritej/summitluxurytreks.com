@@ -33,7 +33,6 @@ export default function CTACard() {
           </Link>
         </div>
 
-        {/* Right Image Layer */}
         <div className="absolute inset-0 md:left-1/2">
           <Image
             src="/cta-image-1.jpeg"
@@ -44,7 +43,6 @@ export default function CTACard() {
             priority
           />
 
-          {/* Gradient Overlay */}
           <div className="absolute inset-0 bg-linear-to-l from-transparent via-primary/40 to-primary" />
         </div>
       </div>
