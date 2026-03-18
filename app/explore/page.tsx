@@ -29,7 +29,7 @@ export default async function ExplorePage({
 }) {
   const { search = "" } = await searchParams;
 
-  const url = new URL(`${process.env.NEXT_PUBLIC_API_BASE_URL}/activity`);
+  const url = new URL(`${process.env.API_BASE_URL}/activity`);
   url.searchParams.set("page", "1");
   url.searchParams.set("limit", "50");
   if (search) url.searchParams.set("search", search);
