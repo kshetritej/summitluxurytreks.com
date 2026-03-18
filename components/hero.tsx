@@ -8,7 +8,7 @@ export default function Hero() {
     <section
       className={`relative h-screen bg-linear-to-b from-primary/30 to-primary/10
         flex flex-col justify-center items-center p-12 text-center uppercase
-        gap-8 -mt-16 `}
+        gap-8 -mt-24 `}
     >
       <div
         className="absolute inset-0 op"

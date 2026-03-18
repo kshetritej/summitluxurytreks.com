@@ -1,5 +1,6 @@
 import { LucideChevronDown } from "lucide-react";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 // This is a Server Component (no 'use client' at the top)
 export function MegaMenu({ items }: { items: any }) {
@@ -19,14 +20,14 @@ export function MegaMenu({ items }: { items: any }) {
 
             {/* Dropdown Content - Controlled by CSS hover */}
             {item.children.length > 0 && (
-              <div className="bg-white absolute z-999 left-0  top-16 hidden group-hover:block w-screen min-h-[30vh] pt-2 shadow-sm">
-                <div className="container mx-auto p-6 grid sm:grid-cols-3 md:grid-cols-4 gap-8 w-full">
+              <div className="absolute z-999 left-0  top-12 hidden group-hover:block w-screen min-h-[30vh] pt-2">
+                <div className="bg-white mt-4.5 rounded-b-2xl container mx-auto p-6 grid sm:grid-cols-3 md:grid-cols-4 gap-8 w-full">
                   {item.children.map((child: any) => (
                     <div key={child.id} className="space-y-3">
                       {/* Sub-heading (e.g., Everest Region) */}
                       <Link
                         href={child.url}
-                        className="font-bold  text-primary pb-1"
+                        className="font-bold  text-primary pb-1 hover:text-primary hover:underline transition-all delay-200"
                       >
                         {child.label}
                       </Link>
@@ -38,7 +39,7 @@ export function MegaMenu({ items }: { items: any }) {
                             <li key={subChild.id}>
                               <Link
                                 href={subChild.url}
-                                className="text-md text-gray-600  transition-colors block"
+                                className="text-md text-black  transition-all hover:underline hover:text-primary block"
                               >
                                 {subChild.label}
                               </Link>
