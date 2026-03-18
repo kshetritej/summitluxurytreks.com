@@ -7,11 +7,25 @@ import { Button } from "../ui/button";
 import { siteConfig } from "@/constants";
 
 export default async function Navbar() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/menu`);
+  const menuUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/menu`;
+  let menuData: any[] = [];
 
-  const data = await res.json();
+  try {
+    const res = await fetch(menuUrl);
+    const contentType = res.headers.get("content-type") || "";
 
-  const menuData = data?.data?.items || [];
+    if (res.ok && contentType.includes("application/json")) {
+      const data = await res.json().catch(() => null);
+      menuData = data?.data?.items || [];
+    } else {
+      // Non-OK response or non-JSON body (e.g. HTML error page) — fall back safely
+      console.warn("Navbar: failed to load menu.json", { url: menuUrl, status: res.status });
+      menuData = [];
+    }
+  } catch (err) {
+    console.warn("Navbar: error fetching menu", err);
+    menuData = [];
+  }
 
   return (
     <div
