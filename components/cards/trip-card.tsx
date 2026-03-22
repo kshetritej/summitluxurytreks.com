@@ -22,7 +22,7 @@ export type TripCardProps = {
 export default function TripCard({ tour }: Readonly<{ tour: TripCardProps }>) {
   return (
     <Link
-      href={tour?.canonicalPath ?? `/${tour.slug}`}
+      href={tour?.canonicalPath ?? `/package/${tour.slug}`}
       className={`min-h-132  min-w-72 sm:max-w-72 block uppercase gap-8 relative`}
     >
       <div className="h-full object-cover overflow-hidden">

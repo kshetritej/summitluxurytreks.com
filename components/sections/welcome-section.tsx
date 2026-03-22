@@ -23,8 +23,8 @@ export default function WelcomeSection() {
             commitment to safety that never cuts corners, Gobinda ensures every
             traveler feels as secure as they are inspired.
           </p>
-          <Link href="/about">
-            <Button>More about Gobinda</Button>
+          <Link href="/about-us">
+            <Button>Know more</Button>
           </Link>
         </div>
       </div>
