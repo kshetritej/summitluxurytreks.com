@@ -54,7 +54,7 @@ export default function BookingCard({ trip }: { trip: any }) {
           </div>
         </div>*/}
 
-        <Link href={"/contact"}>
+        <Link href={`/booking?q=${trip.slug}`}>
           <button
             className="mt-2 w-full rounded-lg bg-primary/90 px-4 py-2.5 text-sm font-semibold text-white hover:bg-primary"
             type="button"
