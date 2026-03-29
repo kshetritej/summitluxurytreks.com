@@ -4,7 +4,7 @@ export const siteConfig = {
   url: "https://summitluxurytreks.com",
   image: "/og.png",
   sendEmailto: "tejghartikshetri@gmail.com",
-  whatsAppNumber: "+9779826145893",
+  whatsAppNumber: "9779826145893",
   whatsAppLink:
     "https://api.whatsapp.com/send/?phone=9779826145893&text&type=phone_number&app_absent=0",
   phoneNumber: "+9779847709793",

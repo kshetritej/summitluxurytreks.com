@@ -29,10 +29,10 @@ export default function TripCard({ tour }: Readonly<{ tour: TripCardProps }>) {
         {tour.images[0] && (
           <Image
             width={1280}
+            src={tour.images[0]}
             height={720}
-            src={getFullImageUrl(tour.images[0])}
             alt={tour.keywords[0] || tour.title || ""}
-            className="object-cover h-full -z-10 hover:scale-105 transition-all duration-150"
+            className="object-cover min-h-132 -z-10 hover:scale-105 transition-all duration-150"
           />
         )}
       </div>

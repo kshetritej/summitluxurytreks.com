@@ -4,14 +4,37 @@ import Hero from "@/components/hero";
 import WelcomeSection from "../sections/welcome-section";
 import WhyUsSection from "../sections/why-us";
 import FeaturedSections from "../sections/featured-sections";
+import TripOfTheMonth from "../featured-trip";
 
 export default async function Homepage() {
+  let data;
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/featured?includeActivity=true`,
+    );
+
+    data = await res.json();
+  } catch (error) {
+    console.log("Error: ", error);
+    return;
+  }
+
+  const featured = data?.data;
+  const featuredWithoutTOM = featured.featuredTags.filter(
+    (tag: any) => tag.slug !== "trip-of-the-month",
+  );
+  const firstFeatured = featuredWithoutTOM.slice(0, 1);
+  const secondFeatured = featuredWithoutTOM.slice(1, 2);
+  const thirdFeatured = featuredWithoutTOM.slice(2, 10);
   return (
     <div>
       <Hero />
       <WhyUsSection />
       <WelcomeSection />
-      <FeaturedSections />
+      <FeaturedSections featuredTags={firstFeatured} />
+      <TripOfTheMonth />
+      <FeaturedSections featuredTags={secondFeatured} />
+      <FeaturedSections featuredTags={thirdFeatured} />
     </div>
   );
 }
