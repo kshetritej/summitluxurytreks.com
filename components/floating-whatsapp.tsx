@@ -8,7 +8,7 @@ export default function FloatingWhatsAppIcon() {
     <div className="absolute bottom-2! left-4!">
       <FloatingWhatsApp
         phoneNumber={siteConfig.whatsAppNumber}
-        avatar="/summit-luxury-logo-white.png"
+        avatar="/favicon.ico"
         accountName="Summit Luxury Treks"
       />
     </div>
