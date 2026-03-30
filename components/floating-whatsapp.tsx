@@ -10,6 +10,14 @@ export default function FloatingWhatsAppIcon() {
         phoneNumber={siteConfig.whatsAppNumber}
         avatar="/favicon.ico"
         accountName="Summit Luxury Treks"
+        buttonStyle={{
+          left: "2rem",
+          right: "auto",
+        }}
+        chatboxStyle={{
+          left: "2rem",
+          right: "auto",
+        }}
       />
     </div>
   );
