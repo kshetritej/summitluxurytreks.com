@@ -50,7 +50,7 @@ export default function RootLayout({
               gtag('config', 'G-LQCKZ8VWQN');
             </script>`}
         </Script>*/}
-        <Script id="gtm" strategy="afterInteractive">
+        {/*<Script id="gtm" strategy="afterInteractive">
           {`<!-- Google Tag Manager -->
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -58,6 +58,20 @@ export default function RootLayout({
             'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
             })(window,document,'script','dataLayer','GTM-KNHGLHMM');
             <!-- End Google Tag Manager -->`}
+        </Script>*/}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-LQCKZ8VWQN"
+          strategy="afterInteractive"
+        />
+
+        {/* Initialize gtag */}
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-LQCKZ8VWQN');
+            `}
         </Script>
       </head>
       <body className={`${outfit.className} sans-serif antialiased`}>
