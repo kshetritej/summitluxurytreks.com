@@ -39,6 +39,17 @@ export default function RootLayout({
                    })();
                  `}
         </Script>*/}
+        <Script id="ga" strategy="afterInteractive">
+          {`
+            <script async src="https://www.googletagmanager.com/gtag/js?id=G-LQCKZ8VWQN"></script>
+            <script>
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+
+              gtag('config', 'G-LQCKZ8VWQN');
+            </script>`}
+        </Script>
         <Script id="gtm" strategy="afterInteractive">
           {`<!-- Google Tag Manager -->
             <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
