@@ -49,7 +49,7 @@ export default function ContactForm() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             from: formData.email,
-            to: "tejghartikshetri@gmail.com",
+            to: siteConfig.email,
             subject,
             text,
             html,

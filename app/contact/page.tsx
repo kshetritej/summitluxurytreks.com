@@ -1,9 +1,10 @@
 import ContactForm from "@/components/contact-form";
 import { siteConfig } from "@/constants";
+import { Metadata } from "next";
 import Link from "next/link";
 
-export const metadata = {
-  title: `Contact Us | ${siteConfig.name}`,
+export const metadata: Metadata = {
+  title: ` Contact Us | Book Your Himalayan Adventure | ${siteConfig.name}`,
   description:
     "Have questions about our treks? Get in touch with us and we'll be happy to help.",
 };
