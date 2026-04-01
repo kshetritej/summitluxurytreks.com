@@ -12,7 +12,6 @@ import {
   LucideSend,
   LucideCheckCircle2,
   LucideClock,
-  LucideCompass,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -95,7 +94,7 @@ export function Form_Component({ packages }: { packages: TPackageDetails[] }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           from: data.email,
-          to: siteConfig.sendEmailto,
+          to: siteConfig.email,
           subject: `New Booking Inquiry from ${data.fullName} — ${data.destination}`,
           text: [
             `Name:              ${data.fullName}`,

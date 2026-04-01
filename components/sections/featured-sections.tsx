@@ -1,7 +1,5 @@
 import { cn } from "@/lib/utils";
-import Link from "next/link";
 import FeaturedScroll from "../featured-scroll";
-import { Button } from "../ui/button";
 
 export default async function FeaturedSections({
   featuredTags,
@@ -9,7 +7,7 @@ export default async function FeaturedSections({
   featuredTags: any;
 }) {
   return (
-    <div className="relative flex flex-col gap-4 justify-center container mx-auto mt-12 p-2">
+    <div className="relative flex flex-col gap-4 justify-center container mx-auto p-4">
       {featuredTags.map((tag: any, index: number) => (
         <div key={index} className="space-y-4">
           <div className="flex justify-between items-baseline-last py-8 flex-col md:flex-row">
@@ -21,9 +19,6 @@ export default async function FeaturedSections({
                 {tag.description}
               </div>
             </div>
-            <Link href={"/explore"} className="cursor-pointer">
-              <Button>Explore All</Button>
-            </Link>
           </div>
           <FeaturedScroll activities={tag.activity} />
         </div>

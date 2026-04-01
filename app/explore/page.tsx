@@ -2,25 +2,8 @@ import TripCard, { TripCardProps } from "@/components/cards/trip-card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { LucideSearch } from "lucide-react";
-import type { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
-
-export const generateMetadata = (): Metadata => {
-  return {
-    title: "Explore Trekking Trips in Nepal | Summit Luxury Treks.",
-    description:
-      "Discover the best luxury trekking trips in the Annapurna region. From 8-day ABC treks to premium lodge stays in Ghandruk and Ghorepani. Book your 2026 Himalayan adventure with expert guides.",
-    openGraph: {
-      title: "Explore Trekking Trips in Nepal | Summit Luxury Treks.",
-      description:
-        "Discover the best luxury trekking trips in the Annapurna region. From 8-day ABC treks to premium lodge stays in Ghandruk and Ghorepani. Book your 2026 Himalayan adventure with expert guides.",
-      images: [
-        "https://summitluxurytreks.com/_next/image?url=https%3A%2F%2Fapi.summitluxurytreks.com%2Fapi%2Fv1%2Fuploads%2Fabc-trek-trail-view-1773560506314-3t2ckw.webp&w=3840&q=75",
-      ],
-    },
-  };
-};
 
 export default async function ExplorePage({
   searchParams,
@@ -31,7 +14,7 @@ export default async function ExplorePage({
 
   const url = new URL(`${process.env.NEXT_PUBLIC_API_BASE_URL}/activity`);
   url.searchParams.set("page", "1");
-  url.searchParams.set("limit", "10");
+  url.searchParams.set("limit", "100");
   if (search) url.searchParams.set("search", search);
 
   const res = await fetch(url.toString(), { cache: "no-store" });
