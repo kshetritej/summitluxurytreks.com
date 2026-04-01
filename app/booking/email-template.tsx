@@ -121,7 +121,7 @@ export function buildInquiryEmail(data: InquiryEmailData): string {
                       href="mailto:${data.email}?subject=Re: Your Trek Inquiry — ${data.destination}"
                       style="display:inline-block;background:#c97d10;color:#ffffff;font-size:13px;font-weight:700;text-decoration:none;padding:13px 32px;border-radius:6px;font-family:Arial,sans-serif;letter-spacing:0.03em;"
                     >
-                      Reply to ${data.fullName.split(" ")[0]} →
+                      Reply to ${data.email} →
                     </a>
                   </td>
                 </tr>
