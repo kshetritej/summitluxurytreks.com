@@ -2,6 +2,7 @@ export const dynamic = "force-static";
 import TrekDetailPage from "@/components/trek-detail/TrekDetailPage";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { redirect } from "next/navigation";
 
 export const generateMetadata = async ({
   params,
@@ -14,6 +15,16 @@ export const generateMetadata = async ({
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/activity/slug/${slug}`,
     { cache: "no-store" },
   );
+
+  if (res.status === 404) {
+    const redirectedSlug = res.url.split("/slug/")[1];
+
+    if (redirectedSlug && redirectedSlug !== slug) {
+      redirect(`/package/${redirectedSlug}`);
+    }
+
+    return notFound();
+  }
 
   if (!res.ok) {
     notFound();
@@ -61,6 +72,16 @@ export default async function Page({ params }: { params: { slug: string } }) {
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/activity/slug/${slug}`,
     { cache: "no-store" },
   );
+
+  if (res.status === 404) {
+    const redirectedSlug = res.url.split("/slug/")[1];
+
+    if (redirectedSlug && redirectedSlug !== slug) {
+      redirect(`/package/${redirectedSlug}`);
+    }
+
+    return notFound();
+  }
 
   if (!res.ok) {
     notFound();
