@@ -26,6 +26,8 @@ export default function MobileImageViewer({
             title={keywords[imageIndex]}
             height={420}
             width={768}
+            fetchPriority="high"
+            loading="eager"
             placeholder="blur"
             blurDataURL={blurDataURL}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px"
