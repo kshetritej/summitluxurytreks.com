@@ -45,7 +45,7 @@ export default function Hero() {
               Explore Our Trips
             </Button>
           </Link>
-          <Link href="/contact">
+          <Link href="/design-your-trip">
             <Button className="uppercase">Design your trip</Button>
           </Link>
         </div>
