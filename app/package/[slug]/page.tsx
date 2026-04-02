@@ -37,6 +37,9 @@ export const generateMetadata = async ({
   return {
     title: trip?.seo?.metaTitle,
     description: trip?.seo?.metaDescription,
+    alternates: {
+      canonical: `https://summitluxurytreks.com/package/${slug}`,
+    },
     openGraph: {
       title: trip?.seo?.metaTitle,
       description: trip?.seo?.metaDescription,

@@ -12,7 +12,7 @@ export function MegaMenu({ items }: { items: any }) {
             {/* Main Link / Trigger */}
             <Link
               href={item.url || "#"}
-              className="flex items-center gap-1 font-medium text-sm hover:text-white/90 transition-colors"
+              className="md:text-lg flex items-center gap-1 font-medium  hover:text-white/90 transition-colors"
             >
               {item.label}
               {item.children.length > 0 && <LucideChevronDown size={12} />}
@@ -21,13 +21,13 @@ export function MegaMenu({ items }: { items: any }) {
             {/* Dropdown Content - Controlled by CSS hover */}
             {item.children.length > 0 && (
               <div className="absolute z-999 left-0  top-12 hidden group-hover:block w-screen min-h-[30vh] pt-2">
-                <div className="bg-white mt-4.5 rounded-b-2xl container mx-auto p-6 grid sm:grid-cols-3 md:grid-cols-4 gap-8 w-full">
+                <div className="bg-white text-lg mt-4.5 rounded-b-2xl container mx-auto p-6 grid sm:grid-cols-3 md:grid-cols-4 gap-8 w-full">
                   {item.children.map((child: any) => (
                     <div key={child.id} className="space-y-3">
                       {/* Sub-heading (e.g., Everest Region) */}
                       <Link
                         href={child.url}
-                        className="font-bold  text-primary pb-1 hover:text-primary hover:underline transition-all delay-200"
+                        className="font-bold text-lg text-primary pb-1 hover:text-primary hover:underline transition-all delay-200"
                       >
                         {child.label}
                       </Link>

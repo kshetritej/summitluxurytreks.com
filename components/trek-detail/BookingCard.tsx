@@ -17,55 +17,13 @@ export default function BookingCard({ trip }: { trip: any }) {
       </div>
 
       <div className="mt-4 space-y-3">
-        {/*<div>
-          <label className="font-semibold">Travel Date</label>
-          <div className="mt-2 rounded-lg border border-slate-200 bg-white px-3 py-2">
-            <input
-              type="date"
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-              className="w-full bg-transparent text-sm text-slate-700 outline-none"
-            />
-          </div>
-        </div>*/}
-        {/*
-        <div>
-          <label className="text-sm font-semibold text-slate-700">Guests</label>
-
-          <div className="mt-2 flex items-center justify-between rounded-lg border border-slate-200 bg-white px-3 py-2">
-            <span className="text-sm text-slate-700">{travellersLabel}</span>
-
-            <div className="flex items-center gap-2">
-              <button
-                type="button"
-                onClick={() => setTravellers((v) => Math.max(1, v - 1))}
-                className="h-8 w-8 rounded-md border border-slate-200 text-slate-700 hover:bg-slate-50"
-              >
-                –
-              </button>
-              <button
-                type="button"
-                onClick={() => setTravellers((v) => Math.min(12, v + 1))}
-                className="h-8 w-8 rounded-md border border-slate-200 text-slate-700 hover:bg-slate-50"
-              >
-                +
-              </button>
-            </div>
-          </div>
-        </div>*/}
-
-        <Link href={`/booking?q=${trip.slug}`}>
-          <button
-            className="mt-2 w-full rounded-lg bg-primary/90 px-4 py-2.5 text-sm font-semibold text-white hover:bg-primary"
-            type="button"
-          >
-            Send Booking Request for This Trek
-          </button>
+        <Link
+          aria-label={`Send booking request for this package -- ${trip.title}`}
+          href={`/booking?q=${trip.slug}`}
+          className="flex items-center justify-center w-full! mt-2 rounded-lg bg-primary/90 px-4 py-2.5 text-sm font-semibold text-white! no-underline hover:underline"
+        >
+          Send Booking Request for This Trek
         </Link>
-
-        {/*<div className="text-center text-xs text-slate-500 mt-2">
-          Full refund up to 30 days before start date
-        </div>*/}
       </div>
 
       <div className="mt-5 rounded-xl border border-slate-200 bg-slate-50 p-4">
@@ -76,13 +34,13 @@ export default function BookingCard({ trip }: { trip: any }) {
           Our travel experts are available 24/7 to help you customize your
           journey.
         </div>
-        <Link href={siteConfig.whatsAppLink} target="_blank">
-          <button
-            type="button"
-            className="mt-3 w-full rounded-lg border border-primary/20 bg-white px-4 py-2 text-sm font-semibold text-black  hover:bg-green-400 transition-colors delay-150 ease-linear"
-          >
-            Contact Expert on Whatsapp →
-          </button>
+        <Link
+          aria-label={`Contact this number -- ${siteConfig.whatsAppLink} on Whatsapp`}
+          href={siteConfig.whatsAppLink}
+          target="_blank"
+          className="w-full! flex justify-center items-center mt-4 rounded-lg border border-primary/20 bg-white px-4 py-2 text-sm font-semibold text-black  hover:bg-green-400 transition-colors delay-150 ease-linear"
+        >
+          <span>Contact Expert on Whatsapp →</span>
         </Link>
       </div>
     </div>

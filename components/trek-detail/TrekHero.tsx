@@ -59,7 +59,7 @@ export default function TrekHero({
                   ))}
                 </div>
                 <div className="absolute right-4 bottom-8 flex gap-2">
-                  <Button>
+                  <Button aria-label="Click to open Lightbox for viewing images in fullscreen">
                     <LucideImages />
                     {images.length} Photos
                   </Button>

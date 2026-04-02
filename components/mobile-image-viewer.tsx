@@ -35,6 +35,7 @@ export default function MobileImageViewer({
       </Lightbox>
       <div className=" flex justify-between gap-4 -mt-16 px-4 opacity-90">
         <Button
+          aria-label="Previous Image"
           variant={"ghost"}
           className="absolute top-42 left-4 size-12 p-2 border rounded-full border-white text-white"
           disabled={imageIndex == 0}
@@ -43,6 +44,7 @@ export default function MobileImageViewer({
           <ChevronLeft className="size-6" />
         </Button>
         <Button
+          aria-label="Next image"
           variant={"ghost"}
           className="absolute top-42 right-4  size-12 p-2 border rounded-full border-white text-white"
           disabled={imageIndex == images.length - 1}

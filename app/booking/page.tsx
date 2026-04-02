@@ -1,23 +1,28 @@
-import ContactForm from "./contact-form";
 import { siteConfig } from "@/constants";
+import ContactForm from "./contact-form";
+import { Metadata } from "next";
 
 export const dynamic = "force-static";
 export const revalidate = 3600;
 
-export const metadata = {
-  title: `Plan Your Adventure - ${siteConfig.name}`,
-  description: "Plan your adventure",
-  alternates: {
-    canonical: process.env.NEXT_PUBLIC_FRONTEND_BASE_URL + "/booking",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    "max-video-preview": -1,
-    "max-image-preview": "large",
-    "max-snippet": -1,
-  },
-};
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: { q?: string };
+}): Promise<Metadata> {
+  const hasQuery = await searchParams;
+
+  return {
+    title: `Book Your Trek - ${siteConfig.name}`,
+    description: "Plan your adventure with us",
+    alternates: {
+      canonical: process.env.NEXT_PUBLIC_FRONTEND_BASE_URL + "/booking",
+    },
+    robots: hasQuery
+      ? { index: false, follow: true }
+      : { index: true, follow: true },
+  };
+}
 
 export default async function BookingPage() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/activity`, {

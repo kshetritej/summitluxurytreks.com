@@ -29,9 +29,8 @@ export default function TrekDetailPage({ trip }: { trip: any }) {
   const d = trip;
 
   const sections = [
-    { id: "intro", icon: <LucideBringToFront />, label: "Introduction" },
-    { id: "highlights", icon: <LucideStar />, label: "Highlights" },
     { id: "overview", icon: <LucideEye />, label: "Overview" },
+    { id: "highlights", icon: <LucideStar />, label: "Highlights" },
     { id: "itinerary", icon: <MapPin />, label: "Itinerary" },
     { id: "inclusions", icon: <LucideCheck />, label: "Inclusions" },
     { id: "exclusions", icon: <LucideX />, label: "Exclusions" },
@@ -84,7 +83,7 @@ export default function TrekDetailPage({ trip }: { trip: any }) {
       <SectionNavigation sections={sections} />
       <div className="container mx-auto">
         <TrekHero images={d.images} imageAlts={d.keywords || []} />
-        <TrekHeader title={d.title} days={d.duration} />
+        <h1 className="text-2xl font-semibold mb-4">{d.title}</h1>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-7 container mx-auto gap-4">
         <div className="col-span-5">
@@ -136,6 +135,7 @@ export default function TrekDetailPage({ trip }: { trip: any }) {
           </div>
           <div className="mt-8">
             <div
+              id="overview"
               dangerouslySetInnerHTML={{
                 __html: decodeHtmlEntities(d.shortDescription),
               }}
@@ -147,7 +147,6 @@ export default function TrekDetailPage({ trip }: { trip: any }) {
               }}
             />
             <div
-              id="overview"
               dangerouslySetInnerHTML={{
                 __html: decodeHtmlEntities(d.fullDescription),
               }}
@@ -158,7 +157,7 @@ export default function TrekDetailPage({ trip }: { trip: any }) {
                 id="inclusions"
                 className="rounded-xl border  border-green-200  bg-green-200/20 p-2
                 prose-li:before:mask-[url('/icons/include.svg')]
-                prose-li:before:bg-green-600
+                prose-li:before:bg-green-600 mt-4 md:mt-12
                 "
                 dangerouslySetInnerHTML={{
                   __html: decodeHtmlEntities(d.inclusions[0]),

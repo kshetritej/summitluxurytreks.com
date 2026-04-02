@@ -70,7 +70,7 @@ export function SectionNavigation({ sections }: SectionNavigationProps) {
   const handleNavClick = (id: string) => {
     const el = document.getElementById(id);
     if (!el) return;
-    const y = el.getBoundingClientRect().top + window.scrollY - offsetTop - 8;
+    const y = el.getBoundingClientRect().top + window.scrollY - offsetTop - 120;
     window.scrollTo({ top: y, behavior: "smooth" });
   };
 
@@ -90,6 +90,7 @@ export function SectionNavigation({ sections }: SectionNavigationProps) {
         >
           {sections.map((section) => (
             <button
+              aria-label={`Scroll to ${section.label}`}
               key={section.id}
               ref={(el) => {
                 buttonRefs.current[section.id] = el;

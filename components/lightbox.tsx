@@ -116,7 +116,7 @@ export const Lightbox: React.FC<LightboxProps> = ({
                 padding: "10px",
                 lineHeight: 1,
               }}
-              aria-label="Previous"
+              aria-label="Previous Image"
             >
               ‹
             </button>
@@ -137,7 +137,7 @@ export const Lightbox: React.FC<LightboxProps> = ({
                 padding: "10px",
                 lineHeight: 1,
               }}
-              aria-label="Next"
+              aria-label="Next Image"
             >
               ›
             </button>
