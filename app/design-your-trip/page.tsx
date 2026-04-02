@@ -122,7 +122,6 @@ const INCLUSIONS: { id: InclusionId; label: string }[] = [
   { id: "porter", label: "Porter Service" },
   { id: "permits", label: "Trekking Permits & TIMS" },
   { id: "transport", label: "Airport Transfers" },
-  { id: "insurance", label: "Travel Insurance" },
   { id: "firstaid", label: "First Aid / Medical Kit" },
   { id: "sleeping-bag", label: "Sleeping Bag & Equipment" },
   { id: "helicopter", label: "Helicopter Rescue Cover" },
