@@ -666,7 +666,6 @@ export function ItineraryForm_Component() {
                         type="button"
                         variant="outline"
                         onClick={() => append({ name: "", days: "" })}
-                        className="w-full border-dashed border-gray-300 text-gray-500 hover:border-primary hover:text-primary h-10 gap-2 text-sm"
                       >
                         <LucidePlus className="w-4 h-4" />
                         Add Another Location
