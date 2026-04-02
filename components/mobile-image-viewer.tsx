@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { Button } from "./ui/button";
 import { Lightbox } from "./lightbox";
+import { blurDataURL } from "@/lib/imageutil";
 
 export default function MobileImageViewer({
   images,
@@ -23,8 +24,11 @@ export default function MobileImageViewer({
             src={images[imageIndex]}
             alt={keywords[imageIndex] || " "}
             title={keywords[imageIndex]}
-            height={1280}
-            width={1920}
+            height={420}
+            width={768}
+            placeholder="blur"
+            blurDataURL={blurDataURL}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px"
             className="w-full h-full object-cover object-center"
           />
         </figure>

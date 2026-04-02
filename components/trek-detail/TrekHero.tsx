@@ -3,6 +3,7 @@ import { Lightbox } from "../lightbox";
 import { Button } from "../ui/button";
 import { LucideImages } from "lucide-react";
 import MobileImageViewer from "../mobile-image-viewer";
+import { blurDataURL } from "@/lib/imageutil";
 
 export default function TrekHero({
   images,
@@ -29,8 +30,11 @@ export default function TrekHero({
                     data-lightbox-index={0}
                     src={mainImage}
                     alt={imageAlts[0] || ""}
-                    height={1280}
-                    width={1920}
+                    height={420}
+                    width={768}
+                    placeholder="blur"
+                    blurDataURL={blurDataURL}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 800px"
                     className="w-full  h-full object-center rounded-xl object-cover overflow-hidden cursor-pointer"
                   />
                 </div>
@@ -44,8 +48,11 @@ export default function TrekHero({
                         data-lightbox-index={index + 1}
                         alt={imageAlts[index + 1] || ""}
                         src={imageUrl}
-                        height={1280}
-                        width={1920}
+                        height={420}
+                        width={768}
+                        placeholder="blur"
+                        blurDataURL={blurDataURL}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px"
                         className="w-full h-full object-cover object-center rounded-xl cursor-pointer"
                       />
                     </div>

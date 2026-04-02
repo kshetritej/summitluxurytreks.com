@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
+import { blurDataURL } from "@/lib/imageutil";
 
 interface LightboxProps {
   images: string[];
@@ -148,6 +149,8 @@ export const Lightbox: React.FC<LightboxProps> = ({
         <Image
           width={1920}
           height={1280}
+          placeholder="blur"
+          blurDataURL={blurDataURL}
           src={images[currentIndex]}
           alt={imageAlts[currentIndex] || `Image ${currentIndex + 1}`}
           // onClick={(e) => e.stopPropagation()}

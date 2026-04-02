@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
-import { getFullImageUrl } from "@/lib/getFullUrl";
+import { blurDataURL } from "@/lib/imageutil";
 
 export type TripCardProps = {
   id: string;
@@ -28,10 +28,13 @@ export default function TripCard({ tour }: Readonly<{ tour: TripCardProps }>) {
       <div className="h-full object-cover overflow-hidden">
         {tour.images[0] && (
           <Image
-            width={1280}
+            width={420}
             src={tour.images[0]}
             height={720}
             alt={tour.keywords[0] || tour.title || ""}
+            placeholder="blur"
+            blurDataURL={blurDataURL}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px"
             className="object-cover min-h-132 -z-10 hover:scale-105 transition-all duration-150"
           />
         )}
