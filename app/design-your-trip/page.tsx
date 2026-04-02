@@ -1155,9 +1155,7 @@ export function ItineraryForm_Component() {
                 Custom itinerary proposals are delivered within 24–48 hours.
               </p>
               <p>For urgent planning, call us at {siteConfig.phoneNumber}.</p>
-              <p>
-                Available Sunday–Friday, 9:00 AM – 5:00 PM Nepal Standard Time.
-              </p>
+              <p>Available {siteConfig.openHours}.</p>
             </div>
           </div>
         </div>
