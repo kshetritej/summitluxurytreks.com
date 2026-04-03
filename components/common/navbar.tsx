@@ -2,7 +2,7 @@ import LogoComponent from "@/components/atoms/logo";
 import { MegaMenu } from "./mega-menu";
 import { MobileMenu } from "./mobile-menu";
 import Link from "next/link";
-import { LucideSmartphone } from "lucide-react";
+import { LucideSmartphone, MessageSquare } from "lucide-react";
 import { Button } from "../ui/button";
 import { siteConfig } from "@/constants";
 
@@ -16,18 +16,18 @@ export default async function Navbar() {
   return (
     <div
       id="site-navbar"
-      className="bg-primary w-screen mx-auto sticky top-0 text-white shadow-b-sm flex flex-col gap-1 justify-between  z-999"
+      className="bg-primary mx-auto sticky top-0 text-white shadow-b-sm flex flex-col gap-1 justify-between z-999 py-3"
     >
-      <div className="flex flex-row items-center w-screen justify-between p-2 container mx-auto">
+      <div className="flex flex-row items-center w-screen justify-between container mx-auto">
         <LogoComponent />
         <MegaMenu items={menuData} />
         <Link
           href={siteConfig.whatsAppLink}
           target="_blank"
-          className="hidden md:block"
+          className="hidden md:flex gap-2 items-center"
         >
-          <Button variant={"secondary"}>
-            <LucideSmartphone />
+          <Button variant={"secondary"} className="rounded-full">
+            <MessageSquare />
             <div>{siteConfig.whatsAppNumber}</div>
           </Button>
         </Link>

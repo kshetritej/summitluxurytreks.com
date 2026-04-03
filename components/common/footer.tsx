@@ -107,7 +107,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Section */}
-        <div className="border-t border-border space-y-8">
+        <div className="border-t border-border space-y-8 py-4">
           {/* Copyright */}
           <div className="pt-6 text-sm text-muted-foreground border-t border-border">
             <p>© 2026 {siteConfig.name}.</p>

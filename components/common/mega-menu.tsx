@@ -1,6 +1,5 @@
 import { LucideChevronDown } from "lucide-react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 
 // This is a Server Component (no 'use client' at the top)
 export function MegaMenu({ items }: { items: any }) {
