@@ -1,5 +1,4 @@
 export const dynamic = "force-static";
-import TrekHeader from "./TrekHeader";
 import TrekHero from "./TrekHero";
 import BookingCard from "./BookingCard";
 import {
@@ -13,7 +12,6 @@ import {
   LucideX,
   LucideCheck,
   LucideInfo,
-  LucideBringToFront,
   LucideMap,
   LucideTent,
 } from "lucide-react";

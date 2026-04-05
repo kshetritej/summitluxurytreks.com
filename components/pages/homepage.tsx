@@ -5,6 +5,7 @@ import WelcomeSection from "../sections/welcome-section";
 import WhyUsSection from "../sections/why-us";
 import FeaturedSections from "../sections/featured-sections";
 import TripOfTheMonth from "../featured-trip";
+import Testimonials from "../testimonial-section";
 
 export default async function Homepage() {
   let data;
@@ -34,6 +35,10 @@ export default async function Homepage() {
       <FeaturedSections featuredTags={firstFeatured} />
       <TripOfTheMonth />
       <FeaturedSections featuredTags={secondFeatured} />
+      <div className="bg-primary/20 py-12 ">
+        <Testimonials />
+      </div>
+
       <FeaturedSections featuredTags={thirdFeatured} />
     </div>
   );

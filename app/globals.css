@@ -4,6 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+    --font-script: var(--font-script);
     --font-sans: var(--font-sans);
     --font-mono: var(--font-mono);
     --color-background: var(--background);
@@ -201,4 +202,73 @@ table td:first-child {
 }
 .scrollbar-hide::-webkit-scrollbar {
     display: none; /* Chrome, Safari */
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    background-color: white;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    border: none !important;
+}
+
+table tbody tr:hover {
+    background-color: #f3f4f6;
+}
+th {
+    background-color: #f9fafb;
+    border-bottom: 2px solid #e5e7eb;
+    padding: 1rem 1.5rem;
+    text-align: left;
+    font-weight: 600;
+    color: #111827;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+}
+td {
+    padding: 1rem 1.5rem;
+    font-size: 1.25rem;
+}
+
+table td:first-child {
+    font-weight: 500;
+    color: #1f2937;
+}
+
+/* Mobile responsive */
+@media (max-width: 640px) {
+    table {
+        font-size: 0.875rem;
+    }
+
+    table th,
+    table td {
+        padding: 0.75rem 1rem;
+    }
+}
+.scrollbar-hide {
+    -ms-overflow-style: none; /* IE & Edge */
+    scrollbar-width: none; /* Firefox */
+}
+.scrollbar-red {
+    scrollbar-color: red;
+    scrollbar-track-color: red;
+}
+.scrollbar-hide::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+}
+/** {
+    border: 1px solid red;
+}*/
+
+/* Wrap all tables in a scrollable container */
+.content-body table {
+    border: none;
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* smooth scroll on iOS */
 }
