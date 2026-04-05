@@ -18,7 +18,7 @@ export default async function Testimonials() {
   const testimonials = await res.json();
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto px-4">
       <div className="text-xl md:text-3xl text-left font-black uppercase font-script">
         What Our Trekkers Say
       </div>
