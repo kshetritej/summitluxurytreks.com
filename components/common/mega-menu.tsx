@@ -19,7 +19,7 @@ export function MegaMenu({ items }: { items: any }) {
 
             {/* Dropdown Content - Controlled by CSS hover */}
             {item.children.length > 0 && (
-              <div className="absolute z-999 left-0  top-12 hidden group-hover:block w-screen min-h-[30vh] pt-2">
+              <div className="absolute z-999 left-0  top-18 hidden group-hover:block w-screen min-h-[30vh] pt-2">
                 <div className="bg-white text-lg mt-4.5 rounded-b-2xl container mx-auto p-6 grid sm:grid-cols-3 md:grid-cols-4 gap-8 w-full">
                   {item.children.map((child: any) => (
                     <div key={child.id} className="space-y-3">
