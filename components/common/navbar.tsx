@@ -2,10 +2,8 @@ import LogoComponent from "@/components/atoms/logo";
 import { MegaMenu } from "./mega-menu";
 import { MobileMenu } from "./mobile-menu";
 import Link from "next/link";
-import { LucidePlusCircle, MessageSquare } from "lucide-react";
+import { LucidePlusCircle } from "lucide-react";
 import { Button } from "../ui/button";
-import { siteConfig } from "@/constants";
-import Image from "next/image";
 
 export default async function Navbar() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/menu`);
@@ -22,7 +20,7 @@ export default async function Navbar() {
       <div className="flex flex-row items-center w-screen justify-between container mx-auto">
         <LogoComponent />
         <MegaMenu items={menuData} />
-        <Link href={"/design-your-trip"}>
+        <Link href={"/design-your-trip"} className="hidden md:flex">
           <Button variant={"secondary"} size={"lg"}>
             <LucidePlusCircle /> Customize your Trip
           </Button>
