@@ -610,11 +610,11 @@ export function ItineraryForm_Component() {
                                 render={({ field }) => (
                                   <FormItem>
                                     <FormLabel className="text-xs text-gray-500 font-medium">
-                                      Location / Region
+                                      Locations
                                     </FormLabel>
                                     <FormControl>
                                       <Input
-                                        placeholder="e.g. Everest Base Camp"
+                                        placeholder="e.g. Pokhara"
                                         className="border-gray-300 focus-visible:ring-primary rounded-md h-9 text-sm"
                                         {...field}
                                       />
