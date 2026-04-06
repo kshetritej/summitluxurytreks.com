@@ -1,7 +1,7 @@
 //@ts-nocheck
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -22,6 +22,8 @@ import {
   LucideBed,
   LucideStar,
   LucideMap,
+  LucideLoader2,
+  LucideImageOff,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -46,6 +48,16 @@ import {
 
 import { siteConfig } from "@/constants";
 
+// ── Types ─────────────────────────────────────────────────────────────────────
+
+interface TripCategory {
+  id: string;
+  categoryHandle: string;
+  categoryName: string;
+  categoryImage: string | null;
+  createdAt: string;
+}
+
 const DURATION_VALUES = [
   "1–3 days",
   "4–7 days",
@@ -55,20 +67,6 @@ const DURATION_VALUES = [
   "21+ days",
 ] as const;
 type Duration = (typeof DURATION_VALUES)[number];
-
-const EXPERIENCE_TYPE_VALUES = [
-  "Classic Trek",
-  "High Altitude Expedition",
-  "Cultural & Heritage Tour",
-  "Wildlife & Nature Safari",
-  "Luxury Trek",
-  "Adventure & Extreme Sports",
-  "Pilgrimage Tour",
-  "Photography Tour",
-  "Family-Friendly Trek",
-  "Off-the-beaten-path",
-] as const;
-type ExperienceType = (typeof EXPERIENCE_TYPE_VALUES)[number];
 
 const INCLUSION_IDS = [
   "guide",
@@ -157,37 +155,22 @@ const locationSchema = z.object({
   days: z.string().optional(),
 });
 
-/**
- * Locations are only required when letUsChooseLocations === false.
- * We use a superRefine to cross-validate those two fields together.
- */
 const itineraryFormSchema = z
   .object({
-    // Personal
     fullName: z.string().min(2, "Full name must be at least 2 characters"),
     email: z.string().email("Invalid email address"),
     phone: z.string().optional(),
-
-    // Trip basics
     duration: z.enum(DURATION_VALUES, { error: "Please select a duration" }),
-    experienceType: z.enum(EXPERIENCE_TYPE_VALUES, {
-      error: "Please select an experience type",
-    }),
+    experienceType: z.string().min(1, "Please select an experience type"),
     startDate: z.string().min(1, "Please select a start date"),
-
-    // Locations
     letUsChooseLocations: z.boolean(),
     locations: z.array(locationSchema),
-
-    // Group
     groupType: z.enum(GROUP_TYPE_VALUES, {
       error: "Please select a group type",
     }),
     numberOfTravellers: z.enum(TRAVELLER_COUNT_VALUES, {
       error: "Please select number of travellers",
     }),
-
-    // Preferences — all multi-select arrays
     inclusions: z.array(z.enum(INCLUSION_IDS)).default([]),
     accommodationPreferences: z
       .array(z.enum(ACCOMMODATION_VALUES))
@@ -195,7 +178,6 @@ const itineraryFormSchema = z
     foodPreferences: z
       .array(z.enum(FOOD_PREF_VALUES))
       .min(1, "Please select at least one food preference"),
-
     otherMentions: z.string().optional(),
   })
   .superRefine((data, ctx) => {
@@ -208,7 +190,6 @@ const itineraryFormSchema = z
             path: ["locations", index, "name"],
           });
         }
-
         const dayNum = Number(location.days);
         if (!location.days || isNaN(dayNum) || dayNum <= 0) {
           ctx.addIssue({
@@ -231,7 +212,6 @@ const STEPS = [
   { label: "Contact", icon: LucideMail },
 ] as const;
 
-/** Fields validated at each step before advancing */
 const STEP_FIELDS: Record<number, (keyof ItineraryFormValues)[]> = {
   0: ["duration", "experienceType", "startDate"],
   1: ["letUsChooseLocations", "locations"],
@@ -240,22 +220,86 @@ const STEP_FIELDS: Record<number, (keyof ItineraryFormValues)[]> = {
   4: ["fullName", "email", "phone"],
 };
 
-/** Toggle an item in a string array — immutable */
 function toggleArrayItem<T>(arr: T[], item: T): T[] {
   return arr.includes(item) ? arr.filter((v) => v !== item) : [...arr, item];
 }
 
-/** Render a readable label from an AccommodationValue */
 function accommodationLabel(v: AccommodationValue): string {
   return ACCOMMODATION.find((a) => a.value === v)?.label ?? v;
 }
 
-/** Render a readable label from a FoodPrefValue */
 function foodLabel(v: FoodPrefValue): string {
   return FOOD_PREFS.find((f) => f.value === v)?.label ?? v;
 }
 
-// ── Entry point (Suspense boundary) ──────────────────────────────────────────
+// ── Experience Type Card ──────────────────────────────────────────────────────
+
+function ExperienceTypeCard({
+  category,
+  selected,
+  onClick,
+}: {
+  category: TripCategory;
+  selected: boolean;
+  onClick: () => void;
+}) {
+  const [imgError, setImgError] = useState(false);
+
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`relative overflow-hidden rounded-xl border-2 transition-all text-left group focus:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+        selected
+          ? "border-primary shadow-md scale-[1.02]"
+          : "border-gray-200 hover:border-gray-300 hover:shadow-sm"
+      }`}
+    >
+      {/* Image */}
+      <div className="relative w-full h-28 bg-gray-100">
+        {category.categoryImage && !imgError ? (
+          <img
+            src={category.categoryImage}
+            alt={category.categoryName}
+            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            onError={() => setImgError(true)}
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center bg-gray-100">
+            <LucideImageOff className="w-6 h-6 text-gray-300" />
+          </div>
+        )}
+
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+
+        {/* Selected checkmark */}
+        {selected && (
+          <div className="absolute top-2 right-2 w-6 h-6 rounded-full bg-primary flex items-center justify-center shadow">
+            <LucideCheckCircle2 className="w-4 h-4 text-white" />
+          </div>
+        )}
+      </div>
+
+      {/* Label */}
+      <div
+        className={`px-3 py-2.5 transition-colors ${
+          selected ? "bg-primary/5" : "bg-white"
+        }`}
+      >
+        <p
+          className={`text-sm font-medium leading-tight ${
+            selected ? "text-primary" : "text-gray-700"
+          }`}
+        >
+          {category.categoryName}
+        </p>
+      </div>
+    </button>
+  );
+}
+
+// ── Entry point ───────────────────────────────────────────────────────────────
 
 const CustomItineraryForm = () => (
   <Suspense fallback={<div>Loading…</div>}>
@@ -272,6 +316,49 @@ export function ItineraryForm_Component() {
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [step, setStep] = useState(0);
 
+  // Categories state
+  const [categories, setCategories] = useState<TripCategory[]>([]);
+  const [categoriesLoading, setCategoriesLoading] = useState(true);
+  const [categoriesError, setCategoriesError] = useState<string | null>(null);
+
+  // Fetch all pages of categories
+  useEffect(() => {
+    const fetchAllCategories = async () => {
+      setCategoriesLoading(true);
+      setCategoriesError(null);
+      try {
+        const allCategories: TripCategory[] = [];
+        let page = 1;
+        let totalPages = 1;
+
+        while (page <= totalPages) {
+          const res = await fetch(
+            `${process.env.NEXT_PUBLIC_API_BASE_URL}/trip-category?page=${page}&limit=50`,
+          );
+          if (!res.ok) throw new Error("Failed to fetch categories");
+          const json = await res.json();
+          const { tripCategories, pagination } = json.data;
+          allCategories.push(...tripCategories);
+          totalPages = pagination.totalPages;
+          page++;
+        }
+
+        // Filter out the default placeholder category
+        setCategories(
+          allCategories.filter((c) => c.categoryHandle !== "default"),
+        );
+      } catch (err) {
+        setCategoriesError(
+          "Could not load experience types. Please try again.",
+        );
+      } finally {
+        setCategoriesLoading(false);
+      }
+    };
+
+    fetchAllCategories();
+  }, []);
+
   const form = useForm<ItineraryFormValues>({
     resolver: zodResolver(itineraryFormSchema),
     defaultValues: {
@@ -279,7 +366,7 @@ export function ItineraryForm_Component() {
       email: "",
       phone: "",
       duration: undefined,
-      experienceType: undefined,
+      experienceType: "",
       startDate: "",
       letUsChooseLocations: false,
       locations: [{ name: "", days: "" }],
@@ -377,6 +464,11 @@ export function ItineraryForm_Component() {
   };
 
   const goPrev = () => setStep((s) => Math.max(s - 1, 0));
+
+  // Selected category object for the summary
+  const selectedCategory = categories.find(
+    (c) => c.categoryName === form.watch("experienceType"),
+  );
 
   // ── Render ──────────────────────────────────────────────────────────────────
 
@@ -492,6 +584,7 @@ export function ItineraryForm_Component() {
                     )}
                   />
 
+                  {/* ── Experience Type — image card grid ── */}
                   <FormField
                     control={form.control}
                     name="experienceType"
@@ -500,25 +593,59 @@ export function ItineraryForm_Component() {
                         <FormLabel className="text-gray-700 font-semibold text-sm">
                           Experience / Trek Type *
                         </FormLabel>
-                        <Select
-                          onValueChange={(v) =>
-                            field.onChange(v as ExperienceType)
-                          }
-                          value={field.value}
-                        >
-                          <FormControl>
-                            <SelectTrigger className="w-full border-gray-300 focus:ring-primary rounded-md h-11">
-                              <SelectValue placeholder="Select experience type" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            {EXPERIENCE_TYPE_VALUES.map((e) => (
-                              <SelectItem key={e} value={e}>
-                                {e}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
+
+                        {categoriesLoading && (
+                          <div className="flex items-center gap-2 py-6 text-sm text-gray-400">
+                            <LucideLoader2 className="w-4 h-4 animate-spin" />
+                            Loading experience types…
+                          </div>
+                        )}
+
+                        {categoriesError && (
+                          <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600">
+                            {categoriesError}
+                          </div>
+                        )}
+
+                        {!categoriesLoading && !categoriesError && (
+                          <>
+                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-1">
+                              {categories.map((cat) => (
+                                <ExperienceTypeCard
+                                  key={cat.id}
+                                  category={cat}
+                                  selected={field.value === cat.categoryName}
+                                  onClick={() =>
+                                    field.onChange(cat.categoryName)
+                                  }
+                                />
+                              ))}
+                            </div>
+
+                            {/* Selected category banner */}
+                            {field.value && selectedCategory && (
+                              <div className="mt-3 flex items-center gap-3 rounded-lg border border-primary/30 bg-primary/5 px-4 py-3">
+                                {selectedCategory.categoryImage && (
+                                  <img
+                                    src={selectedCategory.categoryImage}
+                                    alt={selectedCategory.categoryName}
+                                    className="w-10 h-10 rounded-md object-cover shrink-0"
+                                  />
+                                )}
+                                <div>
+                                  <p className="text-xs text-gray-500 font-medium">
+                                    Selected experience
+                                  </p>
+                                  <p className="text-sm font-semibold text-primary">
+                                    {selectedCategory.categoryName}
+                                  </p>
+                                </div>
+                                <LucideCheckCircle2 className="w-4 h-4 text-primary ml-auto shrink-0" />
+                              </div>
+                            )}
+                          </>
+                        )}
+
                         <FormMessage />
                       </FormItem>
                     )}
@@ -558,7 +685,6 @@ export function ItineraryForm_Component() {
                     </p>
                   </div>
 
-                  {/* Let us choose toggle */}
                   <FormField
                     control={form.control}
                     name="letUsChooseLocations"
@@ -569,10 +695,7 @@ export function ItineraryForm_Component() {
                             checked={field.value}
                             onCheckedChange={(checked) => {
                               field.onChange(checked);
-                              // Clear validation errors on location fields when toggled on
-                              if (checked) {
-                                form.clearErrors("locations");
-                              }
+                              if (checked) form.clearErrors("locations");
                             }}
                             className="mt-0.5 data-[state=checked]:bg-primary data-[state=checked]:border-primary"
                           />
@@ -590,7 +713,6 @@ export function ItineraryForm_Component() {
                     )}
                   />
 
-                  {/* Location list — only shown & required when letUsChoose is false */}
                   {!letUsChoose && (
                     <div className="space-y-3">
                       <p className="text-sm font-semibold text-gray-700">
@@ -610,7 +732,7 @@ export function ItineraryForm_Component() {
                                 render={({ field }) => (
                                   <FormItem>
                                     <FormLabel className="text-xs text-gray-500 font-medium">
-                                      Locations
+                                      Location
                                     </FormLabel>
                                     <FormControl>
                                       <Input
@@ -760,7 +882,6 @@ export function ItineraryForm_Component() {
                     </p>
                   </div>
 
-                  {/* Inclusions */}
                   <FormField
                     control={form.control}
                     name="inclusions"
@@ -805,7 +926,6 @@ export function ItineraryForm_Component() {
                     )}
                   />
 
-                  {/* Accommodation — multi-select */}
                   <FormField
                     control={form.control}
                     name="accommodationPreferences"
@@ -849,7 +969,6 @@ export function ItineraryForm_Component() {
                     )}
                   />
 
-                  {/* Food — multi-select */}
                   <FormField
                     control={form.control}
                     name="foodPreferences"
@@ -893,7 +1012,6 @@ export function ItineraryForm_Component() {
                     )}
                   />
 
-                  {/* Other Mentions */}
                   <FormField
                     control={form.control}
                     name="otherMentions"
@@ -996,10 +1114,31 @@ export function ItineraryForm_Component() {
                     <p className="font-semibold text-gray-800 mb-3">
                       Your Itinerary Summary
                     </p>
+
+                    {/* Selected experience with image */}
+                    {selectedCategory && (
+                      <div className="flex items-center gap-3 mb-3 pb-3 border-b border-gray-200">
+                        {selectedCategory.categoryImage && (
+                          <img
+                            src={selectedCategory.categoryImage}
+                            alt={selectedCategory.categoryName}
+                            className="w-14 h-14 rounded-lg object-cover shrink-0"
+                          />
+                        )}
+                        <div>
+                          <p className="text-xs text-gray-400 font-medium">
+                            Experience Type
+                          </p>
+                          <p className="text-sm font-semibold text-gray-800">
+                            {selectedCategory.categoryName}
+                          </p>
+                        </div>
+                      </div>
+                    )}
+
                     {(
                       [
                         ["Duration", form.watch("duration")],
-                        ["Experience", form.watch("experienceType")],
                         ["Start Date", form.watch("startDate")],
                         [
                           "Locations",
