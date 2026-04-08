@@ -3,7 +3,7 @@ export const siteConfig = {
   description: "Explore the world with us",
   url: "https://summitluxurytreks.com",
   image: "/og.png",
-  whatsAppNumber: "9779826145893",
+  whatsAppNumber: "9779847709793 ",
   whatsAppLink:
     "https://api.whatsapp.com/send/?phone=9779826145893&text&type=phone_number&app_absent=0",
   phoneNumber: "+9779847709793",
