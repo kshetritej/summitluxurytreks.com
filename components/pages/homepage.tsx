@@ -6,6 +6,7 @@ import WhyUsSection from "../sections/why-us";
 import FeaturedSections from "../sections/featured-sections";
 import TripOfTheMonth from "../featured-trip";
 import Testimonials from "../testimonial-section";
+import TripTypeCarousel from "../gallery/triptype-carousel";
 
 export default async function Homepage() {
   let data;
@@ -32,6 +33,9 @@ export default async function Homepage() {
       <Hero />
       <WhyUsSection />
       <WelcomeSection />
+      <div className="bg-accent/10 min-h-[50vh] flex items-center justify-center">
+        <TripTypeCarousel />
+      </div>
       <FeaturedSections featuredTags={firstFeatured} />
       <TripOfTheMonth />
       <FeaturedSections featuredTags={secondFeatured} />
