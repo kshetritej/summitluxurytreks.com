@@ -35,6 +35,7 @@ import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { buildInquiryEmail } from "./email-template";
 import { siteConfig } from "@/constants";
+import BankDetailsCard from "@/components/atoms/payment-info-card";
 
 const contactFormSchema = z.object({
   fullName: z.string().min(2, "Full name must be at least 2 characters"),
@@ -376,6 +377,7 @@ export function Form_Component({ packages }: { packages: TPackageDetails[] }) {
 
         {/* ── Sidebar — 1 col ── */}
         <div className="space-y-10">
+          <BankDetailsCard />
           {/* Other ways to reach */}
           <div>
             <h3 className="text-xl font-bold text-gray-900 mb-6">

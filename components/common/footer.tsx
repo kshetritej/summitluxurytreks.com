@@ -8,6 +8,7 @@ import {
 } from "@/lib/imageutil";
 import { siteConfig } from "@/constants";
 import Image from "next/image";
+import BankDetailsCard from "../atoms/payment-info-card";
 
 export default function Footer() {
   return (
@@ -102,6 +103,9 @@ export default function Footer() {
                   </div>
                 ))}
               </div>
+            </div>
+            <div>
+              <BankDetailsCard />
             </div>
           </div>
         </div>

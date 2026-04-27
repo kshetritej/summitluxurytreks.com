@@ -1,3 +1,4 @@
+import BankDetailsCard from "@/components/atoms/payment-info-card";
 import ContactForm from "@/components/contact-form";
 import { siteConfig } from "@/constants";
 import { Metadata } from "next";
@@ -34,6 +35,9 @@ export default function ContactPage() {
       {/* Direct Contact Info Section */}
       <section className="py-16 px-4 border-t border-border bg-secondary/50">
         <div className="max-w-4xl mx-auto">
+          <div className="mb-4">
+            <BankDetailsCard />
+          </div>
           <h2 className="text-2xl font-bold mb-8">Other Ways to Reach Us</h2>
 
           <div className="flex flex-col gap-8">
