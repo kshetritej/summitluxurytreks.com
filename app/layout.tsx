@@ -73,6 +73,12 @@ export default function RootLayout({
               gtag('config', 'G-LQCKZ8VWQN');
             `}
         </Script>
+        <Script
+          id="umami-analytics"
+          strategy="afterInteractive"
+          src="https://cloud.umami.is/script.js"
+          data-website-id="0b9d795f-a7d8-4295-89ee-f4a47c83b982"
+        />
       </head>
       <body className={`${outfit.className} sans-serif antialiased`}>
         <noscript>
