@@ -77,7 +77,7 @@ export default function RootLayout({
           id="umami-analytics"
           strategy="afterInteractive"
           src="https://cloud.umami.is/script.js"
-          data-website-id="0b9d795f-a7d8-4295-89ee-f4a47c83b982"
+          data-website-id="018361a8-2819-4cea-aaa7-7d99efb983fd"
         />
       </head>
       <body className={`${outfit.className} sans-serif antialiased`}>
